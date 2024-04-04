@@ -6,6 +6,7 @@ import User from './components/User';
 import UsersList from './components/UsersList';
 import AddUser from './components/AddUser';
 import Hdr from './components/Hdr';
+import AddSet from './flashlite-components/AddSet';
 
 function Home() {
   // const DEFAULT_IMAGE = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg";
@@ -47,9 +48,7 @@ function Home() {
   // };
   
   return (
-    <div>
-      <Hdr/>
-    </div>
+    <AddSet/>
   );
 }
 
