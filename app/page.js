@@ -50,7 +50,7 @@ function Home() {
   
   return (
     <div> 
-      <Hdr /> 
+      <Hdr signedIn={true}/> 
       <AddSet />
     </div>
   );
