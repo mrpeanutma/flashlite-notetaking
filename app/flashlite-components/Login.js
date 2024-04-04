@@ -3,7 +3,7 @@
 import Button from "@/app/components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
-import '../components/Login.css';
+import './Login.css';
 
 const Login = (props) => {
 
