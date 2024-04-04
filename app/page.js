@@ -49,7 +49,10 @@ function Home() {
   // };
   
   return (
-    <AddSet/>
+    <div> 
+      <Hdr /> 
+      <AddSet />
+    </div>
   );
 }
 
