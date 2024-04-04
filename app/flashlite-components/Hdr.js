@@ -1,6 +1,6 @@
 import React from 'react';
-
-import './Hdr.css';
+import { useState } from 'react';
+import "./Hdr.css";
 import Button from './Button';
 import Link from 'next/link';
 
@@ -23,8 +23,10 @@ const Hdr = (props) => {
   if (signedIn) {
     return (
       <div className="hdr">
-        <img src={LOGO} alt="FlashLITE"/>
-        <h1>FlashLITE</h1>
+        <div className="hdr-left">
+          <img src={LOGO} alt="FlashLITE"/>
+          <h1>FlashLITE</h1>
+        </div>
         <div className="buttons">
           <Button onClick={addSetHandler}></Button>
           <Button onClick={logoutHandler} className="logout-button">Logout</Button>
@@ -34,8 +36,10 @@ const Hdr = (props) => {
   } else {
     return (
       <div className="hdr">
-        <img src={LOGO} alt="FlashLITE"/>
-        <h1>FlashLITE</h1>
+        <div className="hdr-left">
+          <img src={LOGO} alt="FlashLITE"/>
+          <h1>FlashLITE</h1>
+        </div>
         <div className="buttons">
           <Button className="signup-button">
             <Link href="/signup">Signup</Link>
