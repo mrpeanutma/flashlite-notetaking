@@ -1,0 +1,22 @@
+.set-item {
+    background-color: #D9D9D9;
+    padding: 1em;
+    margin: 1em;
+    flex-grow: 1;
+}
+
+.set-info {
+    display: flex;
+    align-items: first baseline;
+    width: auto;
+}
+
+.set-info h2 {
+    background-color: #9E9D9D;
+    padding: 0.5em;
+}
+
+.description {
+    background-color: #9E9D9D;
+    padding: 0.5em;
+}

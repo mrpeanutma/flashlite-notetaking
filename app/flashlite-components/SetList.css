@@ -1,0 +1,9 @@
+.sets ul {
+    display: grid;
+    flex-grow: 0;     /* do not grow   - initial value: 0 */
+    flex-shrink: 0;   /* do not shrink - initial value: 1 */
+    flex-basis: 25em; /* width/height  - initial value: auto */
+    grid-template-columns: 1fr 1fr 1fr;
+    width: auto;
+    padding: 0 0 0 0;
+}
