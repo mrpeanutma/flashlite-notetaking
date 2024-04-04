@@ -42,10 +42,10 @@ const Hdr = (props) => {
         </div>
         <div className="buttons">
           <Button className="signup-button">
-            <Link href="/signup">Signup</Link>
+            <Link href="../signup">Signup</Link>
           </Button>
           <Button className="login-button">
-            <Link href="/login">Login</Link>
+            <Link href="../login">Login</Link>
           </Button>
         </div>
       </div>
