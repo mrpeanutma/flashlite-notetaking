@@ -2,6 +2,7 @@ import React from 'react';
 
 import './Hdr.css';
 import Button from './Button';
+import Link from 'next/link';
 
 const Hdr = (props) => {
 
@@ -36,8 +37,12 @@ const Hdr = (props) => {
         <img src={LOGO} alt="FlashLITE"/>
         <h1>FlashLITE</h1>
         <div className="buttons">
-          <Button onClick={signInHandler}></Button>
-          <Button onClick={logInHandler} className="logout-button">Logout</Button>
+          <Button className="signup-button">
+            <Link href="/signup">Signup</Link>
+          </Button>
+          <Button className="login-button">
+            <Link href="/login">Login</Link>
+          </Button>
         </div>
       </div>
     );
