@@ -43,8 +43,11 @@ const Login = (props) => {
         if (!enteredUsername || !enteredPassword || !enteredEmail || !enteredBirthday) {
             alert('All fields required!')
         }
-        props.onAddUser(userData);
-
+        props.onSignup(userData);
+        setEnteredUsername('');
+        setEnteredBirthday('');
+        setEnteredEmail('');
+        setEnteredPassword('');
     };
 
     return (
