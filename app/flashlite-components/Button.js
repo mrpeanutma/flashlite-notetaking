@@ -1,11 +1,11 @@
 import React from 'react';
 
-//import './Button.css';
+import './Button.css';
 
 const Button = (props) => {
   return (
     <button
-      className="button"
+      className={props.className}
       type={props.type || 'button'}
       onClick={props.onClick}
     >
