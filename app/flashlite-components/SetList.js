@@ -2,7 +2,7 @@ import Card from "./Card.js";
 import Set from "./Set.js";
 import "./SetList.css";
 
-function UsersList(props) {    
+function SetList(props) {    
     return (
         <Card className="sets">
         <ul>

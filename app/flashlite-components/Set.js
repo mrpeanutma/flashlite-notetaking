@@ -1,7 +1,7 @@
 import React from 'react';
 import './Set.css';
 
-function User(props) {
+function Set(props) {
     return (    
         <li key={props.id} className="set-item">
             <img src={props.img} className="set-img" alt={props.title} />
