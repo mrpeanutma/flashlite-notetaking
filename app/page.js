@@ -3,11 +3,11 @@
 
 import {useState} from 'react';
 
-import User from './components/User';
-import UsersList from './components/UsersList';
-import AddUser from './components/AddUser';
-import Hdr from './components/Hdr';
-import AddSet from './flashlite-components/AddSet';
+//import User from '/flashlite-components/User';
+//import UsersList from '/flashlite-components/UsersList';
+//import AddUser from './flashlite-components/AddUser';
+import Hdr from './/flashlite-components/Hdr';
+import AddSet from './/flashlite-components/AddSet';
 
 function Home() {
   // const DEFAULT_IMAGE = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg";
@@ -48,12 +48,23 @@ function Home() {
   //     console.log(users);
   // };
   
-  return (
-    <div> 
-      <Hdr signedIn={true}/> 
-      <AddSet />
-    </div>
-  );
+  const [signedIn, setSignedIn] = useState(); 
+  
+  if (signedIn) { 
+    return ( 
+      <div> 
+        <Hdr signedIn={true}/> 
+        <AddSet /> 
+      </div>
+    )
+  } else { 
+    return ( 
+      <div>         
+        <Hdr signedIn={false}/>        
+      </div>
+    )
+      
+  }
 }
 
 {/* <AddUser onAddUser={addUserHandler} />
