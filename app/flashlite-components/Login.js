@@ -1,8 +1,9 @@
 'use client';
 
 import Button from "@/app/components/Button";
+import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
-import '../components/Login.css';
+import './Login.css';
 
 const Login = (props) => {
 
@@ -47,7 +48,7 @@ const Login = (props) => {
     };
 
     return (
-        <div>
+        <Card className="input" >
             <form onSubmit = {submitHandler}>
                 <label>Username</label>
                 <input
@@ -77,9 +78,9 @@ const Login = (props) => {
                     value={enteredPassword}
                     onChange={passwordChangeHandler}
                 />
-                <Button type="submit">Add User</Button>
+                <Button type="submit">Sign up</Button>
             </form>
-        </div>
+        </Card>
     )
 }
 
