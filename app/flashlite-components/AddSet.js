@@ -10,11 +10,11 @@ function AddSet(props) {
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
   const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredImg, setEnteredImg] = useState(LOGO);
+  const [enteredImg, setEnteredImg] = useState('');
   const [enteredCreator, setEnteredCreator] = useState('');
 
 
-  const TitleChangeHandler = (event) => {
+  const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   }
 
@@ -22,7 +22,7 @@ function AddSet(props) {
     setEnteredImg(event.target.value);
   }
 
-  const creatirChangeHandler = (event) => {
+  const creatorChangeHandler = (event) => {
     setEnteredCreator(event.target.value);
   }
   
@@ -30,6 +30,10 @@ function AddSet(props) {
     event.preventDefault();
 
     const cards=[];
+
+    // if (enteredImg === '') {
+    //     setEnteredImg(LOGO);
+    // }
 
     const setData = {
       id: Math.random().toString(),
@@ -40,12 +44,16 @@ function AddSet(props) {
     }
 
     if (enteredTitle === '' || enteredCreator === '') {
+    
       alert('Title and Creator Required');
     } else {
+        if (enteredImg === '') {
+            setEnteredImg(LOGO);
+        }
       setEnteredTitle('');
       setEnteredImg('');
       setEnteredCreator('');
-      props.onAddSet(setData);
+//      props.onAddSet(setData);
       console.log(setData);
     }
   };
