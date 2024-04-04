@@ -7,15 +7,18 @@
 // import AddUser from './components/AddUser';
 import Hdr from '../flashlite-components/Hdr';
 import AddSet from '../flashlite-components/AddSet';
+import './page.css';
 
 function Home() {
 
   return (
-    <div>
-        <Hdr signedIn={true}/>
+    <div className='body'>
+
         <AddSet />
     </div>
   );
 }
+
+{/* <Hdr signedIn={true}/> */}
 
 export default Home;

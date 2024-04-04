@@ -38,15 +38,14 @@ function AddSet(props) {
       creator: enteredCreator,
       cards: cards
     }
-    
-    if (enteredImg === '') {
-        setData.img = LOGO;
-    }
 
     if (enteredTitle === '' || enteredCreator === '') {
     setEnteredImg(LOGO);
       alert('Title and Creator Required');
     } else {
+    if (enteredImg === '') {
+            setData.img = LOGO;
+    }
       setEnteredTitle('');
       setEnteredImg('');
       setEnteredCreator('');
