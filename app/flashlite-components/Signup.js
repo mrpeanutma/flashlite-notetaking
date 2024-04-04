@@ -8,12 +8,17 @@ import './Login.css';
 const Login = (props) => {
 
     const [enteredUsername, setEnteredUsername] = useState('');
+    const [enteredBirthday, setEnteredBirthday] = useState('');
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredPassword, setEnteredPassword] = useState('');
 
 
     const usernameChangeHandler = (event) => {
         setEnteredUsername(event.target.value);
+    }
+
+    const birthdayChangeHandler = (event) => {
+        setEnteredBirthday(event.target.value);
     }
 
     const emailChangeHandler = (event) => {
@@ -30,25 +35,16 @@ const Login = (props) => {
         const userData = {
             id: Math.random().toString(),
             username: enteredUsername,
+            birthday: enteredBirthday,
             email: enteredEmail,
             password: enteredPassword,
         }
 
-        if (!enteredUsername && !enteredEmail){
-            alert('enter username or email')
-            setEnteredUsername('');
-            setEnteredEmail('');
-            setEnteredPassword('');
+        if (!enteredUsername || !enteredPassword || !enteredEmail || !enteredBirthday) {
+            alert('All fields required!')
         }
-        else if(!enteredPassword){
-            alert('enter password')
-            setEnteredUsername('');
-            setEnteredEmail('');
-            setEnteredPassword('');
-        }
-        else{
-            props.onLogin(userData);
-        }
+        props.onAddUser(userData);
+
     };
 
     return (
@@ -64,6 +60,13 @@ const Login = (props) => {
                     value={enteredUsername}
                     onChange={usernameChangeHandler}
                 />
+                <label>Birthdate</label>
+                <input
+                    id="birthday"
+                    type="date"
+                    value={enteredBirthday}
+                    onChange={birthdayChangeHandler}
+                />
                 <label>Email</label>
                 <input
                     id="email"
@@ -78,7 +81,7 @@ const Login = (props) => {
                     value={enteredPassword}
                     onChange={passwordChangeHandler}
                 />
-                <Button type="submit">Login</Button>
+                <Button type="submit">Sign up</Button>
             </form>
         </Card>
     )
