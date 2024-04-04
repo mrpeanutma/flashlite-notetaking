@@ -4,14 +4,16 @@ import Login from '../flashlite-components/Login'
 import {useState} from "react";
 
 const Home = () => {
+
     let loggedIn = false;
 
-    const [username, login] = useState(loggedIn);
+    const [, setLoginStatus] = useState(loggedIn);
     const loginHandler = (user) => {
-        login (() => {
+        setLoginStatus(() => {
             loggedIn = true;
+            console.log('user ' + user.username + ' loggedIn ' + loggedIn)
         })
-        console.log(username);
+        console.log(user);
     };
 
     return(

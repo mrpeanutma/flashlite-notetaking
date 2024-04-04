@@ -48,6 +48,9 @@ const Login = (props) => {
         }
         else{
             props.onLogin(userData);
+            setEnteredUsername('');
+            setEnteredEmail('');
+            setEnteredPassword('');
         }
     };
 
