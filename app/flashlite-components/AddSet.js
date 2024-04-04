@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Card from './Card';
 import Button from './Button';
-// import './Addset.css';
+import './Addset.css';
 
 function AddSet(props) {
 
@@ -31,10 +31,6 @@ function AddSet(props) {
 
     const cards=[];
 
-    // if (enteredImg === '') {
-    //     setEnteredImg(LOGO);
-    // }
-
     const setData = {
       id: Math.random().toString(),
       title: enteredTitle,
@@ -42,14 +38,15 @@ function AddSet(props) {
       creator: enteredCreator,
       cards: cards
     }
+    
+    if (enteredImg === '') {
+        setData.img = LOGO;
+    }
 
     if (enteredTitle === '' || enteredCreator === '') {
-    
+    setEnteredImg(LOGO);
       alert('Title and Creator Required');
     } else {
-        if (enteredImg === '') {
-            setEnteredImg(LOGO);
-        }
       setEnteredTitle('');
       setEnteredImg('');
       setEnteredCreator('');
