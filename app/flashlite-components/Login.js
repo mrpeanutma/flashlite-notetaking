@@ -1,6 +1,6 @@
 'use client';
 
-import Button from "@/app/components/Button";
+import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
 import './Login.css';
@@ -35,13 +35,13 @@ const Login = (props) => {
         }
 
         if (!enteredUsername && !enteredEmail){
-            alert('enter username or email')
+            alert('Username or email required!')
             setEnteredUsername('');
             setEnteredEmail('');
             setEnteredPassword('');
         }
         else if(!enteredPassword){
-            alert('enter password')
+            alert('Password required!')
             setEnteredUsername('');
             setEnteredEmail('');
             setEnteredPassword('');
@@ -55,35 +55,43 @@ const Login = (props) => {
     };
 
     return (
-        <Card className="input" >
-            <div>
-                <h3>Enter the following information</h3>
+        <div className="container">
+            <div className="form">
+                <p className="message">Enter the following information</p>
+                <Card className="input">
+                    <form onSubmit={ submitHandler }>
+                        <label>Username</label>
+                        <input
+                            id="username"
+                            type="text"
+                            value={ enteredUsername }
+                            onChange={ usernameChangeHandler }
+                        />
+                        <p>OR</p>
+                        <label>Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={ enteredEmail }
+                            onChange={ emailChangeHandler }
+                        />
+                        <label>Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={ enteredPassword }
+                            onChange={ passwordChangeHandler }
+                        />
+                        <Button type="submit" className="login">Login</Button>
+                    </form>
+                </Card>
+            <Button type="button" className="redirect">Don't have an account? Sign up!</Button>
             </div>
-            <form onSubmit = {submitHandler}>
-                <label>Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    value={enteredUsername}
-                    onChange={usernameChangeHandler}
-                />
-                <label>Email</label>
-                <input
-                    id="email"
-                    type="email"
-                    value={enteredEmail}
-                    onChange={emailChangeHandler}
-                />
-                <label>Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={enteredPassword}
-                    onChange={passwordChangeHandler}
-                />
-                <Button type="submit">Login</Button>
-            </form>
-        </Card>
+            <div className="slogan">
+                <h1>Shine brighter with FlashLITE:</h1>
+                <h1>Illuminate your learning journey!</h1>
+            </div>
+        </div>
     )
 }
 

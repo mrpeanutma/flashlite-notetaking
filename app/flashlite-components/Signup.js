@@ -1,11 +1,11 @@
 'use client';
 
-import Button from "@/app/components/Button";
+import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
-import './Login.css';
+import './Signup.css';
 
-const Login = (props) => {
+const Signup = (props) => {
 
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredBirthday, setEnteredBirthday] = useState('');
@@ -51,43 +51,50 @@ const Login = (props) => {
     };
 
     return (
-        <Card className="input" >
-            <div>
-                <h3>Enter the following information</h3>
+        <div className="container">
+            <div className="form">
+                <p className="message">Enter the following information</p>
+                <Card className="input">
+                    <form onSubmit={ submitHandler }>
+                        <label>Username</label>
+                        <input
+                            id="username"
+                            type="text"
+                            value={ enteredUsername }
+                            onChange={ usernameChangeHandler }
+                        />
+                        <label>Birthday</label>
+                        <input
+                            id="birthday"
+                            type="date"
+                            value={ enteredBirthday }
+                            onChange={ birthdayChangeHandler }
+                        />
+                        <label>Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={ enteredEmail }
+                            onChange={ emailChangeHandler }
+                        />
+                        <label>Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={ enteredPassword }
+                            onChange={ passwordChangeHandler }
+                        />
+                        <Button type="submit" className="signup">Sign up</Button>
+                    </form>
+                </Card>
+                <Button type="button" className="redirect">Already have an account? Log in!</Button>
             </div>
-            <form onSubmit = {submitHandler}>
-                <label>Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    value={enteredUsername}
-                    onChange={usernameChangeHandler}
-                />
-                <label>Birthdate</label>
-                <input
-                    id="birthday"
-                    type="date"
-                    value={enteredBirthday}
-                    onChange={birthdayChangeHandler}
-                />
-                <label>Email</label>
-                <input
-                    id="email"
-                    type="email"
-                    value={enteredEmail}
-                    onChange={emailChangeHandler}
-                />
-                <label>Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={enteredPassword}
-                    onChange={passwordChangeHandler}
-                />
-                <Button type="submit">Sign up</Button>
-            </form>
-        </Card>
+            <div className="slogan">
+                <h1>Shine brighter with FlashLITE:</h1>
+                <h1>Illuminate your learning journey!</h1>
+            </div>
+        </div>
     )
 }
 
-export default Login;
+export default Signup;

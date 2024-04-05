@@ -1,0 +1,58 @@
+.message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #FDFF86;
+    margin: 14px auto;
+    padding: .5rem 1.5rem;
+    width: 25%;
+}
+
+.form {
+    width: 50%
+}
+
+form p {
+    display: flex;
+    justify-content: center;
+}
+
+.slogan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to bottom, #FDFF86, #FFFFFF);
+}
+
+.input input {
+    border-radius: 10px;
+}
+
+.login {
+    display: flex;
+    margin: auto;
+    background: #FDFF86;
+    color: #8e8e8e;
+    border-radius: 10px;
+}
+
+.redirect {
+    display: flex;
+    justify-content: center;
+    margin: 14px auto;
+    background-color: #8e8e8e;
+    border-radius: 10px;
+    width: 25%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
