@@ -1,0 +1,10 @@
+.items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+Link {
+    padding: 10px;
+    border: solid 3px;
+    border-radius: 20%;
+}

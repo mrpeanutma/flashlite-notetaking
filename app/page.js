@@ -7,59 +7,62 @@ import {useState} from 'react';
 //import AddUser from './flashlite-components/AddUser';
 import Hdr from './/flashlite-components/Hdr';
 import AddSet from './/flashlite-components/AddSet';
+import Link from 'next/link';
+import SetList from './flashlite-components/SetList';
 
 function Home() {
-  // const DEFAULT_IMAGE = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg";
   
-  // const DEFAULT_USERS = [
-  //   {
-  //     id: Math.random().toString(),
-  //     name: "John Doe",
-  //     age: 20,
-  //     major: "Engineering",
-  //     img: DEFAULT_IMAGE,
-  //     //img: "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
-  //   },
-  //   {
-  //     id: Math.random().toString(),
-  //     name: "Jane Doe",
-  //     age: 25,
-  //     major: "Marketing",
-  //     img: DEFAULT_IMAGE,
-  //     //img: "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
-  //   },
-  //   {
-  //     id: Math.random().toString(),
-  //     name: "Chuck Noris",
-  //     age: 84,
-  //     major: "Acting",
-  //     img: DEFAULT_IMAGE,
-  //     //img: "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg",
-  //   },
-  // ];
+  const [signedIn, setSignedIn] = useState(true); 
 
-  // const [users,setUsers] = useState(DEFAULT_USERS);
+  const DEFAULT_IMG = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
-  // const addUserHandler = (user) => {
-  //     setUsers ((prevUsers) => {
-  //         return [user, ...prevUsers];
-  //     });
-  //     console.log(users);
-  // };
-  
-  const [signedIn, setSignedIn] = useState(); 
+  const DEFAULT_SETS = [
+    {
+      id: Math.random().toString(),
+      img: DEFAULT_IMG,
+      title: 'HTML Terms',
+      numOfTerms: '27',
+      creator: 'Josh Young'
+    },
+    {
+      id: Math.random().toString(),
+      img: DEFAULT_IMG,
+      title: 'React Functions',
+      numOfTerms: '35',
+      creator: 'Bailey'
+    },
+    {
+      id: Math.random().toString(),
+      img: DEFAULT_IMG,
+      title: 'Final Exam Review',
+      numOfTerms: '127',
+      creator: 'Connor Stephens'
+    },
+    {
+      id: Math.random().toString(),
+      img: DEFAULT_IMG,
+      title: 'All Buzz Lightyear References From Web Programing',
+      numOfTerms: '1053',
+      creator: 'Emily Cheng'
+    },
+  ];
   
   if (signedIn) { 
     return ( 
       <div> 
         <Hdr signedIn={true}/> 
-        <AddSet /> 
+        <div> 
+          <SetList items={DEFAULT_SETS} signedIn={true}/>
+        </div>
       </div>
     )
   } else { 
     return ( 
       <div>         
-        <Hdr signedIn={false}/>        
+        <Hdr signedIn={false}/>   
+        <div> 
+          <SetList items={DEFAULT_SETS} signedIn={false}/>
+        </div>     
       </div>
     )
       

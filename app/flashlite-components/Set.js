@@ -1,5 +1,5 @@
 import React from 'react';
-import './Set.css';
+//import './Set.css';
 
 function Set(props) {
     return (    

@@ -14,11 +14,15 @@ const Hdr = (props) => {
     setSignedIn(false);
   }
 
-  const [addingSet,setAddingSet] = useState(false);
-
-  function addSetHandler(event) {
-    setAddingSet(!addingSet);
+  function loginHandler(event) {
+    setSignedIn(True);
   }
+
+  // const [addingSet,setAddingSet] = useState(false);
+
+  // function addSetHandler(event) {
+  //   setAddingSet(!addingSet);
+  // }
 
   if (signedIn) {
     return (
@@ -28,7 +32,7 @@ const Hdr = (props) => {
           <h1>FlashLITE</h1>
         </div>
         <div className="buttons">
-          <Button onClick={addSetHandler}></Button>
+          {/* <Button onClick={addSetHandler}></Button> */}
           <Button onClick={logoutHandler} className="logout-button">Logout</Button>
         </div>
       </div>
@@ -42,11 +46,17 @@ const Hdr = (props) => {
         </div>
         <div className="buttons">
           <Button className="signup-button">
-            <Link href="../signup">Signup</Link>
+            <Link href="/signup">Signup</Link>
           </Button>
           <Button className="login-button">
-            <Link href="../login">Login</Link>
+            <Link href="/login">Login</Link>
           </Button>
+          {/* <Link href='/signup'>
+             <Button>signup</Button>
+          </Link>
+          <Link href='/login'>
+             <Button>login</Button>
+          </Link> */}
         </div>
       </div>
     );

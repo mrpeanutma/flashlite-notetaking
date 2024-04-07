@@ -4,6 +4,7 @@ import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
 import './Login.css';
+import Link from 'next/link';
 
 const Login = (props) => {
 
@@ -85,7 +86,9 @@ const Login = (props) => {
                         <Button type="submit" className="login">Login</Button>
                     </form>
                 </Card>
-            <Button type="button" className="redirect">Don't have an account? Sign up!</Button>
+            <Link href='/signup'>
+                <Button type="button" className="redirect">Don't have an account? Sign up!</Button>
+            </Link>
             </div>
             <div className="slogan">
                 <h1>Shine brighter with FlashLITE:</h1>
