@@ -3,6 +3,7 @@ import { useState } from 'react';
 import "./Hdr.css";
 import Button from './Button';
 import Link from 'next/link';
+import AddSet from './AddSet';
 
 const Hdr = (props) => {
 
@@ -22,6 +23,7 @@ const Hdr = (props) => {
 
   if (signedIn) {
     return (
+      <>
       <div className="hdr">
         <div className="hdr-left">
           <img src={LOGO} alt="FlashLITE"/>
@@ -32,6 +34,8 @@ const Hdr = (props) => {
           <Button onClick={logoutHandler} className="logout-button">Logout</Button>
         </div>
       </div>
+      <AddSet onAddSet={addSetHandler}  visible={addingSet} />
+      </>
     );
   } else {
     return (
