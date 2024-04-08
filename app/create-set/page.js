@@ -9,7 +9,7 @@ import './page.css';
 function Home() {
 
   return (
-    <div className='body'>
+    <div className='page'>
         <Hdr />
         <AddSet />
     </div>

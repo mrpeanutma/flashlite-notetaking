@@ -1,4 +1,8 @@
-.body {
-    background-color: black;
-
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(to bottom, #FDFF86, #FFFFFF);
+    /* background-color: rgb(255, 255, 255); */
+    height: 100vh;
 }

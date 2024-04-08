@@ -1,26 +1,63 @@
 .input {
-    margin: 2rem auto;
-    padding: 1rem;
-    width: 90%;
-    max-width: 40rem;
-  }
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+}
   
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
   
-  .input input {
-    font: inherit;
-    display: block;
-    width: 100%;
-    border: 1px solid #ccc;
-    padding: 0.15rem;
-    margin-bottom: 0.5rem;
-  }
+.input input {
+  font: inherit;
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 0.15rem;
+  margin-bottom: 0.5rem;
+}
   
-  .input input:focus {
-    outline: none;
-    border-color: #4f005f;
-  }
+.input input:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100vh;
+  background: linear-gradient(to bottom, #FFFFFF, #fdff86b4);
+  padding-top: 10%;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #FDFF86;
+  margin: 14px auto;
+  padding: .5rem 1.5rem;
+  width: 25%;
+  border: solid black 2px;
+}
+
+input {
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form button {
+  margin: 0 auto;
+}

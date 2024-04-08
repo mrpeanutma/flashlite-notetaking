@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Card from './Card';
 import Button from './Button';
-import './Addset.css';
+import './AddSet.css';
 
 function AddSet(props) {
 
@@ -55,32 +55,35 @@ function AddSet(props) {
   };
 
   return (
-    <Card className="input">
-      <form onSubmit={submitHandler}>
-        <label>Title</label>
-        <input
-          id="title"
-          type="text"
-          value={enteredTitle}
-          onChange={titleChangeHandler}
-        />
-        <label>Link to image</label>
-         <input
-          id="img"
-          type="text"
-          value={enteredImg}
-          onChange={imgChangeHandler}
-        />
-        <label>Creator</label>
-         <input
-          id="creator"
-          type="text"
-          value={enteredCreator}
-          onChange={creatorChangeHandler}
-        />
-        <Button type="submit">Create Set</Button>
-      </form>
-    </Card>
+    <div className='body'>
+      <p className="message">Enter Your Flashcard Set Information</p>
+      <Card className="input">
+        <form onSubmit={submitHandler}>
+          <label>Title</label>
+          <input
+            id="title"
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
+          <label>Link to image</label>
+          <input
+            id="img"
+            type="text"
+            value={enteredImg}
+            onChange={imgChangeHandler}
+          />
+          <label>Creator</label>
+          <input
+            id="creator"
+            type="text"
+            value={enteredCreator}
+            onChange={creatorChangeHandler}
+          />
+          <Button type="submit">Create Set</Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
