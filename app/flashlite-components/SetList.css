@@ -12,7 +12,21 @@ Link {
     border-radius: 20%;
 }
 
-.styled-button { 
-    width: 100%; 
+
+.add-set-card {
+    background-color: #8e8e8e;
     height: 100%;
+    width: 100%;
+    margin: 0;
+    align-items: center;
+}
+
+.add-set-card:hover {
+    background-color: #bebebe;
+}
+
+.add-set-card > p {
+    color:white;
+    font-size: 50px;
+    font-weight: bold;
 }

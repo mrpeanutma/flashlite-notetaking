@@ -24,9 +24,10 @@ function SetList({items, signedIn}) {
                  
 
                     <Link href='/create-set'>
-                        <Button className="styled-button">
-                        {'+\nAdd Set'}                        
-                        </Button>
+                        <Card className="add-set-card">
+                            <p>Add Set</p>
+                            <p className="plus-sign">+</p>
+                        </Card>
                     </Link>
                 </ul>
                 {/* </Card> */}
