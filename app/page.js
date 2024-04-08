@@ -11,6 +11,10 @@ import Link from 'next/link';
 import SetList from './flashlite-components/SetList';
 
 function Home() {
+
+  function logoutHandler(event) {
+    setSignedIn(false);
+  }
   
   const [signedIn, setSignedIn] = useState(true); 
 
@@ -46,28 +50,16 @@ function Home() {
       creator: 'Emily Cheng'
     },
   ];
-  
-  if (signedIn) { 
     return ( 
       <div> 
-        <Hdr signedIn={true}/> 
+        <Hdr signedIn={signedIn} onLogout={logoutHandler}/> 
         <div> 
-          <SetList items={DEFAULT_SETS} signedIn={true}/>
+          <SetList items={DEFAULT_SETS} signedIn={signedIn}/>
         </div>
       </div>
-    )
-  } else { 
-    return ( 
-      <div>         
-        <Hdr signedIn={false}/>   
-        <div> 
-          <SetList items={DEFAULT_SETS} signedIn={false}/>
-        </div>     
-      </div>
-    )
+    );
       
   }
-}
 
 {/* <AddUser onAddUser={addUserHandler} />
 <UsersList items={users} /> */}
