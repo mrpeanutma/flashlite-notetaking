@@ -4,6 +4,8 @@ import "./SetList.css";
 import Link from 'next/link';
 import Button from "./Button.js";
 
+
+
 function SetList({items, signedIn}) {   
     if (signedIn) {
         return (
@@ -19,6 +21,8 @@ function SetList({items, signedIn}) {
                             creator={set.creator}
                         />
                     ))}
+                 
+
                     <Link href='/create-set'>
                         <Card className="add-set-card">
                             <p>Add Set</p>
@@ -32,7 +36,7 @@ function SetList({items, signedIn}) {
     } else {
         return (
             <div>
-                <Card className="sets">
+                {/* <Card className="sets"> */}
                 <ul>
                     {items.map((set) => (
                         <Set
@@ -44,7 +48,7 @@ function SetList({items, signedIn}) {
                         />
                     ))}
                 </ul>
-                </Card>
+                {/* </Card> */}
             </div>
         );
     }
