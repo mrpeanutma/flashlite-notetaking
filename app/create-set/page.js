@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <div className='page'>
-        <Hdr />
+        <Hdr signedIn={true}/>
         <AddSet />
     </div>
   );

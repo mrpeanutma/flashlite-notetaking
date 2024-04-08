@@ -31,7 +31,7 @@ function SetList({items, signedIn}) {
     } else {
         return (
             <div>
-                <Card className="sets">
+                {/* <Card className="sets"> */}
                 <ul>
                     {items.map((set) => (
                         <Set
@@ -43,7 +43,7 @@ function SetList({items, signedIn}) {
                         />
                     ))}
                 </ul>
-                </Card>
+                {/* </Card> */}
             </div>
         );
     }
