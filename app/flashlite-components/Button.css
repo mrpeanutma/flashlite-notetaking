@@ -8,6 +8,8 @@ Button {
   border: solid black 1px;
   border-radius: 5px;
   width: fit-content;
+  width: 150px; 
+  height: 50px;
 }
 
 Button:hover,
