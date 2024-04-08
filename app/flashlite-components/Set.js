@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card';
-//import './Set.css';
+import './Set.css';
 
 function Set(props) {
     return (
