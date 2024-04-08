@@ -11,3 +11,8 @@ Link {
     border: solid 3px;
     border-radius: 20%;
 }
+
+.styled-button { 
+    width: 100%; 
+    height: 100%;
+}
