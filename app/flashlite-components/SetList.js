@@ -4,6 +4,8 @@ import "./SetList.css";
 import Link from 'next/link';
 import Button from "./Button.js";
 
+
+
 function SetList({items, signedIn}) {   
     if (signedIn) {
         return (
@@ -19,9 +21,11 @@ function SetList({items, signedIn}) {
                             creator={set.creator}
                         />
                     ))}
+                 
+
                     <Link href='/create-set'>
-                        <Button>
-                        {'+\nAdd Set'}
+                        <Button className="styled-button">
+                        {'+\nAdd Set'}                        
                         </Button>
                     </Link>
                 </ul>
