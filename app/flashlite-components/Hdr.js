@@ -12,7 +12,7 @@ const Hdr = (props) => {
 
   function logoutHandler(event) {
     setSignedIn(false);
-    props.onLogout(false);
+    // props.onLogout(false);
   }
 
   function loginHandler(event) {

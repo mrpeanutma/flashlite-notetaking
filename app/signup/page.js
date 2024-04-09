@@ -2,6 +2,7 @@
 
 import Signup from '../flashlite-components/Signup'
 import {useState} from "react";
+import Hdr from '../flashlite-components/Hdr';
 
 const Home = () => {
 
