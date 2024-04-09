@@ -14,7 +14,7 @@ Link {
 
 
 .add-set-card {
-    background-color: #8e8e8e;
+    background: white;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -22,11 +22,11 @@ Link {
 }
 
 .add-set-card:hover {
-    background-color: #bebebe;
+    background-color: #b2b2b2;
 }
 
 .add-set-card > p {
-    color:white;
+    color: black;
     font-size: 50px;
     font-weight: bold;
 }

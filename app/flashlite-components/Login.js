@@ -5,6 +5,7 @@ import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
 import './Login.css';
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
 const Login = (props) => {
 
@@ -12,6 +13,7 @@ const Login = (props) => {
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredPassword, setEnteredPassword] = useState('');
 
+    const router = useRouter();
 
     const usernameChangeHandler = (event) => {
         setEnteredUsername(event.target.value);
@@ -52,6 +54,7 @@ const Login = (props) => {
             setEnteredUsername('');
             setEnteredEmail('');
             setEnteredPassword('');
+            router.push('/logged-in');
         }
     };
 

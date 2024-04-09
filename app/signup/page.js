@@ -15,6 +15,7 @@ const Home = () => {
 
     return(
         <div>
+            <Hdr loggedIn={false}/>
             <Signup onSignup={signupHandler}/>
         </div>
     )

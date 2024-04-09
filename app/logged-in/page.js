@@ -5,18 +5,22 @@ import {useState} from 'react';
 //import User from '/flashlite-components/User';
 //import UsersList from '/flashlite-components/UsersList';
 //import AddUser from './flashlite-components/AddUser';
-import Hdr from './/flashlite-components/Hdr';
-import AddSet from './/flashlite-components/AddSet';
-import Link from 'next/link';
-import SetList from './flashlite-components/SetList';
+import Hdr from '../flashlite-components/Hdr';
+// import AddSet from './/flashlite-components/AddSet';
+// import Link from 'next/link';
+import SetList from '../flashlite-components/SetList';
+import { useRouter } from "next/navigation";
 
 function Home() {
 
   function logoutHandler(event) {
     setSignedIn(false);
+    router.push('/');
   }
   
-  const [signedIn, setSignedIn] = useState(false); 
+  const [signedIn, setSignedIn] = useState(true); 
+
+  const router = useRouter();
 
   const DEFAULT_IMG = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
@@ -61,6 +65,4 @@ function Home() {
       
   }
 
-{/* <AddUser onAddUser={addUserHandler} />
-<UsersList items={users} /> */}
-export default Home;
+  export default Home;
