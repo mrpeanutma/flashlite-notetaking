@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Card from './Card';
 import Button from './Button';
 import './AddSet.css';
+import { useRouter } from "next/navigation";
 
 function AddSet(props) {
 
@@ -12,6 +13,8 @@ function AddSet(props) {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredImg, setEnteredImg] = useState('');
   const [enteredCreator, setEnteredCreator] = useState('');
+
+  const router = useRouter();
 
 
   const titleChangeHandler = (event) => {
@@ -51,6 +54,7 @@ function AddSet(props) {
       setEnteredCreator('');
 //      props.onAddSet(setData);
       console.log(setData);
+      router.push('/logged-in');
     }
   };
 

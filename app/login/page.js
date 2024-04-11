@@ -1,6 +1,7 @@
 'use client';
 
-import Login from '../flashlite-components/Login'
+import Login from '../flashlite-components/Login';
+import Hdr from '../flashlite-components/Hdr';
 import {useState} from "react";
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
 
     return(
         <div>
+            <Hdr loggedIn={false}/>
             <Login onLogin={loginHandler}/>
         </div>
     )

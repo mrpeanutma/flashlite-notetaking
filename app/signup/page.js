@@ -2,6 +2,7 @@
 
 import Signup from '../flashlite-components/Signup'
 import {useState} from "react";
+import Hdr from '../flashlite-components/Hdr';
 
 const Home = () => {
 
@@ -15,6 +16,7 @@ const Home = () => {
 
     return(
         <div>
+            <Hdr loggedIn={false}/>
             <Signup onSignup={signupHandler}/>
         </div>
     )
