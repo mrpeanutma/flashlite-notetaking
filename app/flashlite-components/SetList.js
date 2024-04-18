@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import Set from "./Set.js";
-import "./SetList.css";
+import "./css/SetList.css";
 import Link from 'next/link';
 import Button from "./Button.js";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import "./Hdr.css";
+import "./css/Hdr.css";
 import Button from './Button';
 import Link from 'next/link';
 

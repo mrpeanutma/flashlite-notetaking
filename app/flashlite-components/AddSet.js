@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Card from './Card';
 import Button from './Button';
-import './AddSet.css';
+import './css/AddSet.css';
 import { useRouter } from "next/navigation";
 
 function AddSet(props) {

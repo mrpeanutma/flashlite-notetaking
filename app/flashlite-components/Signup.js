@@ -3,7 +3,7 @@
 import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
-import './Signup.css';
+import './css/Signup.css';
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 
