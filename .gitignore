@@ -35,4 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/app/Server_Setup/node_modules
+/app/server/node_modules
