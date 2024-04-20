@@ -1,7 +1,7 @@
 Button {
   font: inherit;
-  background: #8e8e8e;
-  color: white;
+  background: #fff455;
+  color: rgb(0, 0, 0);
   padding: 0.5rem 1.5rem;
   cursor: pointer;
   margin: 0 0.5em;

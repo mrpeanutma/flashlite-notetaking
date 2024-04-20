@@ -3,13 +3,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.75em 1.25em;
-    background: #464646;
+    background: #007F73;
 }
 
 .hdr-left {
     display: flex;
     align-items: center;
-    color: #FDFF86;
+    color: #FFF455;
 }
 
 img {
@@ -19,11 +19,11 @@ img {
 }
 
 .signup-button {
-   background-color: #fcff38; 
+   background-color: #FFC700; 
    color: black;
 }
 
 .signup-button:hover,
 .signup-button:active {
-    background: #FDFF86;
+    background: #8e8e8e;
 }

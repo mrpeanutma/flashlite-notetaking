@@ -12,6 +12,9 @@ const setSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    image: {
+      type: URL,
+    },
     updated_date: {
         type: Date,
         default: Date.now,
