@@ -4,8 +4,10 @@ const port = process.env.PORT || 8085;
 const mongoose = require('mongoose');
 const cors = require('cors');
 const items = require('./routes/api/items');
+const users = require('./routes/api/users');
 
 app.use('/api/items', items);
+app.use('/api/users', users);
 
 app.use(cors({origin: true, credentials:true}));
 app.use(express.json({ entered: false}));
