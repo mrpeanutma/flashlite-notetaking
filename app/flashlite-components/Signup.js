@@ -1,5 +1,10 @@
 'use client';
 
+import {useState, useContext } from 'react';
+import axios from 'axios';
+import UserContext from '../context/UserContext';
+import { useRouter } from "next/navigation";
+
 import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
@@ -9,50 +14,92 @@ import { useRouter } from "next/navigation";
 
 const Signup = (props) => {
 
-    const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredBirthday, setEnteredBirthday] = useState('');
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredPassword, setEnteredPassword] = useState('');
-
     const router = useRouter();
+    const {userData, setUserData} = useContext(UserContext);
 
+    const [enteredData, setEnteredData] = useState ({
+        username: '',
+        birthday: '',
+        email: '',
+        password: '',
+    });
 
-    const usernameChangeHandler = (event) => {
-        setEnteredUsername(event.target.value);
-    }
+    const [error, setError] = useState('');
 
-    const birthdayChangeHandler = (event) => {
-        setEnteredBirthday(event.target.value);
-    }
+    const changeHandler = (event) => {
+        setEnteredData({
+            ... enteredData,
+            [e.target.name]: e.target.value,
+        });
+    };
 
-    const emailChangeHandler = (event) => {
-        setEnteredEmail(event.target.value);
-    }
+    // const [enteredUsername, setEnteredUsername] = useState('');
+    // const [enteredBirthday, setEnteredBirthday] = useState('');
+    // const [enteredEmail, setEnteredEmail] = useState('');
+    // const [enteredPassword, setEnteredPassword] = useState('');
 
-    const passwordChangeHandler = (event) => {
-        setEnteredPassword(event.target.value);
-    }
+    // const usernameChangeHandler = (event) => {
+    //     setEnteredUsername(event.target.value);
+    // }
 
-    const submitHandler = (event) => {
+    // const birthdayChangeHandler = (event) => {
+    //     setEnteredBirthday(event.target.value);
+    // }
+
+    // const emailChangeHandler = (event) => {
+    //     setEnteredEmail(event.target.value);
+    // }
+
+    // const passwordChangeHandler = (event) => {
+    //     setEnteredPassword(event.target.value);
+    // }
+
+    const submitHandler = async (event) => {
         event.preventDefault();
 
-        const userData = {
-            id: Math.random().toString(),
-            username: enteredUsername,
-            birthday: enteredBirthday,
-            email: enteredEmail,
-            password: enteredPassword,
+        try {
+
+            if (!enteredData.username || !enteredData.birthday || !enteredData.email || ! enteredData.password) {
+                alert('All fields required!');
+            } else {
+                await axios.post('http://localhost:8085/signup', enteredData);
+                const loginResponse = await axios.post('http://localhost:8085/login', {
+                    username: enteredData.username,
+                    email: enteredData.email,
+                    password: enteredData.password
+                });
+
+                setUserData({
+                    token: loginResponse.data.token,
+                    user: loginResponse.data.user,
+                });
+
+                localStorage.setItem("auth-token", loginResponse.data.token);
+                router.push('/');
+            }
+
+        } catch (error) {
+            console.error('Signup Failed:', error);
+            //Handle Signup Error
         }
 
-        if (!enteredUsername || !enteredPassword || !enteredEmail || !enteredBirthday) {
-            alert('All fields required!')
-        }
-        props.onSignup(userData);
-        setEnteredUsername('');
-        setEnteredBirthday('');
-        setEnteredEmail('');
-        setEnteredPassword('');
-        router.push('/logged-in');
+        // const userData = {
+        //     id: Math.random().toString(),
+        //     username: enteredUsername,
+        //     birthday: enteredBirthday,
+        //     email: enteredEmail,
+        //     password: enteredPassword,
+        // }
+
+        // if (!enteredUsername || !enteredPassword || !enteredEmail || !enteredBirthday) {
+        //     alert('All fields required!');
+        // }
+        // props.onSignup(userData);
+        // setEnteredUsername('');
+        // setEnteredBirthday('');
+        // setEnteredEmail('');
+        // setEnteredPassword('');
+        // router.push('/logged-in');
     };
 
     return (
@@ -66,28 +113,32 @@ const Signup = (props) => {
                             id="username"
                             type="text"
                             value={ enteredUsername }
-                            onChange={ usernameChangeHandler }
+                            // onChange={ usernameChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Birthday</label>
                         <input
                             id="birthday"
                             type="date"
                             value={ enteredBirthday }
-                            onChange={ birthdayChangeHandler }
+                            // onChange={ birthdayChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Email</label>
                         <input
                             id="email"
                             type="email"
                             value={ enteredEmail }
-                            onChange={ emailChangeHandler }
+                            // onChange={ emailChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Password</label>
                         <input
                             id="password"
                             type="password"
                             value={ enteredPassword }
-                            onChange={ passwordChangeHandler }
+                            // onChange={ passwordChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <Button type="submit" className="signup">Sign up</Button>
                     </form>

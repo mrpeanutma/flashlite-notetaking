@@ -1,0 +1,26 @@
+import {createContext, useState, useEffect } from 'react';
+
+const UserContext = createContext();
+
+export const UserProvider = ({children}) => {
+    const [userData, setUserData] = useState ({
+        token: undefined,
+        user: undefined,
+    });
+
+    useEffect(() => {
+        // Check for stored token in localStorage at startup
+        const token = localStorage.getItem('auth-token');
+        if (token) {
+            setUserData(prev => ({...prev, token: token,}));
+        }
+    }, []);
+
+    return (
+        <UserContect.Provider value={{userData, setUserData}}>
+            {children}
+        </UserContect.Provider>
+    );
+};
+
+export default UserContext;

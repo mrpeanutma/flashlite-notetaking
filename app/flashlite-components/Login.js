@@ -1,60 +1,105 @@
 'use client';
 
+import {useState, useContext } from 'react';
+import axios from 'axios';
+import UserContext from '../context/UserContext';
+import { useRouter } from "next/navigation";
+
 import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
 import {useState} from "react";
 import './css/Login.css';
 import Link from 'next/link';
-import { useRouter } from "next/navigation";
 
 const Login = (props) => {
 
-    const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredPassword, setEnteredPassword] = useState('');
-
     const router = useRouter();
+    const {userData, setUserData} = useContext(UserContext);
 
-    const usernameChangeHandler = (event) => {
-        setEnteredUsername(event.target.value);
-    }
+    useEffect(() => {
+        if(userData.token) {
+            router.push('/'); // Redirect if logged in
+        }
+    }, [userData.token, router]);
 
-    const emailChangeHandler = (event) => {
-        setEnteredEmail(event.target.value);
-    }
+    const [enteredData, setEnteredData] = useState ({
+        username: '',
+        email: '',
+        password: '',
+    });
 
-    const passwordChangeHandler = (event) => {
-        setEnteredPassword(event.target.value);
-    }
+    const [error, setError] = useState('');
 
-    const submitHandler = (event) => {
+    const changeHandler = (event) => {
+        setEnteredData({
+            ... enteredData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    // const [enteredUsername, setEnteredUsername] = useState('');
+    // const [enteredEmail, setEnteredEmail] = useState('');
+    // const [enteredPassword, setEnteredPassword] = useState('');
+
+    // const usernameChangeHandler = (event) => {
+    //     setEnteredUsername(event.target.value);
+    // }
+
+    // const emailChangeHandler = (event) => {
+    //     setEnteredEmail(event.target.value);
+    // }
+
+    // const passwordChangeHandler = (event) => {
+    //     setEnteredPassword(event.target.value);
+    // }
+
+    const submitHandler = async (event) => {
         event.preventDefault();
 
-        const userData = {
-            id: Math.random().toString(),
-            username: enteredUsername,
-            email: enteredEmail,
-            password: enteredPassword,
-        }
+        try {
 
-        if (!enteredUsername && !enteredEmail){
-            alert('Username or email required!')
-            setEnteredUsername('');
-            setEnteredEmail('');
-            setEnteredPassword('');
-        }
-        else if(!enteredPassword){
-            alert('Password required!')
-            setEnteredUsername('');
-            setEnteredEmail('');
-            setEnteredPassword('');
-        }
-        else{
-            props.onLogin(userData);
-            setEnteredUsername('');
-            setEnteredEmail('');
-            setEnteredPassword('');
-            router.push('/logged-in');
+            if (!enteredData.username || !enteredData.email || ! enteredData.password) {
+                alert('All fields required!');
+            } else {
+                const response = await axios.post('http://localhost:8085/login', enteredData);
+                setUserData({
+                    token: response.data.token,
+                    user: response.data.user,
+                });
+
+                localStorage.setItem("auth-token", response.data.token);
+                router.push('/');
+            }
+
+            // const userData = {
+            //     id: Math.random().toString(),
+            //     username: enteredUsername,
+            //     email: enteredEmail,
+            //     password: enteredPassword,
+            // }
+
+            // if (!enteredUsername && !enteredEmail){
+            //     alert('Username or email required!')
+            //     setEnteredUsername('');
+            //     setEnteredEmail('');
+            //     setEnteredPassword('');
+            // }
+            // else if(!enteredPassword){
+            //     alert('Password required!')
+            //     setEnteredUsername('');
+            //     setEnteredEmail('');
+            //     setEnteredPassword('');
+            // }
+            // else{
+            //     props.onLogin(userData);
+            //     setEnteredUsername('');
+            //     setEnteredEmail('');
+            //     setEnteredPassword('');
+            //     router.push('/logged-in');
+            // }
+        } catch (error) {
+            console.error('Login Failed:', error);
+            //Handle Login Error
         }
     };
 
@@ -69,7 +114,8 @@ const Login = (props) => {
                             id="username"
                             type="text"
                             value={ enteredUsername }
-                            onChange={ usernameChangeHandler }
+                            // onChange={ usernameChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <p>OR</p>
                         <label>Email</label>
@@ -77,14 +123,16 @@ const Login = (props) => {
                             id="email"
                             type="email"
                             value={ enteredEmail }
-                            onChange={ emailChangeHandler }
+                            // onChange={ emailChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Password</label>
                         <input
                             id="password"
                             type="password"
                             value={ enteredPassword }
-                            onChange={ passwordChangeHandler }
+                            // onChange={ passwordChangeHandler }
+                            onChange={ changeHandler }
                         />
                         <Button type="submit" className="login">Login</Button>
                     </form>
