@@ -8,15 +8,15 @@ const Hdr = (props) => {
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png"
 
-  const [signedIn, setSignedIn] = useState(props.signedIn);
+  // const [signedIn, setSignedIn] = useState(props.signedIn);
+
+  const router = useRouter();
+  const {userData, setUserData} = useContext(UserContext);
 
   function logoutHandler(event) {
-    setSignedIn(false);
-    // props.onLogout(false);
-  }
-
-  function loginHandler(event) {
-    setSignedIn(True);
+    setUserData({token: undefined, user: undefined});
+    localStorage.removeItem('auth-token');
+    router.push('/');
   }
 
   // const [addingSet,setAddingSet] = useState(false);
@@ -25,7 +25,7 @@ const Hdr = (props) => {
   //   setAddingSet(!addingSet);
   // }
 
-  if (signedIn) {
+  if (userData.token) {
     return (
       <div className="hdr">
         
@@ -36,7 +36,6 @@ const Hdr = (props) => {
           </div>
         </Link>
         <div className="buttons">
-          {/* <Button onClick={addSetHandler}></Button> */}
           <Button onClick={logoutHandler} className="logout-button">Logout</Button>
         </div>
       </div>
@@ -57,12 +56,6 @@ const Hdr = (props) => {
           <Button className="login-button">
             <Link href="/login">Login</Link>
           </Button>
-          {/* <Link href='/signup'>
-             <Button>signup</Button>
-          </Link>
-          <Link href='/login'>
-             <Button>login</Button>
-          </Link> */}
         </div>
       </div>
     );
