@@ -3,6 +3,7 @@
 import Login from '../flashlite-components/Login';
 import Hdr from '../flashlite-components/Hdr';
 import {useState} from "react";
+import Head from "next/head";
 
 const Home = () => {
 

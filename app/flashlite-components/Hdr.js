@@ -1,12 +1,12 @@
 import {useState, useContext } from 'react';
 import axios from 'axios';
-import UserContext from '../context/UserContext';
 import { useRouter } from "next/navigation";
 
 import React from 'react';
 import "./css/Hdr.css";
 import Button from './Button';
 import Link from 'next/link';
+import UserContext from "@/app/context/UserContext";
 
 
 const Hdr = (props) => {
