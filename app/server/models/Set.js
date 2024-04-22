@@ -1,12 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const setSchema = new mongoose.Schema({
+const SetSchema = new mongoose.Schema({
     title: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
+      type: String,
+      required: true,
     },
     creator: {
       type: String,
@@ -15,8 +12,10 @@ const setSchema = new mongoose.Schema({
     image: {
       type: URL,
     },
-    updated_date: {
-        type: Date,
-        default: Date.now,
+    cards: {
+      type: [Card],
+      required: true
     }
-})
+});
+
+module.exports = Set = mongoose.model('set', SetSchema);

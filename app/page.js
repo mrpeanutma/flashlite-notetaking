@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import { UserProvider} from './context/UserContext';
+import {UserProvider} from './context/UserContext';
 
 //import User from '/flashlite-components/User';
 //import UsersList from '/flashlite-components/UsersList';

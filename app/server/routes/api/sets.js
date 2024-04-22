@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
     Item.find()
         .then((items) => res.json(items))
-        .catch((err) => res.status(404).json({ nosetfound: 'No Sets found'}))
+        .catch((err) => res.status(404).json({ nosetfound: 'No sets found'}))
 })
 
 router.put('/:id', (req, res) => {
