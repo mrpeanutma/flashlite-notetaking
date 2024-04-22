@@ -17,9 +17,9 @@ export const UserProvider = ({children}) => {
     }, []);
 
     return (
-        <UserContect.Provider value={{userData, setUserData}}>
+        <UserContext.Provider value={{userData, setUserData}}>
             {children}
-        </UserContect.Provider>
+        </UserContext.Provider>
     );
 };
 

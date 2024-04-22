@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 import Button from "@/app/flashlite-components/Button";
 import Card from "@/app/flashlite-components/Card";
-import {useState} from "react";
 import './css/Login.css';
 import Link from 'next/link';
 
@@ -113,7 +112,8 @@ const Login = (props) => {
                         <input
                             id="username"
                             type="text"
-                            value={ enteredUsername }
+                            // value={ enteredUsername }
+                            value={enteredData.username}
                             // onChange={ usernameChangeHandler }
                             onChange={ changeHandler }
                         />
@@ -122,7 +122,8 @@ const Login = (props) => {
                         <input
                             id="email"
                             type="email"
-                            value={ enteredEmail }
+                            // value={ enteredEmail }
+                            value={enteredData.email}
                             // onChange={ emailChangeHandler }
                             onChange={ changeHandler }
                         />
@@ -130,7 +131,8 @@ const Login = (props) => {
                         <input
                             id="password"
                             type="password"
-                            value={ enteredPassword }
+                            // value={ enteredPassword }
+                            value={enteredData.password}
                             // onChange={ passwordChangeHandler }
                             onChange={ changeHandler }
                         />

@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Card from './Card';
 import Button from './Button';
 import './css/AddSet.css';
-import { useRouter } from "next/navigation";
 
 function AddSet(props) {
 
@@ -44,7 +43,7 @@ function AddSet(props) {
         if (!enteredData.title) {
             alert('Sets must have a title');
         } else {
-            await axios.post('http://localhost:8085/login', enteredData);
+            const response = await axios.post('http://localhost:8085/login', enteredData);
             router.push('/');
         }
     } catch (error) {
