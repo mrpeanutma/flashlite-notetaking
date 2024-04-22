@@ -1,3 +1,8 @@
+import {useState, useContext } from 'react';
+import axios from 'axios';
+import UserContext from '../context/UserContext';
+import { useRouter } from "next/navigation";
+
 import Card from "./Card.js";
 import Set from "./Set.js";
 import "./css/SetList.css";
@@ -6,8 +11,17 @@ import Button from "./Button.js";
 
 
 
-function SetList({items, signedIn}) {   
-    if (signedIn) {
+function SetList({items, signedIn}) {
+    const router = useRouter();
+    const {userData, setUserData} = useContext(UserContext);
+  
+    useEffect(() => {
+        if(!userData.token) {
+            router.push('/'); // Redirect if not logged in
+        }
+    }, [userData.token, router]);
+
+    if (userData.token) {
         return (
             <div className="items">
                 {/* <Card className="sets"> */}
