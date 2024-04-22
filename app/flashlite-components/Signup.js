@@ -1,6 +1,6 @@
 'use client';
 
-import {useState, useContext } from 'react';
+import {useState, useContext, useEffect} from 'react';
 import axios from 'axios';
 import UserContext from '../context/UserContext';
 import { useRouter } from "next/navigation";
@@ -14,6 +14,12 @@ const Signup = (props) => {
 
     const router = useRouter();
     const {userData, setUserData} = useContext(UserContext);
+
+    useEffect(() => {
+        if(userData.token) {
+            router.push('/'); // Redirect if logged in
+        }
+    }, [userData.token, router]);
 
     const [enteredData, setEnteredData] = useState ({
         username: '',
