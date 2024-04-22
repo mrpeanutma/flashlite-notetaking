@@ -22,6 +22,7 @@ const UserSchema = new mongoose.Schema({
     },
     card_sets: {
         type: Array,
+        default: [],
     }
 });
 

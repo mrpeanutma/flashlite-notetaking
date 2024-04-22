@@ -55,7 +55,7 @@ function Home() {
     },
   ];
     return ( 
-      <div>
+      <UserProvider>
         <Head>
           <link rel='icon' href='/favicon.ico'/>
         </Head>
@@ -63,7 +63,7 @@ function Home() {
         <div> 
           <SetList items={DEFAULT_SETS} signedIn={signedIn}/>
         </div>
-      </div>
+      </UserProvider>
     );
       
   }

@@ -15,10 +15,10 @@ const Home = () => {
     };
 
     return(
-        <div>
+        <UserProvider>
             <Hdr loggedIn={false}/>
             <Signup onSignup={signupHandler}/>
-        </div>
+        </UserProvider>
     )
 }
 

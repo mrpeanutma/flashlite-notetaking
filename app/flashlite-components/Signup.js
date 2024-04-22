@@ -112,7 +112,8 @@ const Signup = (props) => {
                         <input
                             id="username"
                             type="text"
-                            value={ enteredUsername }
+                            // value={ enteredUsername }
+                            value={enteredData.username}
                             // onChange={ usernameChangeHandler }
                             onChange={ changeHandler }
                         />
@@ -120,7 +121,8 @@ const Signup = (props) => {
                         <input
                             id="birthday"
                             type="date"
-                            value={ enteredBirthday }
+                            // value={ enteredBirthday }
+                            value={enteredData.birthday}
                             // onChange={ birthdayChangeHandler }
                             onChange={ changeHandler }
                         />
@@ -128,7 +130,8 @@ const Signup = (props) => {
                         <input
                             id="email"
                             type="email"
-                            value={ enteredEmail }
+                            // value={ enteredEmail }
+                            value={enteredData.email}
                             // onChange={ emailChangeHandler }
                             onChange={ changeHandler }
                         />
@@ -136,7 +139,8 @@ const Signup = (props) => {
                         <input
                             id="password"
                             type="password"
-                            value={ enteredPassword }
+                            // value={ enteredPassword }
+                            value={enteredData.password}
                             // onChange={ passwordChangeHandler }
                             onChange={ changeHandler }
                         />

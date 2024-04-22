@@ -9,10 +9,12 @@ import './page.css';
 function Home() {
 
   return (
-    <div className='page'>
-        <Hdr signedIn={true}/>
-        <AddSet />
-    </div>
+    <UserProvider>
+      <div className='page'>
+          <Hdr signedIn={true}/>
+          <AddSet />
+      </div>
+    </UserProvider>
   );
 }
 
