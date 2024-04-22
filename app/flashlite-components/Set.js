@@ -7,7 +7,7 @@ function Set(props) {
     return (
         <Link href={`/set/${props.id}`}>
             <li key={props.id} className="set-item">
-                <img src={props.img} className="set-img" alt={props.title} />
+                { props.img ? (<img src={props.img} className="set-img" alt={props.title} />) : (<></>)}
                 <div className="set-info">
                     <h2>{props.title}</h2>
                     <h3>{props.numOfTerms} Terms</h3>

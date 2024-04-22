@@ -10,14 +10,14 @@ const CardSetSchema = new mongoose.Schema({
       required: true,
     },
     image: {
-      type: URL,
+      type: String,
     },
     cards: {
       type: [Card],
       required: true
     },
     public: {
-      type: Boolean,
+      type: boolean,
       default: false
     }
 

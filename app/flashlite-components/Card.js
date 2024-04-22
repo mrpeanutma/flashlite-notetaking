@@ -2,10 +2,12 @@
 
 export default function Card(props) {
     return (
-        <li key={props.id} className="term-item">
-            <img src={props.img} className="term-img" alt={props.title} />
+        <li key={props.id} className="card-item">
+            {props.img!=NULL ? (
+                <img src={props.img} className="term-img" alt={props.title} />
+            ) : (<></>)}
             <div className="term-info">
-                <div className="term">{props.Term}</div>
+                <div className="term">{props.term}</div>
                 <div className="definition">{props.definition}</div>
             </div>
         </li>
