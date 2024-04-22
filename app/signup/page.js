@@ -18,7 +18,7 @@ const Home = () => {
     return(
         <UserProvider>
             <Head>
-                <link rel='icon' href='/favicon.ico'/>
+                <link rel='icon' href='/public/favicon.ico'/>
             </Head>
             <Hdr loggedIn={false}/>
             <Signup onSignup={signupHandler}/>
