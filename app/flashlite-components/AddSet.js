@@ -21,7 +21,7 @@ function AddSet(props) {
   const [enteredData, setEnteredData] = useState ({
       title: '',
       img: LOGO,
-      creator: userData.username,
+      creator: userData.user.username,
       numTerms: 0,
   });
 
@@ -109,7 +109,8 @@ function AddSet(props) {
           <input
             id="title"
             type="text"
-            value={enteredTitle}
+            // value={enteredTitle}
+            value={enteredData.title}
             // onChange={titleChangeHandler}
             onChange={changeHandler}
           />
@@ -117,16 +118,9 @@ function AddSet(props) {
           <input
             id="img"
             type="text"
-            value={enteredImg}
+            // value={enteredImg}
+            value={enteredData.img}
             // onChange={imgChangeHandler}
-            onChange={changeHandler}
-          />
-          <label>Creator</label>
-          <input
-            id="creator"
-            type="text"
-            value={enteredCreator}
-            // onChange={creatorChangeHandler}
             onChange={changeHandler}
           />
           <Button type="submit">Create Set</Button>
