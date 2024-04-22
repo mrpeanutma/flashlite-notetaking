@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import { UserProvider} from './context/UserContext';
+import {UserProvider} from './context/UserContext';
 
 //import User from '/flashlite-components/User';
 //import UsersList from '/flashlite-components/UsersList';
@@ -21,7 +21,7 @@ function Home() {
 
   const DEFAULT_IMG = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
-  // const DEFAULT_SETS = [
+ const DEFAULT_SETS = [];
   //   {
   //     id: Math.random().toString(),
   //     img: DEFAULT_IMG,
