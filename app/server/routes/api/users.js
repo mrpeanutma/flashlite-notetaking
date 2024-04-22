@@ -49,12 +49,18 @@ userRouter.post('/signup', auth, async (req,res) => {
 
 userRouter.post('/login', auth, async (req,res) => {
     try {
-        const {userID, password} = req.body;
-        if(!userID || !password) {
+        const {username, email, password} = req.body;
+        if((!username && !email) || !password) {
             return res.status(400).json({msg: 'Please enter all fields'});
         }
 
         const user = await User.findOne({userID});
+        if (!username) {
+            user = await User.findOne({username});
+        } else {
+            user = await User.findOne({email});
+        }
+
         if (!user) {
             return res.status(400).json({msg: 'User with this email or username alreay exists'});
         }
