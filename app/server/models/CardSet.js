@@ -15,7 +15,12 @@ const CardSetSchema = new mongoose.Schema({
     cards: {
       type: [Card],
       required: true
+    },
+    public: {
+      type: Boolean,
+      default: false
     }
+
 });
 
 module.exports = CardSet = mongoose.model('set', CardSetSchema);

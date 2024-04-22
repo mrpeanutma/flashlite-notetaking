@@ -1,10 +1,11 @@
 import React from 'react';
 import Card from './Card';
 import './css/Set.css';
+import Link from 'next/link';
 
 function Set(props) {
     return (
-        <Card> 
+        <Link href={`/set/${props.id}`}>
             <li key={props.id} className="set-item">
                 <img src={props.img} className="set-img" alt={props.title} />
                 <div className="set-info">
@@ -13,7 +14,7 @@ function Set(props) {
                     <h3 className="user-content">Created by {props.creator}</h3>
                 </div>
             </li>
-        </Card>  
+        </Link>
     );
 }
 
