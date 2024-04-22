@@ -19,6 +19,9 @@ const Home = () => {
 
     return(
         <div>
+            <Head>
+                <link rel='icon' href='/favicon.ico'/>
+            </Head>
             <Hdr loggedIn={false}/>
             <Login onLogin={loginHandler}/>
         </div>
