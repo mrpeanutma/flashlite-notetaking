@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const SetSchema = new mongoose.Schema({
+const CardSetSchema = new mongoose.Schema({
     title: {
       type: String,
       required: true,
@@ -18,4 +18,4 @@ const SetSchema = new mongoose.Schema({
     }
 });
 
-module.exports = Set = mongoose.model('set', SetSchema);
+module.exports = CardSet = mongoose.model('set', CardSetSchema);

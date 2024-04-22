@@ -21,7 +21,7 @@ module.exports = router;
 // });
 
 // router.post('/signup', bodyParser.json(), (req,res) => {
-userRouter.post('/signup', async (req,res) => {
+userRouter.post('/signup', auth, async (req,res) => {
     try {
         const {email, password, confirmPassword, username} = req.body;
         if (!email || !password || !confirmPassword || ! username) {
@@ -36,8 +36,8 @@ userRouter.post('/signup', async (req,res) => {
             return res.status(400).json({msg: 'User already exists with this email'});
         }
         const hashedPassword = await bcryptjs.hash(passowrd, 8);
-        const cards = [];
-        const newUser = new User({email, password: hashedPassword, username, card_sets: cards});
+        const card_sets = [];
+        const newUser = new User({email, password: hashedPassword, username, card_sets: card_sets});
 
         const savedUser = await newUser.save();
         console.log(savedUser.username);
@@ -47,16 +47,44 @@ userRouter.post('/signup', async (req,res) => {
     }
 });
 
-userRouter.post('/login', async (req,res) => {
+userRouter.post('/login', auth, async (req,res) => {
     try {
         const {userID, password} = req.body;
         if(!userID || !password) {
             return res.status(400).json({msg: 'Please enter all fields'});
         }
 
-        const user = await User.findOne({email});
-    } catch (err) {
+        const user = await User.findOne({userID});
+        if (!user) {
+            return res.status(400).json({msg: 'User with this email or username alreay exists'});
+        }
 
+        const isMatch = await bcryptjs.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(400).json({msg: 'User with this email or username alreay exists'});
+        }
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
+        res.json({token, user: {id: user._id, username: user.username}}); //Token and user data stored
+    } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+});
+
+//Used to test if the user is still logged in
+userRouter.post("/tokenIsValid", auth, async (req,res) => {
+    try {
+        const token = req.header("Authorization");
+        if (!token) {return res.json(false);}
+
+        const verified = jwt.verify(tokenParts[1], process.env.JWT_SECRET);
+        if(!verified) {return res.json(false);}
+
+        const user = await User.findByID(verified.id);
+        if(!user) {return res.json(false);}
+
+    }  catch (err) {
+        res.status(500).json({error: err.message});
     }
 });
 
