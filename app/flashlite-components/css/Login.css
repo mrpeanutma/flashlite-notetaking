@@ -4,7 +4,7 @@
     align-items: center;
     text-align: center;
     border-radius: 10px;
-    background-color: #FDFF86;
+    background-color: #DFD0B8;
     margin: 14px auto;
     padding: .5rem 1.5rem;
     width: 25%;
@@ -26,7 +26,7 @@ form p {
     justify-content: center;
     width: 50%;
     height: 100%;
-    background: linear-gradient(to bottom, #FDFF86, #FFFFFF);
+    background: linear-gradient(to bottom, #E6B325, #FFFFFF);
 }
 
 .input input {
@@ -36,8 +36,8 @@ form p {
 .login {
     display: flex;
     margin: auto;
-    background: #FDFF86;
-    color: black;
+    background: #3C5B6F;
+    color: #FFFFFF;
     border-radius: 10px;
 }
 
@@ -45,7 +45,7 @@ form p {
     display: flex;
     justify-content: center;
     margin: 14px auto;
-    background-color: #8e8e8e;
+    background-color: #DFD0B8;
     border-radius: 10px;
     width: 25%;
 }

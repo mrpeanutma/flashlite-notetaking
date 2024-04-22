@@ -43,7 +43,7 @@ const Hdr = (props) => {
             <Button onClick={logoutHandler} className="logout-button">Logout</Button>
           ) : (
             <>
-              <Button onClick={() => {router.push('/login')}}>Login</Button>
+              <Button className="signup-button" onClick={() => {router.push('/login')}}>Login</Button>
               <Button onClick={()=>{router.push('/signup')}}>Signup</Button>
             </>
           )}
