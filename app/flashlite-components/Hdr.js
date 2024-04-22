@@ -8,6 +8,7 @@ import "./css/Hdr.css";
 import Button from './Button';
 import Link from 'next/link';
 
+
 const Hdr = (props) => {
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png"
@@ -29,23 +30,7 @@ const Hdr = (props) => {
   //   setAddingSet(!addingSet);
   // }
 
-  if (userData.token) {
-    return (
-      <div className="hdr">
-        
-        <Link href='/'>
-          <div className="hdr-left">
-            <img src={LOGO} alt="FlashLITE"/>
-            <h1>FlashLITE</h1>
-          </div>
-        </Link>
-        <div className="buttons">
-          <Button onClick={logoutHandler} className="logout-button">Logout</Button>
-        </div>
-      </div>
-    );
-  } else {
-    return (
+  return(
       <div className="hdr">
         <Link href='/'>
           <div className="hdr-left">
@@ -54,16 +39,17 @@ const Hdr = (props) => {
           </div>
         </Link>
         <div className="buttons">
-          <Button className="signup-button">
-            <Link href="/signup">Signup</Link>
-          </Button>
-          <Button className="login-button">
-            <Link href="/login">Login</Link>
-          </Button>
+          {userData.token ? (
+            <Button onClick={logoutHandler} className="logout-button">Logout</Button>
+          ) : (
+            <>
+              <Link href='/login'>Login</Link>
+              <Link href='/signup'>Signup</Link>
+            </>
+          )}
         </div>
       </div>
-    );
-  }
+  );
 };
 
 export default Hdr;

@@ -1,12 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const CardSetSchema = new mongoose.Schema({
     title: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
+      type: String,
+      required: true,
     },
     creator: {
       type: String,
@@ -15,13 +12,9 @@ const CardSetSchema = new mongoose.Schema({
     image: {
       type: URL,
     },
-    updated_date: {
-        type: Date,
-        default: Date.now,
-    },
     cards: {
-      type: Array,
-      default: [],
+      type: [Card],
+      required: true
     }
 });
 
