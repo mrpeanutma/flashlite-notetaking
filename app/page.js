@@ -10,6 +10,7 @@ import Hdr from './/flashlite-components/Hdr';
 import AddSet from './/flashlite-components/AddSet';
 import Link from 'next/link';
 import SetList from './flashlite-components/SetList';
+import Head from "next/head";
 
 function Home() {
 
@@ -52,7 +53,10 @@ function Home() {
   //   },
   // ];
     return ( 
-      <UserProvider>  
+      <UserProvider>
+          <Head>
+              <link rel='icon' href='/favicon.ico'/>
+          </Head>
         <Hdr signedIn={signedIn} onLogout={logoutHandler}/> 
         <div> 
           <SetList items={DEFAULT_SETS} signedIn={signedIn}/>
