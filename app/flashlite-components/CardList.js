@@ -19,7 +19,7 @@ function SetList(props) {
     const [data, setData] = useState(null);
 
     useEffect(()=> {
-        axios.get('http://localhost:8085/api/sets')
+        axios.get(`http://localhost:8085/api/sets/${router.query.id}`)
             .then((response) => {
                 setData(response.data);
             })

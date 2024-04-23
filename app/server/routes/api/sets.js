@@ -9,6 +9,15 @@ router.post('/', bodyParser.json(), (req, res) => {
         .catch((err) => res.status(400).json({error: 'Unable to add this set'}))
 });
 
+router.post('/:id/new-card', bodyParser.json(), (req, res) => {
+    CardSet.findByIdAndUpdate(req.params.id, 
+        {
+            $push: {cards: req.body}
+        })
+        .then((item) => res.json({ msg: 'Set added successfully'}))
+        .catch((err) => res.status(400).json({error: 'Unable to add this set'}))
+});
+
 router.get('/:id', (req, res) => {
     CardSet.findById(req.params.id)
         .then((item) => res.json(item))
