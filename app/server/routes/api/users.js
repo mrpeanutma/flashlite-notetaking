@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs');
 const userRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth');
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
 const User = require('../../models/User');
 
@@ -21,7 +21,7 @@ module.exports = userRouter;
 // });
 
 // router.post('/signup', bodyParser.json(), (req,res) => {
-userRouter.post('/signup', async (req,res) => {
+userRouter.post('/signup', bodyParser.json(), async (req,res) => {
     console.log("In Server Route: Signup");
     try {
         console.log(req.body);
@@ -55,7 +55,7 @@ userRouter.post('/signup', async (req,res) => {
     }
 });
 
-userRouter.post('/login', auth, async (req,res) => {
+userRouter.post('/login', async (req,res) => {
     try {
         const {username, email, password} = req.body;
         if((!username && !email) || !password) {
