@@ -12,15 +12,12 @@ router.post('/', bodyParser.json(), (req, res) => {
 });
 
 router.post('/:id/new-card', bodyParser.json(), (req, res) => {
-    Card.create(req.body).
-    then((item) => {
-        CardSet.findByIdAndUpdate(req.params.id, 
-            {
-                $push: {cards: item._id}
-            })
-    })
-    .then((item) => res.json({ msg: 'Set added successfully'}))
-    .catch((err) => res.status(400).json({error: 'Unable to add this set'}))
+    CardSet.findByIdAndUpdate(req.params.id, 
+        {
+            $push: {cards: req.body}
+        })
+        .then((item) => res.json({ msg: 'Set added successfully'}))
+        .catch((err) => res.status(400).json({err}))
 });
 
 router.get('/:id', (req, res) => {

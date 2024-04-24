@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "develop": "concurrently \"cd app/server && npm run start\"  \"cd app && npm run dev\""
+    "develop": "concurrently \"cd app/server && npm run start\"  \"cd app && npm run dev\"",
+    "server": "cd app/server && npm run start",
+    "client": "cd app && npm run dev"
   },
   "dependencies": {
     "@fontsource/josefin-sans": "^5.0.20",
