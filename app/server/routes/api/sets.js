@@ -3,6 +3,7 @@ const router = express.Router();
 const CardSet = require('../../models/CardSet');
 const Card = require('../../models/Card')
 const bodyParser = require("body-parser");
+const auth = require('../../middleware/auth');
 // const { default: Card } = require('@/app/flashlite-components/Card');
 
 router.post('/', bodyParser.json(), (req, res) => {

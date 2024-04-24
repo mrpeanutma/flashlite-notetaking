@@ -17,7 +17,8 @@ app.get('/', (req, res) => res.send('Hello world!'));
 app.get('/login', (req,res) => res.send("loging in"));
 app.get('/beans', (req,res) => res.send('Here are some beans'));
 
-const conn_str = '';
+// Connor's String: mongodb+srv://connorwbstephens:XJKlWptLZBUVf6d5@cluster0.1h2h6f1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+const conn_str = 'mongodb+srv://connorwbstephens:XJKlWptLZBUVf6d5@cluster0.1h2h6f1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.set('strictQuery', false);
 mongoose.connect(conn_str).then(() => {
     app.listen(port, () => console.log(`Server running on port ${port}`));

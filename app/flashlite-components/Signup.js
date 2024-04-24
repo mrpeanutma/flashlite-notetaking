@@ -64,7 +64,7 @@ const Signup = (props) => {
         try {
 
             const userData = {
-                id: Math.random().toString(),
+                // id: Math.random().toString(),
                 username: enteredUsername,
                 birthday: enteredBirthday,
                 email: enteredEmail,

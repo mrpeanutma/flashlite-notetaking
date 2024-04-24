@@ -21,11 +21,11 @@ const Login = (props) => {
         }
     }, [userData.token, router]);
 
-    // const [enteredData, setEnteredData] = useState ({
-    //     username: '',
-    //     email: '',
-    //     password: '',
-    // });
+    const [enteredData, setEnteredData] = useState ({
+         username: '',
+         email: '',
+         password: '',
+    });
 
     // const [error, setError] = useState('');
 
@@ -41,7 +41,7 @@ const Login = (props) => {
     const [enteredPassword, setEnteredPassword] = useState('');
 
     const usernameChangeHandler = (event) => {
-        setEnteredUsername(event.target.value);
+        setEnteredUsername(event.target.value)
     }
 
     const emailChangeHandler = (event) => {
