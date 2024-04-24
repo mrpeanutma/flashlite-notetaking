@@ -40,7 +40,7 @@ userRouter.post('/signup', async (req,res) => {
             console.log("Existing User");
             return res.status(400).json({msg: 'User already exists with this email'});
         }
-        const hashedPassword = await bcryptjs.hash(passowrd, 8);
+        const hashedPassword = await bcryptjs.hash(passoword, 8);
         console.log("password:", password, " Hashed:", hashedPassword);
         const card_sets = [];
         const newUser = new User({email, password: hashedPassword, username, card_sets: card_sets});
