@@ -8,8 +8,10 @@ import Button from './Button';
 import './css/AddSet.css';
 
 function AddSet(props) {
+    const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
-  const router = useRouter();
+
+    const router = useRouter();
   const {userData, setUserData} = useContext(UserContext);
 
   useEffect(() => {
@@ -34,7 +36,6 @@ function AddSet(props) {
       });
   };
 
-  const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
   const submitHandler = async (event) => {
     event.preventDefault();
