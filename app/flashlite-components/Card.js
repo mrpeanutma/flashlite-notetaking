@@ -3,7 +3,7 @@
 export default function Card(props) {
     return (
         <li key={props.id} className="card-item">
-            {props.img!=NULL ? (
+            {props.img ? (
                 <img src={props.img} className="term-img" alt={props.title} />
             ) : (<></>)}
             <div className="term-info">

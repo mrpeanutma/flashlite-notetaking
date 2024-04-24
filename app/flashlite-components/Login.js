@@ -29,9 +29,9 @@ const Login = (props) => {
 
     const [error, setError] = useState('');
 
-    const changeHandler = (event) => {
+    const changeHandler = (e) => {
         setEnteredData({
-            ... enteredData,
+            ...enteredData,
             [e.target.name]: e.target.value,
         });
     };
@@ -106,8 +106,7 @@ const Login = (props) => {
         <div className="container">
             <div className="form">
                 <p className="message">Enter the following information</p>
-                <div>
-                {/* <Card className="input"> */}
+                <div className="input">
                     <form onSubmit={ submitHandler }>
                         <label>Username</label>
                         <input
@@ -140,7 +139,6 @@ const Login = (props) => {
                         <Button type="submit" className="login">Login</Button>
                     </form>
                 </div>
-                {/* </Card> */}
             <Link href='/signup'>
                 <Button type="button" className="redirect">Don't have an account? Sign up!</Button>
             </Link>

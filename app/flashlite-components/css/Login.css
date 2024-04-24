@@ -19,6 +19,18 @@ form p {
     justify-content: center;
 }
 
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 10px;
+    border: solid black 2px;
+    /* margin: 10px; */
+}
+
+
 .slogan {
     display: flex;
     flex-direction: column;

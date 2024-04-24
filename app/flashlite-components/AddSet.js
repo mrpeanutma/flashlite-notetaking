@@ -10,20 +10,16 @@ import './css/AddSet.css';
 function AddSet(props) {
     const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
-<<<<<<< HEAD
-  const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
-
-  const router = useRouter();
-=======
 
     const router = useRouter();
->>>>>>> 5ab5662d076aa85780bf2ad73fdbd55cf27e08c2
   const {userData, setUserData} = useContext(UserContext);
 
   useEffect(() => {
       if(!userData.token) {
           router.push('/'); // Redirect if not logged in
           console.log("!!!!!!!!!!!!!!!!!!!!!");
+      } else {
+        setEnteredData(enteredData.creator = userData.user.username);
       }
   }, [userData.token, router]);
 
