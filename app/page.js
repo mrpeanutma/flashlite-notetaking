@@ -58,9 +58,9 @@ function Home() {
               <link rel='icon' href='/favicon.ico'/>
           </Head>
         <Hdr signedIn={signedIn} onLogout={logoutHandler}/> 
-        <div> 
+        {/* <div> 
           <SetList items={DEFAULT_SETS} signedIn={signedIn}/>
-        </div>
+        </div> */}
       </UserProvider>
     );
       
