@@ -18,6 +18,8 @@ function AddSet(props) {
       if(!userData.token) {
           router.push('/'); // Redirect if not logged in
           console.log("!!!!!!!!!!!!!!!!!!!!!");
+      } else {
+        setEnteredData(enteredData.creator = userData.user.username);
       }
   }, [userData.token, router]);
 
