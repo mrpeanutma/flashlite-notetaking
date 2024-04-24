@@ -3,10 +3,12 @@ const app = express();
 const port = process.env.PORT || 8085;
 const mongoose = require('mongoose');
 const cors = require('cors');
-const items = require('./routes/api/items');
+const cards = require('./routes/api/cards')
+const sets = require('./routes/api/sets');
 const users = require('./routes/api/users');
 
-app.use('/api/items', items);
+app.use('/api/cards', cards)
+app.use('/api/sets', sets);
 app.use('/api/users', users);
 
 app.use(cors({origin: true, credentials:true}));

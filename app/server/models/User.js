@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
       required: true,
     },
     profile_image: {
-      type: URL,
+      type: String,
     },
     birthday: {
         type: Date,

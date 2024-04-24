@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const CardSetSchema = new mongoose.Schema({
     title: {
@@ -13,11 +14,11 @@ const CardSetSchema = new mongoose.Schema({
       type: String,
     },
     cards: {
-      type: [Card],
+      type: [Schema.Types.ObjectId],
       required: true
     },
     public: {
-      type: boolean,
+      type: Boolean,
       default: false
     }
 
