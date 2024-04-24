@@ -2,6 +2,7 @@
 
 // import {useState} from 'react';
 
+import {UserProvider} from "@/app/context/UserContext";
 import Hdr from '../flashlite-components/Hdr';
 import AddSet from '../flashlite-components/AddSet';
 import './page.css';
