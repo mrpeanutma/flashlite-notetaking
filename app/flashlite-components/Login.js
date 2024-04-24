@@ -21,46 +21,51 @@ const Login = (props) => {
         }
     }, [userData.token, router]);
 
-    const [enteredData, setEnteredData] = useState ({
-        username: '',
-        email: '',
-        password: '',
-    });
+    // const [enteredData, setEnteredData] = useState ({
+    //     username: '',
+    //     email: '',
+    //     password: '',
+    // });
 
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
 
-    const changeHandler = (e) => {
-        setEnteredData({
-            ...enteredData,
-            [e.target.name]: e.target.value,
-        });
-    };
+    // const changeHandler = (e) => {
+    //     setEnteredData({
+    //         ...enteredData,
+    //         [e.target.name]: e.target.value,
+    //     });
+    // };
 
-    // const [enteredUsername, setEnteredUsername] = useState('');
-    // const [enteredEmail, setEnteredEmail] = useState('');
-    // const [enteredPassword, setEnteredPassword] = useState('');
+    const [enteredUsername, setEnteredUsername] = useState('');
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
 
-    // const usernameChangeHandler = (event) => {
-    //     setEnteredUsername(event.target.value);
-    // }
+    const usernameChangeHandler = (event) => {
+        setEnteredUsername(event.target.value);
+    }
 
-    // const emailChangeHandler = (event) => {
-    //     setEnteredEmail(event.target.value);
-    // }
+    const emailChangeHandler = (event) => {
+        setEnteredEmail(event.target.value);
+    }
 
-    // const passwordChangeHandler = (event) => {
-    //     setEnteredPassword(event.target.value);
-    // }
+    const passwordChangeHandler = (event) => {
+        setEnteredPassword(event.target.value);
+    }
 
     const submitHandler = async (event) => {
         event.preventDefault();
 
         try {
 
-            if (!enteredData.username || !enteredData.email || ! enteredData.password) {
-                alert('All fields required!');
+            if ((!enteredUsername && !enteredEmail) || !enteredPassword) {
+                alert('Username/Email AND Password required!');
             } else {
-                const response = await axios.post('http://localhost:8085/login', enteredData);
+                const response = await axios.post('http://localhost:8085/api/users/login', {
+                    username: enteredUsername,
+                    email: enteredEmail,
+                    password: enteredPassword,
+
+                });
                 setUserData({
                     token: response.data.token,
                     user: response.data.user,
@@ -112,29 +117,29 @@ const Login = (props) => {
                         <input
                             id="username"
                             type="text"
-                            // value={ enteredUsername }
-                            value={enteredData.username}
-                            // onChange={ usernameChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredUsername }
+                            //value={enteredData.username}
+                            onChange={ usernameChangeHandler }
+                            //onChange={ changeHandler }
                         />
                         <p>OR</p>
                         <label>Email</label>
                         <input
                             id="email"
                             type="email"
-                            // value={ enteredEmail }
-                            value={enteredData.email}
-                            // onChange={ emailChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredEmail }
+                            //value={enteredData.email}
+                            onChange={ emailChangeHandler }
+                            //onChange={ changeHandler }
                         />
                         <label>Password</label>
                         <input
                             id="password"
                             type="password"
-                            // value={ enteredPassword }
-                            value={enteredData.password}
-                            // onChange={ passwordChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredPassword }
+                            //value={enteredData.password}
+                            onChange={ passwordChangeHandler }
+                            //onChange={ changeHandler }
                         />
                         <Button type="submit" className="login">Login</Button>
                     </form>
