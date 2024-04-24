@@ -22,11 +22,13 @@ module.exports = userRouter;
 
 // router.post('/signup', bodyParser.json(), (req,res) => {
 userRouter.post('/signup', auth, async (req,res) => {
+    console.log("In Server Route: Signup");
     try {
         const {username, email, password} = req.body;
         // const {email, password, confirmPassword, username} = req.body;
         // if (!email || !password || !confirmPassword || ! username) {
         if (!email || !password || ! username) {
+            console.log("Empty Fields");
             return res.status(400).json({msg: 'Please enter all fields'});
         }
         if (password.length < 6) {}
@@ -35,9 +37,11 @@ userRouter.post('/signup', auth, async (req,res) => {
         // }
         const existingUser = await User.findOne({email});
         if (existingUser) {
+            console.log("Existing User");
             return res.status(400).json({msg: 'User already exists with this email'});
         }
         const hashedPassword = await bcryptjs.hash(passowrd, 8);
+        console.log("password:", password, " Hashed:", hashedPassword);
         const card_sets = [];
         const newUser = new User({email, password: hashedPassword, username, card_sets: card_sets});
 
@@ -45,6 +49,7 @@ userRouter.post('/signup', auth, async (req,res) => {
         console.log(savedUser.username);
         res.json(savedUser);
     } catch (err) {
+        console.log("Error in Signup");
         res.status(500).json({error: err.message});
     }
 });
