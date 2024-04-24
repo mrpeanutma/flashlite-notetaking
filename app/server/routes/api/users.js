@@ -23,7 +23,7 @@ module.exports = userRouter;
 // router.post('/signup', bodyParser.json(), (req,res) => {
 userRouter.post('/signup', auth, async (req,res) => {
     try {
-        const {email, password, username} = req.body;
+        const {username, email, password} = req.body;
         // const {email, password, confirmPassword, username} = req.body;
         // if (!email || !password || !confirmPassword || ! username) {
         if (!email || !password || ! username) {
