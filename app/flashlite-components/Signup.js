@@ -66,7 +66,7 @@ const Signup = (props) => {
             const userData = {
                 // id: Math.random().toString(),
                 username: enteredUsername,
-                birthday: enteredBirthday,
+                // birthday: enteredBirthday,
                 email: enteredEmail,
                 password: enteredPassword,
             }
@@ -74,7 +74,9 @@ const Signup = (props) => {
             if (!enteredUsername || !enteredBirthday || !enteredEmail || ! enteredPassword) {
                 alert('All fields required!');
             } else {
+                console.log("Posting new user");
                 await axios.post('http://localhost:8085/api/users/signup', userData);
+                console.log("User Posted");
                 const loginResponse = await axios.post('http://localhost:8085/login', {
                     username: enteredUsername,
                     email: enteredEmail,
