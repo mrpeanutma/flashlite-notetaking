@@ -55,7 +55,7 @@ userRouter.post('/signup', bodyParser.json(), async (req,res) => {
     }
 });
 
-userRouter.post('/login', async (req,res) => {
+userRouter.post('/login', bodyParser.json(), async (req,res) => {
     try {
         const {username, email, password} = req.body;
         if((!username && !email) || !password) {
