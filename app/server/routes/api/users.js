@@ -21,7 +21,7 @@ module.exports = userRouter;
 // });
 
 // router.post('/signup', bodyParser.json(), (req,res) => {
-userRouter.post('/signup', auth, async (req,res) => {
+userRouter.post('/signup', async (req,res) => {
     console.log("In Server Route: Signup");
     try {
         const {username, email, password} = req.body;
