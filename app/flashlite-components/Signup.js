@@ -79,7 +79,7 @@ const Signup = (props) => {
                 console.log("Posting new user: ", userData);
                 await axios.post('http://localhost:8085/api/users/signup', userData);
                 console.log("User Posted");
-                const loginResponse = await axios.post('http://localhost:8085/login', {
+                const loginResponse = await axios.post('http://localhost:8085/api/users/login', {
                     username: enteredUsername,
                     email: enteredEmail,
                     password: enteredPassword
