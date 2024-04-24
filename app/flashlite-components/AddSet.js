@@ -17,13 +17,14 @@ function AddSet(props) {
   useEffect(() => {
       if(!userData.token) {
           router.push('/'); // Redirect if not logged in
+          console.log("!!!!!!!!!!!!!!!!!!!!!");
       }
   }, [userData.token, router]);
 
   const [enteredData, setEnteredData] = useState ({
       title: '',
       img: LOGO,
-      creator: userData.user.username,
+      // creator: userData.user.username,
       numTerms: 0,
   });
 
@@ -32,10 +33,9 @@ function AddSet(props) {
   const changeHandler = (event) => {
       setEnteredData({
           ... enteredData,
-          [e.target.name]: e.target.value,
+          [event.target.name]: event.target.value,
       });
   };
-
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -104,7 +104,8 @@ function AddSet(props) {
   return (
     <div className='body'>
       <p className="message">Enter Your Flashcard Set Information</p>
-      <Card className="input">
+      {/* <Card className="input"> */}
+      <div>
         <form onSubmit={submitHandler}>
           <label>Title</label>
           <input
@@ -126,7 +127,8 @@ function AddSet(props) {
           />
           <Button type="submit">Create Set</Button>
         </form>
-      </Card>
+      {/* </Card> */}
+      </div>
     </div>
   );
 };

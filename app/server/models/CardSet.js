@@ -14,7 +14,7 @@ const CardSetSchema = new mongoose.Schema({
       type: String,
     },
     cards: {
-      type: [Schema.Types.ObjectId],
+      type: [{ type: Schema.Types.ObjectId, ref: 'Card'}],
       required: true
     },
     public: {
@@ -24,4 +24,4 @@ const CardSetSchema = new mongoose.Schema({
 
 });
 
-module.exports = CardSet = mongoose.model('set', CardSetSchema);
+module.exports = CardSet = mongoose.model('Set', CardSetSchema);

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "develop": "concurrently \"cd app/server && npm run start\"  \"cd app && npm run dev\""
+    "develop": "concurrently \"cd app/server && npm run start\"  \"cd app && npm run dev\"",
+    "server": "cd app/server && npm run start",
+    "client": "cd app && npm run dev"
   },
   "dependencies": {
     "@fontsource/josefin-sans": "^5.0.20",
@@ -17,7 +19,7 @@
     "express": "^4.19.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.1",
-    "next": "^14.2.2",
+    "next": "^14.2.3",
     "react": "^18",
     "react-dom": "^18"
   }
