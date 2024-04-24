@@ -23,14 +23,16 @@ module.exports = userRouter;
 // router.post('/signup', bodyParser.json(), (req,res) => {
 userRouter.post('/signup', auth, async (req,res) => {
     try {
-        const {email, password, confirmPassword, username} = req.body;
-        if (!email || !password || !confirmPassword || ! username) {
+        const {email, password, username} = req.body;
+        // const {email, password, confirmPassword, username} = req.body;
+        // if (!email || !password || !confirmPassword || ! username) {
+        if (!email || !password || ! username) {
             return res.status(400).json({msg: 'Please enter all fields'});
         }
         if (password.length < 6) {}
-        if (confirmPassword !== password) {
-            return res.status(400).json({msg: 'Passwords must match'});
-        }
+        // if (confirmPassword !== password) {
+        //     return res.status(400).json({msg: 'Passwords must match'});
+        // }
         const existingUser = await User.findOne({email});
         if (existingUser) {
             return res.status(400).json({msg: 'User already exists with this email'});
