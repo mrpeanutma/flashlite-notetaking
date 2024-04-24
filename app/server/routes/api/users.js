@@ -24,6 +24,7 @@ module.exports = userRouter;
 userRouter.post('/signup', async (req,res) => {
     console.log("In Server Route: Signup");
     try {
+        console.log(req.body);
         const {username, email, password} = req.body;
         // const {email, password, confirmPassword, username} = req.body;
         // if (!email || !password || !confirmPassword || ! username) {
