@@ -59,10 +59,12 @@ const Signup = (props) => {
     }
 
     const submitHandler = async (event) => {
+        console.log("In Submit Handler");
         event.preventDefault();
 
         try {
 
+            console.log("Packaging User Data");
             const userData = {
                 // id: Math.random().toString(),
                 username: enteredUsername,
