@@ -9,7 +9,7 @@ router.post('/', bodyParser.json(), (req, res) => {
         .catch((err) => res.status(400).json({error: 'Unable to add this set'}))
 });
 
-userRouter.post('/:id/new-card', auth, async (req,res) => {
+router.post('/:id/new-card', auth, async (req,res) => {
     try {
         const {term, def} = req.body;
         if (!term || !def) {
