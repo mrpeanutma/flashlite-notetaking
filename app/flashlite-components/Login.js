@@ -31,7 +31,7 @@ const Login = (props) => {
 
     const changeHandler = (e) => {
         setEnteredData({
-            ... enteredData,
+            ...enteredData,
             [e.target.name]: e.target.value,
         });
     };

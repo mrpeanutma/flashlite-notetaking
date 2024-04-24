@@ -32,8 +32,8 @@ const Signup = (props) => {
 
     const changeHandler = (event) => {
         setEnteredData({
-            ... enteredData,
-            [e.target.name]: e.target.value,
+            ...enteredData,
+            [event.target.name]: event.target.value,
         });
     };
 
