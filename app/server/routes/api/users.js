@@ -62,7 +62,7 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
             return res.status(400).json({msg: 'Please enter all fields'});
         }
 
-        const user = await User.findOne({userID});
+        // const user = await User.findOne({userID});
         if (!username) {
             user = await User.findOne({username});
         } else {
@@ -70,7 +70,7 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
         }
 
         if (!user) {
-            return res.status(400).json({msg: 'User with this email or username alreay exists'});
+            return res.status(400).json({msg: 'User with this email or username does not exists'});
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
