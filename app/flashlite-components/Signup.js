@@ -70,13 +70,13 @@ const Signup = (props) => {
                 username: enteredUsername,
                 // birthday: enteredBirthday,
                 email: enteredEmail,
-                password: enteredPassword,
+                password: enteredPassword
             }
 
             if (!enteredUsername || !enteredBirthday || !enteredEmail || ! enteredPassword) {
                 alert('All fields required!');
             } else {
-                console.log("Posting new user");
+                console.log("Posting new user: ", userData);
                 await axios.post('http://localhost:8085/api/users/signup', userData);
                 console.log("User Posted");
                 const loginResponse = await axios.post('http://localhost:8085/login', {
