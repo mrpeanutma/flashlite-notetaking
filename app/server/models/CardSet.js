@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const CardSetSchema = new mongoose.Schema({
     title: {
@@ -13,14 +14,14 @@ const CardSetSchema = new mongoose.Schema({
       type: String,
     },
     cards: {
-      type: [Card],
+      type: [{ type: Schema.Types.ObjectId, ref: 'Card'}],
       required: true
     },
     public: {
-      type: boolean,
+      type: Boolean,
       default: false
     }
 
 });
 
-module.exports = CardSet = mongoose.model('set', CardSetSchema);
+module.exports = CardSet = mongoose.model('Set', CardSetSchema);

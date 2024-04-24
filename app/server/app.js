@@ -3,10 +3,12 @@ const app = express();
 const port = process.env.PORT || 8085;
 const mongoose = require('mongoose');
 const cors = require('cors');
-const items = require('./routes/api/items');
+const cards = require('./routes/api/cards')
+const sets = require('./routes/api/sets');
 const users = require('./routes/api/users');
 
-app.use('/api/items', items);
+app.use('/api/cards', cards)
+app.use('/api/sets', sets);
 app.use('/api/users', users);
 
 app.use(cors({origin: true, credentials:true}));
@@ -15,7 +17,7 @@ app.get('/', (req, res) => res.send('Hello world!'));
 app.get('/login', (req,res) => res.send("loging in"));
 app.get('/beans', (req,res) => res.send('Here are some beans'));
 
-const conn_str = 'mongodb+srv://jry39286:Matthew274@cluster0.fw4wy0v.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const conn_str = 'mongodb+srv://baile:12345@cluster0.scq45ox.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.set('strictQuery', false);
 mongoose.connect(conn_str).then(() => {
     app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -7,7 +7,7 @@ const auth = require('../../middleware/auth');
 
 const User = require('../../models/User');
 
-module.exports = router;
+module.exports = userRouter;
 
 // router.get('/', (req,res) => {
 //     Item.find()
