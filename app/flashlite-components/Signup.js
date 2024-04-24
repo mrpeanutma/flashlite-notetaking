@@ -30,47 +30,55 @@ const Signup = (props) => {
 
     const [error, setError] = useState('');
 
-    const changeHandler = (event) => {
-        setEnteredData({
-            ...enteredData,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // const changeHandler = (e) => {
+    //     setEnteredData({
+    //         ... enteredData,
+    //         [e.target.name]: e.target.value,
+    //     });
+    // };
 
-    // const [enteredUsername, setEnteredUsername] = useState('');
-    // const [enteredBirthday, setEnteredBirthday] = useState('');
-    // const [enteredEmail, setEnteredEmail] = useState('');
-    // const [enteredPassword, setEnteredPassword] = useState('');
+    const [enteredUsername, setEnteredUsername] = useState('');
+    const [enteredBirthday, setEnteredBirthday] = useState('');
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
 
-    // const usernameChangeHandler = (event) => {
-    //     setEnteredUsername(event.target.value);
-    // }
+    const usernameChangeHandler = (event) => {
+        setEnteredUsername(event.target.value);
+    }
 
-    // const birthdayChangeHandler = (event) => {
-    //     setEnteredBirthday(event.target.value);
-    // }
+    const birthdayChangeHandler = (event) => {
+        setEnteredBirthday(event.target.value);
+    }
 
-    // const emailChangeHandler = (event) => {
-    //     setEnteredEmail(event.target.value);
-    // }
+    const emailChangeHandler = (event) => {
+        setEnteredEmail(event.target.value);
+    }
 
-    // const passwordChangeHandler = (event) => {
-    //     setEnteredPassword(event.target.value);
-    // }
+    const passwordChangeHandler = (event) => {
+        setEnteredPassword(event.target.value);
+    }
 
     const submitHandler = async (event) => {
         event.preventDefault();
 
         try {
 
-            if (!enteredData.username || !enteredData.birthday || !enteredData.email || ! enteredData.password) {
+            const userData = {
+                id: Math.random().toString(),
+                username: enteredUsername,
+                birthday: enteredBirthday,
+                email: enteredEmail,
+                password: enteredPassword,
+            }
+
+            if (!enteredUsername || !enteredBirthday || !enteredEmail || ! enteredPassword) {
                 alert('All fields required!');
             } else {
-                await axios.post('http://localhost:8085/signup', enteredData);
+                await axios.post('http://localhost:8085/api/users/signup', userData);
                 const loginResponse = await axios.post('http://localhost:8085/login', {
-                    username: enteredData.username,
-                    email: enteredData.email,
-                    password: enteredData.password
+                    username: enteredUsername,
+                    email: enteredEmail,
+                    password: enteredPassword
                 });
 
                 setUserData({
@@ -116,37 +124,37 @@ const Signup = (props) => {
                         <input
                             id="username"
                             type="text"
-                            // value={ enteredUsername }
-                            value={enteredData.username}
-                            // onChange={ usernameChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredUsername }
+                            // value={enteredData.username}
+                            onChange={ usernameChangeHandler }
+                            // onChange={ changeHandler }
                         />
                         <label>Birthday</label>
                         <input
                             id="birthday"
                             type="date"
-                            // value={ enteredBirthday }
-                            value={enteredData.birthday}
-                            // onChange={ birthdayChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredBirthday }
+                            // value={enteredData.birthday}
+                            onChange={ birthdayChangeHandler }
+                            // onChange={ changeHandler }
                         />
                         <label>Email</label>
                         <input
                             id="email"
                             type="email"
-                            // value={ enteredEmail }
-                            value={enteredData.email}
-                            // onChange={ emailChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredEmail }
+                            // value={enteredData.email}
+                            onChange={ emailChangeHandler }
+                            // onChange={ changeHandler }
                         />
                         <label>Password</label>
                         <input
                             id="password"
                             type="password"
-                            // value={ enteredPassword }
-                            value={enteredData.password}
-                            // onChange={ passwordChangeHandler }
-                            onChange={ changeHandler }
+                            value={ enteredPassword }
+                            // value={enteredData.password}
+                            onChange={ passwordChangeHandler }
+                            // onChange={ changeHandler }
                         />
                         <Button type="submit" className="signup">Sign up</Button>
                     </form>
