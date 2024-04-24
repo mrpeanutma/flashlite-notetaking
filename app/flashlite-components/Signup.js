@@ -110,7 +110,7 @@ const Signup = (props) => {
         <div className="container">
             <div className="form">
                 <p className="message">Enter the following information</p>
-                <Card className="input">
+                <div className="input">
                     <form onSubmit={ submitHandler }>
                         <label>Username</label>
                         <input
@@ -150,7 +150,7 @@ const Signup = (props) => {
                         />
                         <Button type="submit" className="signup">Sign up</Button>
                     </form>
-                </Card>
+                </div>
                 <Link href='/login'> 
                     <Button type="button" className="redirect">Already have an account? Log in!</Button>
                 </Link>
