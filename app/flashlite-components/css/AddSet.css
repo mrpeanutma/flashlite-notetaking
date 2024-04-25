@@ -61,3 +61,9 @@ form {
 form button {
   margin: 0 auto;
 }
+
+.toolbar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
