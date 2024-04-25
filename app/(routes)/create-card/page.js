@@ -2,14 +2,12 @@
 
 // import {useState} from 'react';
 
-import {UserProvider} from "@/app/context/UserContext";
+import {UserProvider} from "../../app/context/UserContext";
 import Hdr from '@/app/flashlite-components/Hdr';
-import AddC from '@/app/flashlite-components/AddSet';
+import AddSet from '@/app/flashlite-components/AddSet';
 import './page.css';
-import {UserProvider} from "@/app/context/UserContext";
 
 function Home() {
-
   return (
     <UserProvider>
       <div className='page'>
