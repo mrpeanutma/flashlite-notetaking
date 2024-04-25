@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "develop": "concurrently \"cd app/server && npm run start\"  \"cd app && npm run dev\"",
-    "server": "cd app/server && npm run start",
+    "develop": "concurrently \"cd app/server && npm run app\"  \"cd app && npm run dev\"",
+    "server": "cd app/server && npm run app",
     "client": "cd app && npm run dev"
   },
   "dependencies": {
