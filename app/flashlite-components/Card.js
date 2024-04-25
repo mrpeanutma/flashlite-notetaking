@@ -27,7 +27,12 @@ export default function Card(props) {
     if (!data) return null;
     
     return (
-        <li key={data._id} className="card-item">
+        <li key={props.id} className="card-item">
+            {/* {props.img ? (
+                <img src={props.img} className="term-img" alt={props.title} />
+            ) : (<></>)} */}
+            <Button className="edit-button" onClick={() => {router.push('/edit-card')}}>Edit</Button>
+            <Button className="delete-button" onClick={() => {"Delete Item"}}>X</Button>
             <div className="term-info">
                 <div className="term">{data.term}</div>
                 <hr/>
