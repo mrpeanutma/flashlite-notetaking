@@ -146,9 +146,8 @@ const Login = (props) => {
                         <Button type="submit" className="login">Login</Button>
                     </form>
                 </div>
-            <Link href='/signup'>
-                <Button type="button" className="redirect">Don't have an account? Sign up!</Button>
-            </Link>
+
+                <Button type="button" className="redirect" onClick={() => {router.push('/signup')}}>Don't have an account? Sign up!</Button>
             </div>
             <div className="slogan">
                 <h1>Shine brighter with FlashLITE:</h1>
