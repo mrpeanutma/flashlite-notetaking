@@ -11,11 +11,11 @@ function AddSet(props) {
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
   const router = useRouter();
 
-  const {userData, setUserData} = useContext(UserContext);
-  // const [userData, setUserData] = useState({
-  //   token: localStorage.getItem('auth-token'),
-  //   username: localStorage.getItem('username')
-  // })
+  //const {userData, setUserData} = useContext(UserContext);
+  const [userData, setUserData] = useState({
+    token: localStorage.getItem('auth-token'),
+    username: localStorage.getItem('username')
+  })
 
   const [formData, setFormData] = useState({
     title: '',
