@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import Card from "./Card.js";
 import Set from "./Set.js";
-import "./css/SetList.css";
+import "./css/CardList.css";
 import Link from 'next/link';
 
 
