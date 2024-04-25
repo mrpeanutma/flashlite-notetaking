@@ -25,14 +25,14 @@ router.post('/', bodyParser.json(), (req, res) => {
 //         .catch((err) => res.status(400).json({err}))
 // });
 
-router.post('/:id/new-card', auth, async (req,res) => {
+router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
     try {
-        const {term, def} = req.body;
-        if (!term || !def) {
+        const {term, definition} = req.body;
+        if (!term || !definition) {
             return res.status(400).json({msg: 'Please enter all fields'});
         }
         
-        const newCard = new Card({term, def});
+        const newCard = new Card({term, definition});
         const savedCard = await newCard.save();
         console.log(savedCard.term);
 
