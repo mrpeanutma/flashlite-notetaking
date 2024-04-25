@@ -27,6 +27,10 @@ function AddSet(props) {
       if(!userData.token) {
         console.log(userData);
         router.push('/'); // Redirect if not logged in
+      } else {
+        setFormData((prevState) => {
+          return {...prevState, creator: userData.username}
+        });
       }
   }, [userData.token, router]);
 
@@ -53,15 +57,15 @@ function AddSet(props) {
         } else {
             if(formData.img == '') {
               setFormData((prevState) => {
-                return {...prevState, img: null}
+                return {...prevState, image: null}
               })
             }
-            setFormData((prevState) => {
-              return {
-                ...prevState,
-                creator: userData.username
-              }
-            })
+            // setFormData((prevState) => {
+            //   return {
+            //     ...prevState,
+            //     creator: userData.username
+            //   }
+            // })
             const response = await axios.post('http://localhost:8085/api/sets/', formData);
             router.push('/');
         }

@@ -46,7 +46,7 @@ function SetList() {
                 ))}
                 {userData.token ? (
                     <Link href='/create-set'>
-                        <div className="add-set-card">
+                        <div key="add-set" className="add-set-card">
                             <p>Add Set</p>
                             <p className="plus-sign">+</p>
                         </div>
