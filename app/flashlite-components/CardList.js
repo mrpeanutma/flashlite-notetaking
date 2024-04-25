@@ -7,7 +7,6 @@ import Card from "./Card.js";
 import Set from "./Set.js";
 import "./css/SetList.css";
 import Link from 'next/link';
-import Button from "./Button.js";
 
 
 
