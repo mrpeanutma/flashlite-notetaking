@@ -75,6 +75,17 @@ export default function EditCard(props) { // props include card id and set creat
     }
   };
 
+  const deleteCardHandler = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.delete(`http://localhost:8085/api/cards/${props.id}`);
+      router.push(`/`);
+    } catch (error) {
+      console.error('Delete Failed:', error);
+      //Handle Login Error
+    }
+  }
+
   return (
     <div className='body'>
       <p className="message">Enter Your Flashcard Information</p>
@@ -98,6 +109,7 @@ export default function EditCard(props) { // props include card id and set creat
             onChange={defChangeHandler}
           />
           <Button type="submit">Save Changes</Button>
+          <Button className="deleteButton" onClick={deleteCardHandler}>Delete Card</Button>
         </form>
     </div>
   );

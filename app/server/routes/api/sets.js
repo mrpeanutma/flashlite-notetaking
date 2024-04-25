@@ -62,10 +62,15 @@ router.get('/', (req, res) => {
         .catch((err) => res.status(404).json({ nosetfound: 'No Sets found'}))
 });
 
-router.put('/:id', (req, res) => {
-    CardSet.findByIdAndUpdate(req.params.id, req.body)
-        .then((item) => res.json({ msg: 'updated successfully'}))
-        .catch((err) => res.status(400).json({ error: 'unable to update the db'}))
+router.put('/:id', bodyParser.json(), (req, res) => {
+    CardSet.findById(req.params.id)
+        .then((item) => {
+            item.title = req.body.title;
+            item.image = req.body.image;
+            item.save();
+            res.json({ msg: 'updated successfully'})
+        })
+        .catch((err) => {console.log(err); res.status(400).json({ error: 'unable to update the db'});})
 });
 
 router.delete('/:id', (req, res) => {

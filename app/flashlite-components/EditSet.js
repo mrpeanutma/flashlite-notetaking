@@ -13,16 +13,15 @@ function EditSet(props) {
 
     const router = useRouter();
 
-    const {userData, setUserData} = useContext(UserContext);
-    // const [userData, setUserData] = useState({
-    //   token: localStorage.getItem('auth-token'),
-    //   username: localStorage.getItem('username')
-    // })
+    // const {userData, setUserData} = useContext(UserContext);
+    const [userData, setUserData] = useState({
+       token: localStorage.getItem('auth-token'),
+       username: localStorage.getItem('username')
+     })
 
   const [formData, setFormData] = useState ({
       title: '',
       image: '',
-      creator: ''
   });
 
 // const [enteredTitle, setEnteredTitle] = useState(props.title);
@@ -39,7 +38,7 @@ function EditSet(props) {
 //   };
 
 const titleChangeHandler = (event) => {
-  setformData((prevState) => {
+  setFormData((prevState) => {
     return {...prevState, title: event.target.value};
   });
 }
@@ -51,10 +50,10 @@ const imgChangeHandler = (event) => {
 }
 
   useEffect(()=> {
-    axios.get(`http://localhost:8085/api/cards/${props.id}`)
+    axios.get(`http://localhost:8085/api/sets/${props.id}`)
       .then((response) => {
           console.log(response.data);
-          setformData({
+          setFormData({
             title: response.data.title,
             image: response.data.image
           });
@@ -83,6 +82,17 @@ const imgChangeHandler = (event) => {
         //Handle Login Error
     }
 };
+
+const deleteSetHandler = async (event) => {
+  event.preventDefault();
+  try {
+    await axios.delete(`http://localhost:8085/api/sets/${props.id}`);
+    router.push(`/`);
+  } catch (error) {
+    console.error('Delete Failed:', error);
+    //Handle Login Error
+  }
+}
 
 // try {
 //     if (!enteredData.title) {
@@ -153,7 +163,8 @@ const imgChangeHandler = (event) => {
             onChange={imgChangeHandler}
             //onChange={changeHandler}
           />
-          <Button type="submit">Create Set</Button>
+          <Button type="submit">Update Set</Button>
+          <Button className="deleteButton" onClick={deleteSetHandler}>Delete Set</Button>
         </form>
       {/* </Card> */}
       </div>
