@@ -11,11 +11,11 @@ export default function AddCard(props) { // props include set id and set creator
 
   const router = useRouter();
 
-  const {userData, setUserData} = useContext(UserContext);
-  // const [userData, setUserData] = useState({
-  //   token: localStorage.getItem('auth-token'),
-  //   username: localStorage.getItem('username')
-  // })
+  //const {userData, setUserData} = useContext(UserContext);
+  const [userData, setUserData] = useState({
+    token: localStorage.getItem('auth-token'),
+    username: localStorage.getItem('username')
+  })
 
   useEffect(() => {
       if(!userData.token) {
