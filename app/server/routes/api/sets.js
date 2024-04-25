@@ -6,6 +6,21 @@ const bodyParser = require("body-parser");
 const auth = require('../../middleware/auth');
 // const { default: Card } = require('@/app/flashlite-components/Card');
 
+// @route GET api/sets
+router.get('/', (req, res) => {
+    CardSet.find()
+        .then((items) => res.json(items))
+        .catch((err) => res.status(404).json({ nosetfound: 'No Sets found'}))
+});
+
+// @route GET api/sets/:id
+router.get('/:id', (req, res) => {
+    CardSet.findById(req.params.id)
+        .then((item) => res.json(item))
+        .catch((err) => res.status(404).json({ nosetfound: 'No set found'}))
+});
+
+// @route POST api/sets
 router.post('/', bodyParser.json(), (req, res) => {
     CardSet.create(req.body)
         .then((item) => res.json({ msg: 'Set added successfully'}))
@@ -25,6 +40,7 @@ router.post('/', bodyParser.json(), (req, res) => {
 //         .catch((err) => res.status(400).json({err}))
 // });
 
+// @route POST api/sets/:id/new-card
 router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
     try {
         const {term, definition} = req.body;
@@ -49,18 +65,7 @@ router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
     }
 });
 
-router.get('/:id', (req, res) => {
-    CardSet.findById(req.params.id)
-        .then((item) => res.json(item))
-        .catch((err) => res.status(404).json({ nosetfound: 'No set found'}))
-});
-
-router.get('/', (req, res) => {
-    CardSet.find()
-        .then((items) => res.json(items))
-        .catch((err) => res.status(404).json({ nosetfound: 'No Sets found'}))
-});
-
+// @route PUT api/sets/:id
 router.put('/:id', bodyParser.json(), (req, res) => {
     CardSet.findById(req.params.id)
         .then((item) => {
@@ -72,6 +77,7 @@ router.put('/:id', bodyParser.json(), (req, res) => {
         .catch((err) => {console.log(err); res.status(400).json({ error: 'unable to update the db'});})
 });
 
+// @route DELETE api/sets/:id
 router.delete('/:id', (req, res) => {
     CardSet.findByIdAndDelete(req.params.id)
         .then((item) => res.json({ msg: 'set entry deleted successfully'}))
