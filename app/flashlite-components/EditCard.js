@@ -89,28 +89,32 @@ export default function EditCard(props) { // props include card id and set creat
   return (
     <div className='body'>
       <p className="message">Enter Your Flashcard Information</p>
-        <form onSubmit={submitHandler}>
-          <label>Term:</label>
-          <input
-            id="term-input"
-            type="text"
-            // value={enteredTitle}
-            value={formData.term}
-            // onChange={titleChangeHandler}
-            onChange={termChangeHandler}
-          />
-          <label>Definition:</label>
-          <input
-            id="definition-input"
-            type="text"
-            // value={enteredImg}
-            value={formData.definition}
-            // onChange={imgChangeHandler}
-            onChange={defChangeHandler}
-          />
-          <Button type="submit">Save Changes</Button>
-          <Button className="deleteButton" onClick={deleteCardHandler}>Delete Card</Button>
-        </form>
+        <div className='input'>
+          <form onSubmit={submitHandler}>
+            <label>Term:</label>
+            <input
+              id="term-input"
+              type="text"
+              // value={enteredTitle}
+              value={formData.term}
+              // onChange={titleChangeHandler}
+              onChange={termChangeHandler}
+            />
+            <label>Definition:</label>
+            <input
+              id="definition-input"
+              type="text"
+              // value={enteredImg}
+              value={formData.definition}
+              // onChange={imgChangeHandler}
+              onChange={defChangeHandler}
+            />
+            <div className='toolbar'>
+              <Button type="submit">Save Changes</Button>
+              <Button className="deleteButton" onClick={deleteCardHandler}>Delete Card</Button>
+            </div>
+          </form>
+        </div>
     </div>
   );
 };
