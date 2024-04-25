@@ -8,6 +8,12 @@
     justify-content: space-between;
 }
 
+.set-description {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .set-title {
     text-align: center;
     background: #ffffff;
