@@ -1,8 +1,7 @@
 const express = require('express');
 const config = require('dotenv').config();
-console.log(process.env)
 const app = express();
-const port = process.env.PORT || 8085;
+const port = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cards = require('./routes/api/cards')
@@ -17,26 +16,26 @@ app.use('/api/users', users);
 app.use(cors({origin: true, credentials:true}));
 
 // Add Access Control Allow Origin headers
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://10.2.1.8:3000");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "http://10.2.1.8:3000");
+//     res.header(
+//       "Access-Control-Allow-Headers",
+//       "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+//   });
 
 app.use(express.json({ entered: false}));
 app.get('/', (req, res) => res.send('Hello world!'));
-app.get('/login', (req,res) => res.send("loging in"));
+app.get('/login', (req,res) => res.send("logging in"));
 app.get('/beans', (req,res) => res.send('Here are some beans'));
 
-// Connor's String: mongodb+srv://connorwbstephens:XJKlWptLZBUVf6d5@cluster0.1h2h6f1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-const conn_str = 'mongodb+srv://connorwbstephens:XJKlWptLZBUVf6d5@cluster0.1h2h6f1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+const conn_str = process.env.DB_STR;
 mongoose.set('strictQuery', false);
 mongoose.connect(conn_str).then(() => {
     app.listen(port, () => console.log(`Server running on port ${port}`));
-    console.log('MongoDB Connection Succeded...');
+    console.log('MongoDB Connection Succeeded...');
 })
 .catch(err => {
     console.log(`Error in DB Connection ${err}`);

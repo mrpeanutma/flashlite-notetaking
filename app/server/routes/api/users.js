@@ -21,7 +21,8 @@ module.exports = userRouter;
 //     .catch((err) => res.status(400).json({error: 'No Item Found'}))
 // });
 
-// router.post('/signup', bodyParser.json(), (req,res) => {
+
+// @route POST api/users/signup
 userRouter.post('/signup', bodyParser.json(), async (req,res) => {
     console.log("In Server Route: Signup");
     try {
@@ -53,6 +54,7 @@ userRouter.post('/signup', bodyParser.json(), async (req,res) => {
     }
 });
 
+// @route POST api/users/login
 userRouter.post('/login', bodyParser.json(), async (req,res) => {
     try {
         const {username, email, password} = req.body;
