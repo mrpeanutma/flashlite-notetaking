@@ -70,7 +70,8 @@ function AddSet(props) {
             router.push('/');
         }
     } catch (error) {
-        console.error('Login Failed:', error);
+        console.error('Create Set Failed:', error);
+        alert('Create Set failed: ' + error.response.data.msg);
         //Handle Login Error
     }
   };

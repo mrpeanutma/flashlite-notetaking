@@ -105,7 +105,7 @@ const Login = (props) => {
             // }
         } catch (error) {
             console.error('Login Failed: ', error);
-            alert('Login failed: ' + error.response);
+            alert('Login failed: ' + error.response.data.msg);
         }
     };
 

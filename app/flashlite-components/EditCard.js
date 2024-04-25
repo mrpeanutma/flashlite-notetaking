@@ -70,8 +70,8 @@ export default function EditCard(props) { // props include card id and set creat
             router.push(`/`);
         }
     } catch (error) {
-        console.error('Login Failed:', error);
-        //Handle Login Error
+        console.error('Edit Card Failed:', error);
+        alert('Edit Card failed: ' + error.response.data.msg);
     }
   };
 
@@ -81,7 +81,8 @@ export default function EditCard(props) { // props include card id and set creat
       await axios.delete(`http://localhost:8085/api/cards/${props.id}`);
       router.push(`/`);
     } catch (error) {
-      console.error('Delete Failed:', error);
+      console.error('Delete Card Failed:', error);
+      alert('Delete Card failed: ' + error.response.data.msg);
       //Handle Login Error
     }
   }

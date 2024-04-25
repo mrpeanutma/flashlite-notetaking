@@ -95,7 +95,7 @@ const Signup = (props) => {
 
         } catch (error) {
             console.error('Signup Failed:', error);
-            alert('Signup failed: ' + error.msg)
+            alert('Signup failed: ' + error.response.data.msg)
         }
 
         // const userData = {
