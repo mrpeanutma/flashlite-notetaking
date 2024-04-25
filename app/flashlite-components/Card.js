@@ -40,7 +40,6 @@ export default function Card(props) {
                     (<Button className="edit-button" onClick={() => {router.push(`/edit-card/${data._id}`)}}>Edit/Delete</Button> )
                     : (<></>) 
                 }
-                <Button className="edit-button" onClick={() => {router.push(`/edit-card/${data._id}`)}}>Edit/Delete</Button>
                 <div className="term">{data.term}</div>
                 <hr/>
                 <div className="definition">{data.definition}</div>
