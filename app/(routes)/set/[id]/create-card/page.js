@@ -6,7 +6,6 @@ import {UserProvider} from "@/app/context/UserContext";
 import Hdr from '@/app/flashlite-components/Hdr';
 import AddCard from '@/app/flashlite-components/AddCard';
 import './page.css';
-import {UserProvider} from "@/app/context/UserContext";
 
 function Home() {
 
