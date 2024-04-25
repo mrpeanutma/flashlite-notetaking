@@ -3,7 +3,6 @@ import axios from 'axios';
 import UserContext from '../context/UserContext';
 import { useRouter } from "next/navigation";
 
-import Card from './Card';
 import Button from './Button';
 import './css/AddSet.css';
 
@@ -11,13 +10,17 @@ function AddSet(props) {
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
   const router = useRouter();
-  const {userData, setUserData} = useContext(UserContext);
+  // const {userData, setUserData} = useContext(UserContext);
+
+  const [userData, setUserData] = useState({
+    token: localStorage.getItem('auth-token'),
+    username: localStorage.getItem('username')
+  })
 
   const [formData, setFormData] = useState({
     title: '',
-    img: LOGO,
+    image: LOGO,
     creator: '',
-    numTerms: 0
   });
 
   useEffect(() => {
@@ -29,11 +32,16 @@ function AddSet(props) {
 
   const [error, setError] = useState('');
 
-  const changeHandler = (event) => {
-      setFormData({
-          ...formData,
-          [event.target.name]: event.target.value,
+  const titleChangeHandler = (event) => {
+      setFormData((prevState) => {
+          return {...prevState, title: event.target.value}
       });
+  };
+
+  const imgChangeHandler = (event) => {
+    setFormData((prevState) => {
+        return {...prevState, image: event.target.value}
+    });
   };
 
   const submitHandler = async (event) => {
@@ -43,7 +51,18 @@ function AddSet(props) {
         if (!formData.title) {
             alert('Sets must have a title');
         } else {
-            const response = await axios.post('http://localhost:8085/sets/', enteredData);
+            if(formData.img == '') {
+              setFormData((prevState) => {
+                return {...prevState, img: null}
+              })
+            }
+            setFormData((prevState) => {
+              return {
+                ...prevState,
+                creator: userData.username
+              }
+            })
+            const response = await axios.post('http://localhost:8085/api/sets/', formData);
             router.push('/');
         }
     } catch (error) {
@@ -103,17 +122,17 @@ function AddSet(props) {
             type="text"
             // value={enteredTitle}
             value={formData.title}
-            // onChange={titleChangeHandler}
-            onChange={changeHandler}
+            onChange={titleChangeHandler}
+            // onChange={changeHandler}
           />
           <label>Link to image</label>
           <input
             id="img"
             type="text"
             // value={enteredImg}
-            value={formData.img}
-            // onChange={imgChangeHandler}
-            onChange={changeHandler}
+            value={formData.image}
+            onChange={imgChangeHandler}
+            // onChange={changeHandler}
           />
           <Button type="submit">Create Set</Button>
         </form>

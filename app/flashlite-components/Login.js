@@ -72,6 +72,7 @@ const Login = (props) => {
                 });
                 console.log(response)
                 localStorage.setItem("auth-token", response.data.token);
+                localStorage.setItem('username', response.data.user.username)
                 console.log(userData);
                 router.push('/');
             }

@@ -10,29 +10,46 @@ import './css/AddSet.css';
 export default function AddCard(props) { // props include set id and set creator for redirecting
 
   const router = useRouter();
-  const {userData, setUserData} = useContext(UserContext);
+  // const {userData, setUserData} = useContext(UserContext);
+
+  const [userData, setUserData] = useState({
+    token: localStorage.getItem('auth-token'),
+    username: localStorage.getItem('username')
+  })
 
   useEffect(() => {
       if(!userData.token) {
-        router.push('/'); // Redirect if not logged in
+        router.push(`/sets/${props.id}`); // Redirect if not logged in
       } else if (userData.user != props.creator) {
-        router.push(`/sets/${props.id}`)
+        router.push(`/sets/${props.id}`) // Redirect if not set creator
       }
   }, [userData.token, router]);
 
-  const [enteredData, setEnteredData] = useState ({
+  const [formData, setFormData] = useState ({
       term: '',
       definition: '',
   });
 
   const [error, setError] = useState('');
 
-  const changeHandler = (event) => {
-      setEnteredData({
-          ... enteredData,
-          [e.target.name]: e.target.value,
-      });
+  const termChangeHandler = (event) => {
+    setFormData((prevState) => {
+        return {...prevState, term: event.target.value}
+    });
   };
+
+  const defChangeHandler = (event) => {
+    setFormData((prevState) => {
+        return {...prevState, definition: event.target.value}
+    });
+  };
+
+  // const changeHandler = (event) => {
+  //     setEnteredData({
+  //         ... enteredData,
+  //         [e.target.name]: e.target.value,
+  //     });
+  // };
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
@@ -40,11 +57,11 @@ export default function AddCard(props) { // props include set id and set creator
     event.preventDefault();
 
     try {
-        if (!enteredData.term || !enteredData.definition) {
+        if (!formData.term || !formData.definition) {
             alert('All fields must have an input.');
         } else {
-            const response = await axios.post(`http://localhost:8085/api/sets/${props.id}/new-card`, enteredData);
-            router.push('/');
+            const response = await axios.post(`http://localhost:8085/api/sets/${props.id}/new-card`, formData);
+            router.push(`/set/${props.id}`);
         }
     } catch (error) {
         console.error('Login Failed:', error);
@@ -55,29 +72,27 @@ export default function AddCard(props) { // props include set id and set creator
   return (
     <div className='body'>
       <p className="message">Enter Your Flashcard Information</p>
-      <Card className="input">
         <form onSubmit={submitHandler}>
           <label>Term:</label>
           <input
             id="term-input"
             type="text"
             // value={enteredTitle}
-            value={enteredData.term}
-            // onChange={titleChangeHandler}
-            onChange={changeHandler}
+            value={formData.term}
+            onChange={termChangeHandler}
+            // onChange={changeHandler}
           />
           <label>Definition:</label>
           <input
             id="definition-input"
             type="text"
             // value={enteredImg}
-            value={enteredData.definition}
-            // onChange={imgChangeHandler}
-            onChange={changeHandler}
+            value={formData.definition}
+            onChange={defChangeHandler}
+            // onChange={changeHandler}
           />
           <Button type="submit">Create Card</Button>
         </form>
-      </Card>
     </div>
   );
 };

@@ -15,7 +15,12 @@ export default function CardList(props) {
 
     const router = useRouter();
 
-    const {userData, setUserData} = useContext(UserContext);
+    // const {userData, setUserData} = useContext(UserContext);
+
+    const [userData, setUserData] = useState({
+        token: localStorage.getItem('auth-token'),
+        username: localStorage.getItem('username')
+    })
 
     const [data, setData] = useState(null);
 
@@ -34,12 +39,12 @@ export default function CardList(props) {
             {/* <Card className="sets"> */}
             <ul>
                 {data.cards.map((cardId) => (
-                    <Card id={cardId}/>
+                    <Card id={cardId} creator={data.creator}/>
                 ))}
-                {userData.token ? (
-                    <Link href={`/set/${props.id}/create-card`} >
+                {userData.token && userData.username == data.creator ? (
+                    <Link href={`/create-card/${props.id}`} >
                         <div className="add-card-card">
-                            <p>Add Set</p>
+                            <p>Add Card</p>
                             <p className="plus-sign">+</p>
                         </div>
                     </Link>

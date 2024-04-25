@@ -12,7 +12,12 @@ export default function Card(props) {
 
     const router = useRouter();
 
-    const {userData, setUserData} = useContext(UserContext);
+    // const {userData, setUserData} = useContext(UserContext);
+
+    const [userData, setUserData] = useState({
+        token: localStorage.getItem('auth-token'),
+        username: localStorage.getItem('username')
+    })
 
     const [data, setData] = useState(null);
 
@@ -32,7 +37,10 @@ export default function Card(props) {
                 <img src={props.img} className="term-img" alt={props.title} />
             ) : (<></>)} */}
             <div>
-                <Button className="edit-button" onClick={() => {router.push(`/edit-card/${data._id}`)}}>Edit/Delete</Button>
+                {props.creator == userData.username ? 
+                    (<Button className="edit-button" onClick={() => {router.push(`/edit-card/${data._id}`)}}>Edit/Delete</Button> )
+                    : (<></>) 
+                }
             </div>
             <div className="term-info">
                 <div className="term">{data.term}</div>

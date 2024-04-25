@@ -41,9 +41,10 @@ export default function Page({ params }) {
       <Hdr/>
       <div className='set-description'>
         <div className='set-title'>{data.title} by {data.creator}</div>
-        <Button className="edit-button" onClick={() => {router.push(`/edit-set/${data._id}`)}}>Edit/Delete Set</Button>
+        { localStorage.getItem('username') == data.creator ? 
+          (<Button className="edit-button" onClick={() => {router.push(`/edit-set/${data._id}`)}}>Edit/Delete Set</Button>) 
+          : (<></>)}
       </div>
-      
       <div> 
         <CardList id={params.id}/>
       </div>

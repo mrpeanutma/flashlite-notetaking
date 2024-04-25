@@ -22,6 +22,7 @@ const Hdr = (props) => {
     console.log(userData);
     setUserData({token: undefined, user: undefined});
     localStorage.removeItem('auth-token');
+    localStorage.removeItem('username');
     router.push('/');
   }
 
