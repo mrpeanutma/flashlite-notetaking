@@ -1,9 +1,10 @@
+require ('dotenv').config({path: '../.env'});
 const express = require('express');
 const bcryptjs = require('bcryptjs');
 const userRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const User = require('../../models/User');
 
@@ -63,24 +64,28 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
         }
 
         // const user = await User.findOne({userID});
-        if (!username) {
+        if (username) {
             user = await User.findOne({username});
         } else {
             user = await User.findOne({email});
         }
 
         if (!user) {
-            return res.status(400).json({msg: 'User with this email or username does not exists'});
+            return res
+            .status(400)
+            .json({msg: 'User with this email or username does not exist'});
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({msg: 'User with this email or username already exists'});
+            return res.status(400).json({msg: 'Invalid username and password combination'});
         }
+        console.log(process.env.JWT_SECRET);
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
         res.json({token, user: {id: user._id, username: user.username}}); //Token and user data stored
     } catch (err) {
+        console.log(err);
         res.status(500).json({error: err.message});
     }
 });

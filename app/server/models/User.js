@@ -12,18 +12,18 @@ const UserSchema = new mongoose.Schema({
     password: {
       type: String,
       required: true,
-    },
-    profile_image: {
-      type: String,
-    },
-    birthday: {
-        type: Date,
-        default: Date.now,
-    },
-    card_sets: {
-        type: Array,
-        default: [],
     }
+    // profile_image: {
+    //   type: String,
+    // },
+    // birthday: {
+    //     type: Date,
+    //     default: Date.now,
+    // },
+    // card_sets: {
+    //     type: Array,
+    //     default: [],
+    // }
 });
 
 module.exports = User = mongoose.model('User', UserSchema);

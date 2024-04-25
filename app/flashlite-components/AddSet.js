@@ -46,7 +46,7 @@ function AddSet(props) {
         if (!enteredData.title) {
             alert('Sets must have a title');
         } else {
-            const response = await axios.post('http://localhost:8085/login', enteredData);
+            const response = await axios.post('http://localhost:8085/sets/', enteredData);
             router.push('/');
         }
     } catch (error) {

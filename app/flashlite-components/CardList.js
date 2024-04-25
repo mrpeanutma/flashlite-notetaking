@@ -36,7 +36,7 @@ export default function CardList(props) {
                     <Card id={cardId}/>
                 ))}
                 {userData.token ? (
-                    <Link href={`/set/${router.query.id}/new-card`} >
+                    <Link href={`/set/${router.query.id}/create-card`} >
                         <div className="add-card-card">
                             <p>Add Set</p>
                             <p className="plus-sign">+</p>

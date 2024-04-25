@@ -1,8 +1,8 @@
 'use client';
 
-import Signup from '../flashlite-components/Signup'
+import Signup from '../../flashlite-components/Signup'
 import {useState} from "react";
-import Hdr from '../flashlite-components/Hdr';
+import Hdr from '../../flashlite-components/Hdr';
 import Head from "next/head";
 import {UserProvider} from "@/app/context/UserContext";
 
@@ -21,7 +21,7 @@ const Home = () => {
             <Head>
                 <link rel='icon' href='/public/favicon.ico'/>
             </Head>
-            <Hdr loggedIn={false}/>
+            <Hdr/>
             <Signup onSignup={signupHandler}/>
         </UserProvider>
     )

@@ -3,8 +3,8 @@
 // import {useState} from 'react';
 
 import {UserProvider} from "@/app/context/UserContext";
-import Hdr from '../flashlite-components/Hdr';
-import AddSet from '../flashlite-components/AddSet';
+import Hdr from '@/app/flashlite-components/Hdr';
+import AddCard from '@/app/flashlite-components/AddCard';
 import './page.css';
 import {UserProvider} from "@/app/context/UserContext";
 
@@ -14,7 +14,7 @@ function Home() {
     <UserProvider>
       <div className='page'>
           <Hdr/>
-          <AddSet />
+          <AddCard />
       </div>
     </UserProvider>
   );

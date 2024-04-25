@@ -1,4 +1,6 @@
 const express = require('express');
+const config = require('dotenv').config();
+console.log(process.env)
 const app = express();
 const port = process.env.PORT || 8085;
 const mongoose = require('mongoose');
@@ -6,6 +8,7 @@ const cors = require('cors');
 const cards = require('./routes/api/cards')
 const sets = require('./routes/api/sets');
 const users = require('./routes/api/users');
+
 
 app.use('/api/cards', cards)
 app.use('/api/sets', sets);

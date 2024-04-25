@@ -27,10 +27,19 @@ router.put('/:id', (req, res) => {
         .catch((err) => res.status(400).json({ error: 'unable to update the db'}))
 });
 
-router.delete('/:id', (req, res) => {
-    Card.findByIdAndDelete(req.params.id)
-        .then((item) => res.json({ msg: 'set entry deleted successfully'}))
-        .catch((err) => res.status(404).json({ error: 'set does not exist'}))
+router.delete('/:id', async (req, res) => {
+
+    CardSet.findOne({cards: req.params.id})
+    .then((item) => {
+        console.log('item is ' + item);
+        item.cards.pull(req.params.id);
+        item.save();
+    })
+    // .then(() => {
+    //     Card.findByIdAndDelete(req.params.id)
+    // })
+    .then((item) => res.json({msg: 'Set entry deleted successfully'}))
+    .catch((err) => res.status(400).json({ error: err}))
 });
 
 module.exports = router;

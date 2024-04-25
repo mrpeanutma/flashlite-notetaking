@@ -1,7 +1,7 @@
 'use client';
 
-import Login from '../flashlite-components/Login';
-import Hdr from '../flashlite-components/Hdr';
+import Login from '@/app/flashlite-components/Login';
+import Hdr from '@/app/flashlite-components/Hdr';
 import {useState} from "react";
 import Head from "next/head";
 import {UserProvider} from "@/app/context/UserContext";

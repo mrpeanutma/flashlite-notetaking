@@ -1,20 +1,18 @@
 'use client';
 
-import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import UserContext from '../../context/UserContext';
+import { useState, useContext, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import {UserProvider} from "@/app/context/UserContext";
-import Link from 'next/link';
+import './page.css';
 
 //import User from '/flashlite-components/User';
 //import UsersList from '/flashlite-components/UsersList';
 //import AddUser from './flashlite-components/AddUser';
-import Hdr from '../../flashlite-components/Hdr';
-import AddSet from '../../flashlite-components/AddSet';
-import CardList from '../../flashlite-components/CardList';
+import Hdr from '../../../flashlite-components/Hdr';
+import CardList from '../../../flashlite-components/CardList';
 import Head from "next/head";
-import Set from '../../flashlite-components/Set';
+import Button from '../../../flashlite-components/Button'
 
 
 export default function Page({ params }) {
@@ -40,7 +38,12 @@ export default function Page({ params }) {
       <Head>
         <link rel='icon' href='/favicon.ico'/>
       </Head>
-      <Hdr/> 
+      <Hdr/>
+      <div className='set-description'>
+        <div className='set-title'>{data.title} by {data.creator}</div>
+        <Button className="edit-button" onClick={() => {router.push(`/edit-set/${data._id}`)}}>Edit/Delete Set</Button>
+      </div>
+      
       <div> 
         <CardList id={params.id}/>
       </div>

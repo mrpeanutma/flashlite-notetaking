@@ -3,18 +3,18 @@
 // import {useState} from 'react';
 
 import {UserProvider} from "@/app/context/UserContext";
-import Hdr from '../flashlite-components/Hdr';
-import AddSet from '../flashlite-components/AddSet';
+import Hdr from '@/app/flashlite-components/Hdr';
+import EditCard from '@/app/flashlite-components/EditCard';
 import './page.css';
 import {UserProvider} from "@/app/context/UserContext";
 
-function Home() {
+function Home({ params }) {
 
   return (
     <UserProvider>
       <div className='page'>
-          <Hdr signedIn={true}/>
-          <AddSet />
+          <Hdr/>
+          <EditCard id={params.id}/>
       </div>
     </UserProvider>
   );

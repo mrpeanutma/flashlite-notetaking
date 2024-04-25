@@ -1,0 +1,15 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.set-description {
+    display: flex;
+}
+
+.set-title {
+    text-align: center;
+    background: #fff455;
+    margin: 1%;
+    font-size: large;
+}

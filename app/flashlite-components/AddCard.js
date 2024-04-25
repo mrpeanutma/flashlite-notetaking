@@ -43,7 +43,7 @@ export default function AddCard(props) { // props include set id and set creator
         if (!enteredData.term || !enteredData.definition) {
             alert('All fields must have an input.');
         } else {
-            const response = await axios.post(`http://localhost:8085/api/sets/${props.id}`, enteredData);
+            const response = await axios.post(`http://localhost:8085/api/sets/${props.id}/new-card`, enteredData);
             router.push('/');
         }
     } catch (error) {

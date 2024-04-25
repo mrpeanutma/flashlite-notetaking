@@ -21,13 +21,6 @@ const Signup = (props) => {
         }
     }, [userData.token, router]);
 
-    const [enteredData, setEnteredData] = useState ({
-        username: '',
-        birthday: '',
-        email: '',
-        password: '',
-    });
-
     const [error, setError] = useState('');
 
     // const changeHandler = (e) => {
@@ -37,26 +30,35 @@ const Signup = (props) => {
     //     });
     // };
 
-    const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredBirthday, setEnteredBirthday] = useState('');
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredPassword, setEnteredPassword] = useState('');
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        // birthday: '',
+        password: ''
+    })
 
     const usernameChangeHandler = (event) => {
-        setEnteredUsername(event.target.value);
-    }
-
-    const birthdayChangeHandler = (event) => {
-        setEnteredBirthday(event.target.value);
-    }
+        setFormData((prevState) => {
+            return {...prevState, username: event.target.value};
+        });
+    };
 
     const emailChangeHandler = (event) => {
-        setEnteredEmail(event.target.value);
-    }
-
+        setFormData((prevState) => {
+            return {...prevState, email: event.target.value};
+        });
+    };
     const passwordChangeHandler = (event) => {
-        setEnteredPassword(event.target.value);
-    }
+        setFormData((prevState) => {
+            return {...prevState, password: event.target.value};
+        });
+    };
+
+    const birthdayChangeHandler = (event) => {
+        setFormData((prevState) => {
+            return {...prevState, birthday: event.target.value};
+        });
+    };
 
     const submitHandler = async (event) => {
         console.log("In Submit Handler");
@@ -64,25 +66,29 @@ const Signup = (props) => {
 
         try {
 
-            console.log("Packaging User Data");
-            const userData = {
-                // id: Math.random().toString(),
-                username: enteredUsername,
-                // birthday: enteredBirthday,
-                email: enteredEmail,
-                password: enteredPassword
-            }
+            // console.log("Packaging User Data");
+            // const userData = {
+            //     // id: Math.random().toString(),
+            //     username: enteredUsername,
+            //     // birthday: enteredBirthday,
+            //     email: enteredEmail,
+            //     password: enteredPassword
+            // }
 
-            if (!enteredUsername || !enteredBirthday || !enteredEmail || ! enteredPassword) {
+            if (!formData.username || !formData.email || ! formData.password) {
                 alert('All fields required!');
             } else {
-                console.log("Posting new user: ", userData);
-                await axios.post('http://localhost:8085/api/users/signup', userData);
+                console.log("Posting new user: ", {
+                    username: formData.username,
+                    email: formData.email,
+                    password: formData.password
+                });
+                await axios.post('http://localhost:8085/api/users/signup', formData);
                 console.log("User Posted");
                 const loginResponse = await axios.post('http://localhost:8085/api/users/login', {
-                    username: enteredUsername,
-                    email: enteredEmail,
-                    password: enteredPassword
+                    username: formData.username,
+                    email: formData.email,
+                    password: formData.password
                 });
 
                 setUserData({
@@ -128,8 +134,8 @@ const Signup = (props) => {
                         <input
                             id="username"
                             type="text"
-                            value={ enteredUsername }
-                            // value={enteredData.username}
+                            //value={ enteredUsername }
+                            value={formData.username}
                             onChange={ usernameChangeHandler }
                             // onChange={ changeHandler }
                         />
@@ -137,8 +143,7 @@ const Signup = (props) => {
                         <input
                             id="birthday"
                             type="date"
-                            value={ enteredBirthday }
-                            // value={enteredData.birthday}
+                            value={formData.birthday}
                             onChange={ birthdayChangeHandler }
                             // onChange={ changeHandler }
                         />
@@ -146,8 +151,8 @@ const Signup = (props) => {
                         <input
                             id="email"
                             type="email"
-                            value={ enteredEmail }
-                            // value={enteredData.email}
+                            //value={ enteredEmail }
+                            value={formData.email}
                             onChange={ emailChangeHandler }
                             // onChange={ changeHandler }
                         />
@@ -155,8 +160,8 @@ const Signup = (props) => {
                         <input
                             id="password"
                             type="password"
-                            value={ enteredPassword }
-                            // value={enteredData.password}
+                            // value={ enteredPassword }
+                            value={formData.password}
                             onChange={ passwordChangeHandler }
                             // onChange={ changeHandler }
                         />
