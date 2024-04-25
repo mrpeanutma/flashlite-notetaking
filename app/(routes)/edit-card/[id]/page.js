@@ -1,6 +1,6 @@
 'use client';
 
-// import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import {UserProvider} from "@/app/context/UserContext";
 import Hdr from '@/app/flashlite-components/Hdr';
@@ -9,12 +9,16 @@ import './page.css';
 
 function Home({ params }) {
 
+  // useEffect(() => {
+  //   if(!userData.token) {
+  //       router.push(`/set/${props.id}`); // Redirect if not logged in or is not creator of set
+  //   }
+  // }, [userData.token, router]);
+
   return (
     <UserProvider>
-      <div className='page'>
           <Hdr/>
           <EditCard id={params.id}/>
-      </div>
     </UserProvider>
   );
 }

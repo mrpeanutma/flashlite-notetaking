@@ -15,12 +15,11 @@ export default function CardList(props) {
 
     const router = useRouter();
 
-    // const {userData, setUserData} = useContext(UserContext);
-
-    const [userData, setUserData] = useState({
-        token: localStorage.getItem('auth-token'),
-        username: localStorage.getItem('username')
-    })
+    const {userData, setUserData} = useContext(UserContext);
+    // const [userData, setUserData] = useState({
+    //     token: localStorage.getItem('auth-token'),
+    //     username: localStorage.getItem('username')
+    // })
 
     const [data, setData] = useState(null);
 

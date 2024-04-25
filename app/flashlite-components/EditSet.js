@@ -8,28 +8,26 @@ import Button from './Button';
 import './css/AddSet.css';
 
 function EditSet(props) {
+
     const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
-
     const router = useRouter();
+
     const {userData, setUserData} = useContext(UserContext);
+    // const [userData, setUserData] = useState({
+    //   token: localStorage.getItem('auth-token'),
+    //   username: localStorage.getItem('username')
+    // })
 
-  useEffect(() => {
-      if(!userData.token) {
-          router.push('/'); // Redirect if not logged in
-      }
-  }, [userData.token, router]);
+  const [formData, setFormData] = useState ({
+      title: '',
+      image: '',
+      creator: ''
+  });
 
-//   const [enteredData, setEnteredData] = useState ({
-//       title: props.title,
-//       img: props.img,
-//       creator: props.creator,
-//       numTerms: props.numOfTerms,
-//   });
-
-const [enteredTitle, setEnteredTitle] = useState(props.title);
-const [enteredImg, setEnteredImg] = useState(props.img);
-const [enteredCreator, setEnteredCreator] = useState(props.creator);
+// const [enteredTitle, setEnteredTitle] = useState(props.title);
+// const [enteredImg, setEnteredImg] = useState(props.img);
+// const [enteredCreator, setEnteredCreator] = useState(props.creator);
 
   const [error, setError] = useState('');
 
@@ -41,34 +39,44 @@ const [enteredCreator, setEnteredCreator] = useState(props.creator);
 //   };
 
 const titleChangeHandler = (event) => {
-  setEnteredTitle(event.target.value);
+  setformData((prevState) => {
+    return {...prevState, title: event.target.value};
+  });
 }
 
 const imgChangeHandler = (event) => {
-  setEnteredImg(event.target.value);
+  setFormData((prevState) => {
+    return {...prevState, image: event.target.value};
+  });
 }
 
-const creatorChangeHandler = (event) => {
-  setEnteredCreator(event.target.value);
-}
+  useEffect(()=> {
+    axios.get(`http://localhost:8085/api/cards/${props.id}`)
+      .then((response) => {
+          console.log(response.data);
+          setformData({
+            title: response.data.title,
+            image: response.data.image
+          });
+      })
+      .then(() => {
+          if(!userData.token) {
+              router.push(`/set/${props.id}`); // Redirect if not logged in or is not creator of set
+          }
+      })
+  }, [])
   
   
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const setData = {
-        title: enteredTitle,
-        img: enteredImg,
-        creator: enteredCreator
-    }
-
     try {
-        if (!enteredTitle) {
+        if (!formData.title) {
             alert('Sets must have a title');
         } else {
-            const response = await axios.put('http://localhost:8085/api/sets/update', setData);
-            router.push('/');
+            const response = await axios.put(`http://localhost:8085/api/sets/${props.id}`, formData);
+            router.push(`/set/${props.id}`);
         }
     } catch (error) {
         console.error('Login Failed:', error);
@@ -131,7 +139,7 @@ const creatorChangeHandler = (event) => {
           <input
             id="title"
             type="text"
-            value={enteredTitle}
+            value={formData.title}
             //value={enteredData.title}
             onChange={titleChangeHandler}
             //onChange={changeHandler}
@@ -140,7 +148,7 @@ const creatorChangeHandler = (event) => {
           <input
             id="img"
             type="text"
-            value={enteredImg}
+            value={formData.image}
             //value={enteredData.img}
             onChange={imgChangeHandler}
             //onChange={changeHandler}

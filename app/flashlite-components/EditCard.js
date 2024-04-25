@@ -10,8 +10,8 @@ import './css/AddSet.css';
 export default function EditCard(props) { // props include card id and set creator for redirecting
 
   const router = useRouter();
-  const {userData, setUserData} = useContext(UserContext);
 
+  const {userData, setUserData} = useContext(UserContext);
   // const [userData, setUserData] = useState({
   //   token: localStorage.getItem('auth-token'),
   //   username: localStorage.getItem('username')
@@ -34,16 +34,18 @@ export default function EditCard(props) { // props include card id and set creat
     });
   };
 
-  useEffect(() => {
-        axios.get(`http://localhost:8085/api/cards/${props.id}`)
+  useEffect(()=> {
+      axios.get(`http://localhost:8085/api/cards/${props.id}`)
           .then((response) => {
-              console.log(response.data);
-              setFormData({
-                term: response.data.term,
-                definition: response.data.definition
-              });
+            console.log(response.data)
+              setFormData(response.data);
           })
-  }, [userData.token, router]);
+          // .then(() => {
+          //     if(!userData.token) {
+          //         router.push(`/set/${props.id}`); // Redirect if not logged in
+          //     }
+          // })
+  }, [])
 
   const [error, setError] = useState('');
 
@@ -63,8 +65,9 @@ export default function EditCard(props) { // props include card id and set creat
         if (!formData.term || !formData.definition) {
             alert('All fields must have an input.');
         } else {
+            console.log(formData);
             const response = await axios.put(`http://localhost:8085/api/cards/${props.id}`, formData);
-            router.push(`/sets/${props.id}`);
+            router.push(`/`);
         }
     } catch (error) {
         console.error('Login Failed:', error);
