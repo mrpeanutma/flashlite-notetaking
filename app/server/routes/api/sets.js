@@ -34,7 +34,6 @@ router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
         
         const newCard = new Card({term, definition});
         const savedCard = await newCard.save();
-        console.log(savedCard.term);
 
         CardSet.findById(req.params.id)
         .then((item) => {

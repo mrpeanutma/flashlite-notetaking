@@ -36,7 +36,6 @@ router.delete('/:id', async (req, res) => {
 
     CardSet.findOne({cards: req.params.id})
     .then((item) => {
-        console.log('item is ' + item);
         item.cards.pull(req.params.id);
         item.save();
     })

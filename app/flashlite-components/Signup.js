@@ -61,9 +61,7 @@ const Signup = (props) => {
     };
 
     const submitHandler = async (event) => {
-        console.log("In Submit Handler");
         event.preventDefault();
-
         try {
 
             // console.log("Packaging User Data");
@@ -78,13 +76,7 @@ const Signup = (props) => {
             if (!formData.username || !formData.email || ! formData.password) {
                 alert('All fields required!');
             } else {
-                console.log("Posting new user: ", {
-                    username: formData.username,
-                    email: formData.email,
-                    password: formData.password
-                });
                 await axios.post('http://localhost:8085/api/users/signup', formData);
-                console.log("User Posted");
                 const loginResponse = await axios.post('http://localhost:8085/api/users/login', {
                     username: formData.username,
                     email: formData.email,
@@ -97,13 +89,13 @@ const Signup = (props) => {
                 });
 
                 localStorage.setItem("auth-token", loginResponse.data.token);
-                localStorage.setItem("username", loginResponse.user.username);
+                localStorage.setItem("username", loginResponse.data.user.username);
                 router.push('/');
             }
 
         } catch (error) {
             console.error('Signup Failed:', error);
-            //Handle Signup Error
+            alert('Signup failed: ' + error.msg)
         }
 
         // const userData = {
@@ -128,7 +120,7 @@ const Signup = (props) => {
     return (
         <div className="container">
             <div className="form">
-                <p className="message">Enter the following information</p>
+                <p className="message">Enter the following information:</p>
                 <div className="input">
                     <form onSubmit={ submitHandler }>
                         <label>Username</label>

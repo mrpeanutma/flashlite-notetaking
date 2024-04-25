@@ -30,7 +30,6 @@ userRouter.post('/signup', bodyParser.json(), async (req,res) => {
         // const {email, password, confirmPassword, username} = req.body;
         // if (!email || !password || !confirmPassword || ! username) {
         if (!email || !password || ! username) {
-            console.log("Empty Fields");
             return res.status(400).json({msg: 'Please enter all fields'});
         }
         if (password.length < 6) {}
@@ -39,11 +38,9 @@ userRouter.post('/signup', bodyParser.json(), async (req,res) => {
         // }
         const existingUser = await User.findOne({email});
         if (existingUser) {
-            console.log("Existing User");
             return res.status(400).json({msg: 'User already exists with this email'});
         }
         const hashedPassword = await bcryptjs.hash(password, 8);
-        console.log("password:", password, " Hashed:", hashedPassword);
         const card_sets = [];
         const newUser = new User({email, password: hashedPassword, username, card_sets: card_sets});
 
@@ -82,7 +79,6 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
             return res.status(400).json({msg: 'Invalid username and password combination'});
         }
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
-        console.log 
         res.json({token, user: {id: user._id, username: user.username}}); //Token and user data stored
     } catch (err) {
         console.log(err);
