@@ -68,6 +68,7 @@ export default function EditCard(props) { // props include card id and set creat
             console.log(formData);
             const response = await axios.put(`http://localhost:8085/api/cards/${props.id}`, formData);
             router.push(`/`);
+            // router.push(`/set/${props.id}`);
         }
     } catch (error) {
         console.error('Login Failed:', error);
@@ -80,6 +81,7 @@ export default function EditCard(props) { // props include card id and set creat
     try {
       await axios.delete(`http://localhost:8085/api/cards/${props.id}`);
       router.push(`/`);
+      // router.push(`/set/${props.id}`);
     } catch (error) {
       console.error('Delete Failed:', error);
       //Handle Login Error
