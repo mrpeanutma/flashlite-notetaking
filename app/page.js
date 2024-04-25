@@ -58,10 +58,10 @@ function Home() {
           <Head>
               <link rel='icon' href='/favicon.ico'/>
           </Head>
-        <Hdr signedIn={signedIn} onLogout={logoutHandler}/> 
+        <Hdr/> 
         <div> 
-          {/* <SetList items={DEFAULT_SETS} signedIn={signedIn}/> */}
-          <Set title="Test Card Set" numTerms="0" creator="Josh"/>
+          <SetList/>
+          {/*<Set title="Test Card Set" numTerms="0" creator="Josh"/>*/}
         </div>
       </UserProvider>
     );

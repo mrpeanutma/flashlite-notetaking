@@ -11,7 +11,7 @@ import Button from "./Button.js";
 
 
 
-function SetList(props) {
+function SetList() {
     const router = useRouter();
 
     const {userData, setUserData} = useContext(UserContext);
@@ -23,14 +23,18 @@ function SetList(props) {
             .then((response) => {
                 setData(response.data);
             })
+            .catch((err)=> {
+                console.log('Error')
+            })
     }, [])
 
-
+    if (!data) return null;
+    
     return (
         <div className="items">
             {/* <Card className="sets"> */}
             <ul>
-                {items.map((set) => (
+                {data.map((set) => (
                     <Set
                         id={set._id}
                         img={set.image}
