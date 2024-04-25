@@ -68,3 +68,7 @@ form p {
     align-items: center;
     height: 100vh;
 }
+
+.input input [type="email"]{
+    margin-bottom: 50px;
+}
