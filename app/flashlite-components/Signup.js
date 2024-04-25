@@ -97,6 +97,7 @@ const Signup = (props) => {
                 });
 
                 localStorage.setItem("auth-token", loginResponse.data.token);
+                localStorage.setItem("username", loginResponse.user.username);
                 router.push('/');
             }
 

@@ -19,6 +19,7 @@ const Hdr = (props) => {
   const {userData, setUserData} = useContext(UserContext);
 
   function logoutHandler(event) {
+    console.log(userData);
     setUserData({token: undefined, user: undefined});
     localStorage.removeItem('auth-token');
     router.push('/');

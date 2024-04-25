@@ -8,33 +8,30 @@ import Button from './Button';
 import './css/AddSet.css';
 
 function AddSet(props) {
-    const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
-
-    const router = useRouter();
+  const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
+  const router = useRouter();
   const {userData, setUserData} = useContext(UserContext);
+
+  const [formData, setFormData] = useState({
+    title: '',
+    img: LOGO,
+    creator: '',
+    numTerms: 0
+  });
 
   useEffect(() => {
       if(!userData.token) {
-          router.push('/'); // Redirect if not logged in
-          console.log("!!!!!!!!!!!!!!!!!!!!!");
-      } else {
-        setEnteredData(enteredData.creator = userData.user.username);
+        console.log(userData);
+        router.push('/'); // Redirect if not logged in
       }
   }, [userData.token, router]);
-
-  const [enteredData, setEnteredData] = useState ({
-      title: '',
-      img: LOGO,
-      // creator: userData.user.username,
-      numTerms: 0,
-  });
 
   const [error, setError] = useState('');
 
   const changeHandler = (event) => {
-      setEnteredData({
-          ... enteredData,
+      setFormData({
+          ...formData,
           [event.target.name]: event.target.value,
       });
   };
@@ -43,7 +40,7 @@ function AddSet(props) {
     event.preventDefault();
 
     try {
-        if (!enteredData.title) {
+        if (!formData.title) {
             alert('Sets must have a title');
         } else {
             const response = await axios.post('http://localhost:8085/sets/', enteredData);
@@ -53,30 +50,22 @@ function AddSet(props) {
         console.error('Login Failed:', error);
         //Handle Login Error
     }
-};
+  };
 
 //   const [enteredTitle, setEnteredTitle] = useState('');
 //   const [enteredImg, setEnteredImg] = useState('');
 //   const [enteredCreator, setEnteredCreator] = useState('');
-
-
-
-
 //   const titleChangeHandler = (event) => {
 //     setEnteredTitle(event.target.value);
 //   }
-
 //   const imgChangeHandler = (event) => {
 //     setEnteredImg(event.target.value);
 //   }
-
 //   const creatorChangeHandler = (event) => {
 //     setEnteredCreator(event.target.value);
 //   }
-  
 //   const submitHandler = (event) => {
 //     event.preventDefault();
-
 //     const cards=[];
 
 //     const setData = {
@@ -86,7 +75,6 @@ function AddSet(props) {
 //       creator: enteredCreator,
 //       cards: cards
 //     }
-
 //     if (enteredTitle === '' || enteredCreator === '') {
 //     setEnteredImg(LOGO);
 //       alert('Title and Creator Required');
@@ -114,7 +102,7 @@ function AddSet(props) {
             id="title"
             type="text"
             // value={enteredTitle}
-            value={enteredData.title}
+            value={formData.title}
             // onChange={titleChangeHandler}
             onChange={changeHandler}
           />
@@ -123,7 +111,7 @@ function AddSet(props) {
             id="img"
             type="text"
             // value={enteredImg}
-            value={enteredData.img}
+            value={formData.img}
             // onChange={imgChangeHandler}
             onChange={changeHandler}
           />

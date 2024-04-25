@@ -8,3 +8,7 @@
 
 #FFF455 light yellow
 
+Problems for if we can talk to Mrs. Stephens:
+1. useContext is not saving user data across different screens
+2. 
+

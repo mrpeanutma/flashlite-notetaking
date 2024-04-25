@@ -81,8 +81,8 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
         if (!isMatch) {
             return res.status(400).json({msg: 'Invalid username and password combination'});
         }
-        console.log(process.env.JWT_SECRET);
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
+        console.log 
         res.json({token, user: {id: user._id, username: user.username}}); //Token and user data stored
     } catch (err) {
         console.log(err);

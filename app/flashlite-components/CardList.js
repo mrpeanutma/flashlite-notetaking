@@ -12,6 +12,7 @@ import Button from "./Button.js";
 
 
 export default function CardList(props) {
+
     const router = useRouter();
 
     const {userData, setUserData} = useContext(UserContext);
@@ -36,7 +37,7 @@ export default function CardList(props) {
                     <Card id={cardId}/>
                 ))}
                 {userData.token ? (
-                    <Link href={`/set/${router.query.id}/create-card`} >
+                    <Link href={`/set/${props.id}/create-card`} >
                         <div className="add-card-card">
                             <p>Add Set</p>
                             <p className="plus-sign">+</p>
