@@ -19,7 +19,7 @@ function AddSet(props) {
 
   const [formData, setFormData] = useState({
     title: '',
-    image: DEFAULT_IMG,
+    image: '',
     creator: '',
   });
 
@@ -57,7 +57,7 @@ function AddSet(props) {
         } else {
             if(formData.img == '') {
               setFormData((prevState) => {
-                return {...prevState, image: null}
+                return {...prevState, image: DEFAULT_IMG}
               })
             }
             // setFormData((prevState) => {
@@ -136,6 +136,7 @@ function AddSet(props) {
             type="text"
             // value={enteredImg}
             value={formData.image}
+            placeholder={DEFAULT_IMG}
             onChange={imgChangeHandler}
             // onChange={changeHandler}
           />
