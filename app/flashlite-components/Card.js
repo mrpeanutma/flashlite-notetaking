@@ -35,13 +35,12 @@ export default function Card(props) {
             {/* {props.img ? (
                 <img src={props.img} className="term-img" alt={props.title} />
             ) : (<></>)} */}
-            <div>
+            <div className="term-info">
                 {props.creator == userData.username ? 
                     (<Button className="edit-button" onClick={() => {router.push(`/edit-card/${data._id}`)}}>Edit/Delete</Button> )
                     : (<></>) 
                 }
-            </div>
-            <div className="term-info">
+                <Button className="edit-button" onClick={() => {router.push(`/edit-card/${data._id}`)}}>Edit/Delete</Button>
                 <div className="term">{data.term}</div>
                 <hr/>
                 <div className="definition">{data.definition}</div>

@@ -114,7 +114,7 @@ function AddSet(props) {
     <div className='body'>
       <p className="message">Enter Your Flashcard Set Information</p>
       {/* <Card className="input"> */}
-      <div>
+      <div className='input'>
         <form onSubmit={submitHandler}>
           <label>Title</label>
           <input
