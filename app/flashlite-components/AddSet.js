@@ -8,7 +8,7 @@ import './css/AddSet.css';
 
 function AddSet(props) {
 
-  const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
+  const DEFAULT_IMG = "https://www.travelandleisure.com/thmb/kfcKH88gBt_d1ZJPFg_rUcyMekU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-grand-teton-USMNTNSIPOG0823-2538d183b9094e3fb59dd5e54bbe791c.jpg";
   const router = useRouter();
 
   //const {userData, setUserData} = useContext(UserContext);
@@ -19,7 +19,7 @@ function AddSet(props) {
 
   const [formData, setFormData] = useState({
     title: '',
-    image: LOGO,
+    image: DEFAULT_IMG,
     creator: '',
   });
 
