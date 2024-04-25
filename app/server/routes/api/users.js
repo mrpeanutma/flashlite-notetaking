@@ -24,14 +24,12 @@ module.exports = userRouter;
 
 // @route POST api/users/signup
 userRouter.post('/signup', bodyParser.json(), async (req,res) => {
-    console.log("In Server Route: Signup");
     try {
-        console.log(req.body);
         const {username, email, password} = req.body;
         // const {email, password, confirmPassword, username} = req.body;
         // if (!email || !password || !confirmPassword || ! username) {
         if (!email || !password || ! username) {
-            return res.status(400).json({msg: 'Please enter all fields'});
+            return res.status(400).json({msg: 'Please enter all fields.'});
         }
         if (password.length < 6) {}
         // if (confirmPassword !== password) {
@@ -39,7 +37,7 @@ userRouter.post('/signup', bodyParser.json(), async (req,res) => {
         // }
         const existingUser = await User.findOne({email});
         if (existingUser) {
-            return res.status(400).json({msg: 'User already exists with this email'});
+            return res.status(400).json({msg: 'User already exists with this email.'});
         }
         const hashedPassword = await bcryptjs.hash(password, 8);
         const card_sets = [];
@@ -59,7 +57,7 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
     try {
         const {username, email, password} = req.body;
         if((!username && !email) || !password) {
-            return res.status(400).json({msg: 'Please enter all fields'});
+            return res.status(400).json({msg: 'Please enter all fields.'});
         }
 
         // const user = await User.findOne({userID});
@@ -72,13 +70,13 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
         if (!user) {
             return res
             .status(400)
-            .json({msg: 'User with this email or username does not exist'});
+            .json({msg: 'User with this email or username does not exist.'});
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({msg: 'Invalid username and password combination'});
+            return res.status(400).json({msg: 'Invalid username and password combination.'});
         }
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
         res.json({token, user: {id: user._id, username: user.username}}); //Token and user data stored

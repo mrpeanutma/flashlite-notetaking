@@ -10,21 +10,21 @@ const auth = require('../../middleware/auth');
 router.get('/', (req, res) => {
     CardSet.find()
         .then((items) => res.json(items))
-        .catch((err) => res.status(404).json({ nosetfound: 'No Sets found'}))
+        .catch((err) => res.status(404).json({ nosetfound: 'No sets found.'}))
 });
 
 // @route GET api/sets/:id
 router.get('/:id', (req, res) => {
     CardSet.findById(req.params.id)
         .then((item) => res.json(item))
-        .catch((err) => res.status(404).json({ nosetfound: 'No set found'}))
+        .catch((err) => res.status(404).json({ nosetfound: 'No set found.'}))
 });
 
 // @route POST api/sets
 router.post('/', bodyParser.json(), (req, res) => {
     CardSet.create(req.body)
-        .then((item) => res.json({ msg: 'Set added successfully'}))
-        .catch((err) => res.status(400).json({error: 'Unable to add this set'}))
+        .then((item) => res.json({ msg: 'Set added successfully!'}))
+        .catch((err) => res.status(400).json({error: 'Unable to add this set.'}))
 });
 
 // router.post('/:id/new-card', bodyParser.json(), (req, res) => {
@@ -45,7 +45,7 @@ router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
     try {
         const {term, definition} = req.body;
         if (!term || !definition) {
-            return res.status(400).json({msg: 'Please enter all fields'});
+            return res.status(400).json({msg: 'Please enter all fields.'});
         }
         
         const newCard = new Card({term, definition});
@@ -59,7 +59,7 @@ router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
             item.save();
             res.json({item});
         })
-        .catch((err) => res.status(404).json({ nosetfound: 'No set found'}))
+        .catch((err) => res.status(404).json({ nosetfound: 'No set found.'}))
     } catch (err) {
         res.status(500).json({error: err.message});
     }
@@ -72,16 +72,16 @@ router.put('/:id', bodyParser.json(), (req, res) => {
             item.title = req.body.title;
             item.image = req.body.image;
             item.save();
-            res.json({ msg: 'updated successfully'})
+            res.json({ msg: 'Updated successfully!'})
         })
-        .catch((err) => {console.log(err); res.status(400).json({ error: 'unable to update the db'});})
+        .catch((err) => {console.log(err); res.status(400).json({ error: 'Unable to update the database.'});})
 });
 
 // @route DELETE api/sets/:id
 router.delete('/:id', (req, res) => {
     CardSet.findByIdAndDelete(req.params.id)
-        .then((item) => res.json({ msg: 'set entry deleted successfully'}))
-        .catch((err) => res.status(404).json({ error: 'set does not exist'}))
+        .then((item) => res.json({ msg: 'Set entry deleted successfully'}))
+        .catch((err) => res.status(404).json({ error: 'Set does not exist.'}))
 });
 
 module.exports = router;
