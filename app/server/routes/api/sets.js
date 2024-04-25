@@ -39,7 +39,8 @@ router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
         CardSet.findById(req.params.id)
         .then((item) => {
             item.cards.push(savedCard._id);
-            CardSet.findByIdAndUpdate(req.params.id, {"cards": item.cards});
+            // CardSet.findByIdAndUpdate(req.params.id, {"cards": item.cards});
+            CardSet.findByIdAndUpdate(req.params.id, item);
             res.json({item});
         })
         .catch((err) => res.status(404).json({ nosetfound: 'No set found'}))
