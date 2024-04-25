@@ -50,6 +50,7 @@
     width: 100%;
     height: 50%;
     font-size: 1em;
+    border-top: solid black 1px;
 }
 
 .set-data {
