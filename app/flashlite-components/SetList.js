@@ -21,6 +21,7 @@ function SetList() {
     useEffect(()=> {
         axios.get('http://localhost:8085/api/sets')
             .then((response) => {
+                console.log(response.data)
                 setData(response.data);
             })
             .catch((err)=> {
@@ -45,10 +46,10 @@ function SetList() {
                 ))}
                 {userData.token ? (
                     <Link href='/create-set'>
-                        <Card className="add-set-card">
+                        <div className="add-set-card">
                             <p>Add Set</p>
                             <p className="plus-sign">+</p>
-                        </Card>
+                        </div>
                     </Link>
                 ) : (<></>)}
             </ul>

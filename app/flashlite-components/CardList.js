@@ -11,7 +11,7 @@ import Button from "./Button.js";
 
 
 
-function SetList(props) {
+export default function CardList(props) {
     const router = useRouter();
 
     const {userData, setUserData} = useContext(UserContext);
@@ -19,32 +19,28 @@ function SetList(props) {
     const [data, setData] = useState(null);
 
     useEffect(()=> {
-        axios.get(`http://localhost:8085/api/sets/${router.query.id}`)
+        axios.get(`http://localhost:8085/api/sets/${props.id}`)
             .then((response) => {
+                console.log(response.data.cards);
                 setData(response.data);
             })
     }, [])
 
+    if (!data) return null;
 
     return (
-        <div className="items">
+        <div className="cards">
             {/* <Card className="sets"> */}
             <ul>
-                {items.map((set) => (
-                    <Set
-                        id={set._id}
-                        img={set.image}
-                        title={set.title}
-                        numOfTerms={set.cards.length}
-                        creator={set.creator}
-                    />
+                {data.cards.map((cardId) => (
+                    <Card id={cardId}/>
                 ))}
                 {userData.token ? (
-                    <Link href='/create-set'>
-                        <Card className="add-set-card">
+                    <Link href={`/set/${router.query.id}/new-card`} >
+                        <div className="add-card-card">
                             <p>Add Set</p>
                             <p className="plus-sign">+</p>
-                        </Card>
+                        </div>
                     </Link>
                 ) : (<></>)}
             </ul>
@@ -53,4 +49,3 @@ function SetList(props) {
     );
 }
 
-export default SetList;

@@ -1,31 +1,50 @@
 'use client';
 
-import {useState} from 'react';
-import { UserProvider } from '../../context/UserContext'
+import { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
+import UserContext from '../../context/UserContext';
+import { useRouter } from "next/navigation";
+import {UserProvider} from "@/app/context/UserContext";
+import Link from 'next/link';
 
 //import User from '/flashlite-components/User';
 //import UsersList from '/flashlite-components/UsersList';
 //import AddUser from './flashlite-components/AddUser';
 import Hdr from '../../flashlite-components/Hdr';
 import AddSet from '../../flashlite-components/AddSet';
-import Link from 'next/link';
-import SetList from '../../flashlite-components/SetList';
+import CardList from '../../flashlite-components/CardList';
 import Head from "next/head";
 import Set from '../../flashlite-components/Set';
 
-export default function Page() {
 
-    return ( 
-        <UserProvider>
-            <Head>
-                <link rel='icon' href='/favicon.ico'/>
-            </Head>
-          <Hdr/> 
-          <div> 
-            {/* <SetList items={DEFAULT_SETS} signedIn={signedIn}/> */}
-            <Set title="Test Card Set" numTerms="0" creator="Josh"/>
-          </div>
-        </UserProvider>
-      );
+export default function Page({ params }) {
+  
+  const router = useRouter();
+
+  const [data, setData] = useState(null)
+  
+  useEffect(()=> {
+    axios.get(`http://localhost:8085/api/sets/${params.id}`)
+        .then((response) => {
+            setData(response.data);
+        })
+        .catch((err)=> {
+            console.log('Error')
+        })
+  }, [])
+
+  if (!data) return null;
+
+  return ( 
+    <UserProvider>
+      <Head>
+        <link rel='icon' href='/favicon.ico'/>
+      </Head>
+      <Hdr/> 
+      <div> 
+        <CardList id={params.id}/>
+      </div>
+    </UserProvider>
+  );
 }
 

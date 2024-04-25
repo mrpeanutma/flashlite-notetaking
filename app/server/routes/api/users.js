@@ -76,7 +76,7 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
         const isMatch = await bcryptjs.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({msg: 'User with this email or username alreay exists'});
+            return res.status(400).json({msg: 'User with this email or username already exists'});
         }
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
         res.json({token, user: {id: user._id, username: user.username}}); //Token and user data stored
