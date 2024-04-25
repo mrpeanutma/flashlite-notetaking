@@ -11,10 +11,8 @@ function Home({params}) {
 
   return (
     <UserProvider>
-      <div className='page'>
           <Hdr/>
           <AddCard id={params.id}/>
-      </div>
     </UserProvider>
   );
 }
