@@ -34,11 +34,11 @@
     padding-right: 10px;
 }
 
-.edit-button {
-    height: 100px;
-    width: 20%;
+.edit-button-set {
+    /* height: 30px;
+    width: 50px; */
     margin-top: 1%;
     margin-left: 1%;
-    font-size: 0.75em;
+    font-size: 1em;
     padding: 2px;
 }

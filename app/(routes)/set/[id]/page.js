@@ -45,7 +45,7 @@ export default function Page({ params }) {
         <div className='set-title'>{data.title}</div>
         {/* </div> */}
         { localStorage.getItem('username') == data.creator ? 
-          (<Button className="edit-button" onClick={() => {router.push(`/edit-set/${data._id}`)}}>Edit/Delete Set</Button>) 
+          (<Button className="edit-button-set" onClick={() => {router.push(`/edit-set/${data._id}`)}}>Edit/Delete Set</Button>) 
         : (<></>)}
       </div>
       <div> 
