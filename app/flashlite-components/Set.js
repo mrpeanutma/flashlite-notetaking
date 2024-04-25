@@ -1,7 +1,7 @@
 import React from 'react';
-import Card from './Card';
 import './css/Set.css';
 import Link from 'next/link';
+
 
 function Set(props) {
     //const DEFAULT_IMG = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXdBA9dnijNmKuHaYkEDKcy80J2Eexp4PEvMDCB0PcPg&s";
