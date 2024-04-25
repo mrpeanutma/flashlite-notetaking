@@ -72,27 +72,29 @@ export default function AddCard(props) { // props include set id and set creator
   return (
     <div className='body'>
       <p className="message">Enter Your Flashcard Information</p>
-        <form onSubmit={submitHandler}>
-          <label>Term:</label>
-          <input
-            id="term-input"
-            type="text"
-            // value={enteredTitle}
-            value={formData.term}
-            onChange={termChangeHandler}
-            // onChange={changeHandler}
-          />
-          <label>Definition:</label>
-          <input
-            id="definition-input"
-            type="text"
-            // value={enteredImg}
-            value={formData.definition}
-            onChange={defChangeHandler}
-            // onChange={changeHandler}
-          />
-          <Button type="submit">Create Card</Button>
-        </form>
+        <div className='input'>
+          <form onSubmit={submitHandler}>
+            <label>Term:</label>
+            <input
+              id="term-input"
+              type="text"
+              // value={enteredTitle}
+              value={formData.term}
+              onChange={termChangeHandler}
+              // onChange={changeHandler}
+            />
+            <label>Definition:</label>
+            <input
+              id="definition-input"
+              type="text"
+              // value={enteredImg}
+              value={formData.definition}
+              onChange={defChangeHandler}
+              // onChange={changeHandler}
+            />
+            <Button type="submit">Create Card</Button>
+          </form>
+        </div>
     </div>
   );
 };
