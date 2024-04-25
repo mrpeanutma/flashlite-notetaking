@@ -21,7 +21,7 @@ const Login = (props) => {
         }
     }, [userData.token, router]);
 
-    const [enteredData, setEnteredData] = useState ({
+    const [formData, setFormData] = useState ({
          username: '',
          email: '',
          password: '',
@@ -36,20 +36,26 @@ const Login = (props) => {
     //     });
     // };
 
-    const [enteredUsername, setEnteredUsername] = useState('');
-    const [enteredEmail, setEnteredEmail] = useState('');
-    const [enteredPassword, setEnteredPassword] = useState('');
+    // const [enteredUsername, setEnteredUsername] = useState('');
+    // const [enteredEmail, setEnteredEmail] = useState('');
+    // const [enteredPassword, setEnteredPassword] = useState('');
 
     const usernameChangeHandler = (event) => {
-        setEnteredUsername(event.target.value)
+        setFormData((prevState) => {
+            return {...prevState, username: event.target.value};
+        })
     }
 
     const emailChangeHandler = (event) => {
-        setEnteredEmail(event.target.value);
+        setFormData((prevState) => {
+            return {...prevState, email: event.target.value};
+        })
     }
 
     const passwordChangeHandler = (event) => {
-        setEnteredPassword(event.target.value);
+        setFormData((prevState) => {
+            return {...prevState, password: event.target.value};
+        })
     }
 
     const submitHandler = async (event) => {
@@ -57,20 +63,14 @@ const Login = (props) => {
 
         try {
 
-            if ((!enteredUsername && !enteredEmail) || !enteredPassword) {
+            if ((!formData.username && !formData.email) || !formData.password) {
                 alert('Username/Email AND Password required!');
             } else {
-                const response = await axios.post('http://localhost:8085/api/users/login', {
-                    username: enteredUsername,
-                    email: enteredEmail,
-                    password: enteredPassword,
-
-                });
+                const response = await axios.post('http://localhost:8085/api/users/login', formData);
                 setUserData({
                     token: response.data.token,
                     user: response.data.user,
                 });
-                console.log(response)
                 localStorage.setItem("auth-token", response.data.token);
                 localStorage.setItem('username', response.data.user.username)
                 console.log(userData);
@@ -104,15 +104,15 @@ const Login = (props) => {
             //     router.push('/logged-in');
             // }
         } catch (error) {
-            console.error('Login Failed:', error);
-            //Handle Login Error
+            console.error('Login Failed: ', error);
+            alert('Login failed: ' + error.response);
         }
     };
 
     return (
         <div className="container">
             <div className="form">
-                <p className="message">Enter the following information</p>
+                <p className="message">Enter the following information:</p>
                 <div className="input">
                     <form onSubmit={ submitHandler }>
                         <label>Username</label>
