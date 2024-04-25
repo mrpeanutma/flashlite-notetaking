@@ -13,3 +13,10 @@
     box-shadow: 0 2px 8px rgba(255, 255, 255, 0.26);
     transition: all 1s;
 }
+
+.add-card-card:hover {
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.4);
+    height: 310px;
+    width: 516.7px;
+    transition: all 1s;
+}

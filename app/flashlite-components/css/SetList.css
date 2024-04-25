@@ -31,7 +31,10 @@ Link {
 }
 
 .add-set-card:hover {
-    background-color: #b2b2b2;
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.4);
+    height: 310px;
+    width: 516.7px;
+    transition: all 1s;
 }
 
 .add-set-card > p {
