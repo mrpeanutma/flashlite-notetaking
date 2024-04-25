@@ -64,7 +64,8 @@ export default function AddCard(props) { // props include set id and set creator
             router.push(`/set/${props.id}`);
         }
     } catch (error) {
-        console.error('Login Failed:', error);
+        console.error('Add Card Failed:', error);
+        alert('Add Card failed: ' + error.response.data.msg);
         //Handle Login Error
     }
   };

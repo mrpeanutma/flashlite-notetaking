@@ -78,7 +78,8 @@ const imgChangeHandler = (event) => {
             router.push(`/set/${props.id}`);
         }
     } catch (error) {
-        console.error('Login Failed:', error);
+        console.error('Edit set failed:', error);
+        alert('Edit Set failed: ' + error.response.data.msg);
         //Handle Login Error
     }
 };
@@ -89,7 +90,8 @@ const deleteSetHandler = async (event) => {
     await axios.delete(`http://localhost:8085/api/sets/${props.id}`);
     router.push(`/`);
   } catch (error) {
-    console.error('Delete Failed:', error);
+    console.error('Delete Set Failed:', error);
+    alert('Delete Set Failed: ' + error.response.data.msg);
     //Handle Login Error
   }
 }
