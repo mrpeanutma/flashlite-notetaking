@@ -143,7 +143,7 @@ const deleteSetHandler = async (event) => {
     <div className='body'>
       <p className="message">Enter Your Flashcard Set Information</p>
       {/* <Card className="input"> */}
-      <div>
+      <div className='input'>
         <form onSubmit={submitHandler}>
           <label>Title</label>
           <input
@@ -163,8 +163,10 @@ const deleteSetHandler = async (event) => {
             onChange={imgChangeHandler}
             //onChange={changeHandler}
           />
-          <Button type="submit">Update Set</Button>
-          <Button className="deleteButton" onClick={deleteSetHandler}>Delete Set</Button>
+          <div className='toolbar'>
+            <Button type="submit">Update Set</Button>
+            <Button className="deleteButton" onClick={deleteSetHandler}>Delete Set</Button>
+          </div>
         </form>
       {/* </Card> */}
       </div>
