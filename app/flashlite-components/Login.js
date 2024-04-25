@@ -119,7 +119,7 @@ const Login = (props) => {
                         <input
                             id="username"
                             type="text"
-                            value={ enteredUsername }
+                            value={ formData.username }
                             //value={enteredData.username}
                             onChange={ usernameChangeHandler }
                             //onChange={ changeHandler }
@@ -129,7 +129,7 @@ const Login = (props) => {
                         <input
                             id="email"
                             type="email"
-                            value={ enteredEmail }
+                            value={ formData.email }
                             //value={enteredData.email}
                             onChange={ emailChangeHandler }
                             //onChange={ changeHandler }
@@ -138,7 +138,7 @@ const Login = (props) => {
                         <input
                             id="password"
                             type="password"
-                            value={ enteredPassword }
+                            value={ formData.password }
                             //value={enteredData.password}
                             onChange={ passwordChangeHandler }
                             //onChange={ changeHandler }
