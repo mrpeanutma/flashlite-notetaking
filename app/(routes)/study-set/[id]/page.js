@@ -10,6 +10,7 @@ import './page.css';
 //import UsersList from '/flashlite-components/UsersList';
 //import AddUser from './flashlite-components/AddUser';
 import Hdr from '../../../flashlite-components/Hdr';
+import StudySet from '../../../flashlite-components/StudySet';
 import CardList from '../../../flashlite-components/CardList';
 import Head from "next/head";
 import Button from '../../../flashlite-components/Button'
@@ -44,13 +45,9 @@ export default function Page({ params }) {
           <div className='set-creator'>By: {data.creator}</div>
           <div className='set-title'>{data.title}</div>
         </div>
-        <Button className="study-button" onClick={() => {router.push(`/study-set/${data._id}`)}}>Study</Button>
-        { localStorage.getItem('username') == data.creator ? 
-          (<Button className="edit-button-set" onClick={() => {router.push(`/edit-set/${data._id}`)}}>Edit/Delete Set</Button>) 
-        : (<></>)}
       </div>
       <div> 
-        <CardList id={params.id}/>
+        <StudySet id={params.id}/>
       </div>
     </UserProvider>
   );

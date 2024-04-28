@@ -1,0 +1,50 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.set-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.set-description {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.set-title {
+    text-align: center;
+    background: #ffffff;
+    margin: 1%;
+    font-size: large;
+    border: solid black 2px;
+    border-radius: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.set-creator {
+    text-align: center;
+    background: #ffffff;
+    margin: 1%;
+    font-size: large;
+    border: solid black 2px;
+    border-radius: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.edit-button-set {
+    /* height: 30px;
+    width: 50px; */
+    margin-top: 1%;
+    margin-left: 1%;
+    font-size: 1em;
+    padding: 2px;
+}

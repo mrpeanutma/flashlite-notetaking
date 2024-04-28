@@ -1,0 +1,20 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    list-style-type: none;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inactive {
+    background-color: grey;
+}
+
+.inactive:hover,
+.inactive:active {
+    background-color: grey;
+}
