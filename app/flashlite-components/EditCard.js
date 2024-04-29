@@ -55,7 +55,8 @@ export default function EditCard(props) { // props include card id and set creat
         } else {
             console.log(formData);
             const response = await axios.put(`http://localhost:8085/api/cards/${props.id}`, formData);
-            router.push(`/set/${formData.inSet}`);
+            if (inSet) {router.push(`/set/${formData.inSet}`);
+              } else {router.push(`/`);}
         }
     } catch (error) {
         console.error('Edit Card Failed:', error);
@@ -67,7 +68,8 @@ export default function EditCard(props) { // props include card id and set creat
     event.preventDefault();
     try {
       await axios.delete(`http://localhost:8085/api/cards/${props.id}`);
-      router.push(`/set/${formData.inSet}`);
+      if (inSet) {router.push(`/set/${formData.inSet}`);
+        } else {router.push(`/`);}
     } catch (error) {
       console.error('Delete Card Failed:', error);
       alert('Delete Card failed: ' + error.response.data.msg);

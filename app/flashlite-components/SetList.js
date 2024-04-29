@@ -19,7 +19,6 @@ function SetList() {
     useEffect(()=> {
         axios.get('http://localhost:8085/api/sets')
             .then((response) => {
-                console.log(response.data)
                 setData(response.data);
             })
             .catch((err)=> {

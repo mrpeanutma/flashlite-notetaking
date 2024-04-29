@@ -25,7 +25,6 @@ export default function CardList(props) {
     useEffect(()=> {
         axios.get(`http://localhost:8085/api/sets/${props.id}`)
             .then((response) => {
-                console.log(response.data.cards);
                 setData(response.data);
             })
     }, [])
