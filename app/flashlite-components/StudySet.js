@@ -11,7 +11,7 @@ import Button from "@/app/flashlite-components/Button";
 
 
 
-export default function CardList(props) {
+export default function StudySet(props) {
 
     const router = useRouter();
 
@@ -31,7 +31,7 @@ export default function CardList(props) {
                 console.log(response.data.cards);
                 setData(response.data);
             })
-    }, [])
+    }, [currentCard])
 
     if (!data) return null;
 
@@ -64,8 +64,11 @@ export default function CardList(props) {
             console.log("Next Clicked!", current);
             if (current < studyCards.length - 1) {
                 setCurrent(current + 1);
-                setCurrentCard(studyCards[current]);
-                const ID = currentCard.props.id;
+                const cards = [...studyCards];
+                const newCard = cards[current];
+                setCurrentCard(prevCurrentCard => newCard);
+                // const ID = currentCard.props.id;
+                const ID = newCard.props.id;
                 console.log('Previous: ', {ID});
                 // console.log('Previous: ', {currentCard});
                 console.log("Current: ", current);

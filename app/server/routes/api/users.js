@@ -45,6 +45,8 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
             return res.status(400).json({msg: 'Please enter all fields.'});
         }
 
+        // const user = await User.findOne({userID});
+        let user;
         if (username) {
             user = await User.findOne({username});
         } else {
