@@ -4,7 +4,6 @@ const CardSet = require('../../models/CardSet');
 const Card = require('../../models/Card')
 const bodyParser = require("body-parser");
 const auth = require('../../middleware/auth');
-// const { default: Card } = require('@/app/flashlite-components/Card');
 
 // @route GET api/sets
 router.get('/', (req, res) => {
@@ -27,19 +26,6 @@ router.post('/', bodyParser.json(), (req, res) => {
         .catch((err) => res.status(400).json({error: 'Unable to add this set.'}))
 });
 
-// router.post('/:id/new-card', bodyParser.json(), (req, res) => {
-//     Card.create(req.body)
-//     .then((item) => {
-//         console.log(item);
-//         CardSet.findByIdAndUpdate(req.params.id, 
-//             {
-//                 $push: {cards: item._id}
-//             })
-//         })
-//         .then((item) => res.json({ msg: 'Set added successfully'}))
-//         .catch((err) => res.status(400).json({err}))
-// });
-
 // @route POST api/sets/:id/new-card
 router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
     try {
@@ -48,7 +34,11 @@ router.post('/:id/new-card', bodyParser.json(), async (req,res) => {
             return res.status(400).json({msg: 'Please enter all fields.'});
         }
         
-        const newCard = new Card({term, definition});
+        const newCard = new Card({
+            term,
+            definition,
+            inSet: req.params.id
+        });
         const savedCard = await newCard.save();
 
         CardSet.findById(req.params.id)

@@ -3,11 +3,9 @@ import axios from 'axios';
 import UserContext from '../context/UserContext';
 import { useRouter } from "next/navigation";
 
-import Card from "./Card.js";
 import Set from "./Set.js";
 import "./css/SetList.css";
 import Link from 'next/link';
-import Button from "./Button.js";
 
 
 
@@ -33,7 +31,6 @@ function SetList() {
     
     return (
         <div className="items">
-            {/* <Card className="sets"> */}
             <ul>
                 {data.map((set) => (
                     <Set
@@ -53,7 +50,6 @@ function SetList() {
                     </Link>
                 ) : (<></>)}
             </ul>
-            {/* </Card> */}
         </div>
     );
 }

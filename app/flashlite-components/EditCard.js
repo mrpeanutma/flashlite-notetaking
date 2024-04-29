@@ -40,21 +40,9 @@ export default function EditCard(props) { // props include card id and set creat
             console.log(response.data)
               setFormData(response.data);
           })
-          // .then(() => {
-          //     if(!userData.token) {
-          //         router.push(`/set/${props.id}`); // Redirect if not logged in
-          //     }
-          // })
   }, [])
 
   const [error, setError] = useState('');
-
-  // const changeHandler = (event) => {
-  //     setEnteredData({
-  //         ... enteredData,
-  //         [e.target.name]: e.target.value,
-  //     });
-  // };
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
@@ -85,7 +73,6 @@ export default function EditCard(props) { // props include card id and set creat
     } catch (error) {
       console.error('Delete Card Failed:', error);
       alert('Delete Card failed: ' + error.response.data.msg);
-      //Handle Login Error
     }
   }
 
@@ -98,18 +85,14 @@ export default function EditCard(props) { // props include card id and set creat
             <input
               id="term-input"
               type="text"
-              // value={enteredTitle}
               value={formData.term}
-              // onChange={titleChangeHandler}
               onChange={termChangeHandler}
             />
             <label>Definition:</label>
             <input
               id="definition-input"
               type="text"
-              // value={enteredImg}
               value={formData.definition}
-              // onChange={imgChangeHandler}
               onChange={defChangeHandler}
             />
             <div className='toolbar'>

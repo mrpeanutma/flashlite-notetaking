@@ -22,7 +22,6 @@ const Signup = (props) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        // birthday: '',
         password: ''
     })
 

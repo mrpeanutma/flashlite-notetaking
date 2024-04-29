@@ -24,18 +24,7 @@ function EditSet(props) {
       image: '',
   });
 
-// const [enteredTitle, setEnteredTitle] = useState(props.title);
-// const [enteredImg, setEnteredImg] = useState(props.img);
-// const [enteredCreator, setEnteredCreator] = useState(props.creator);
-
   const [error, setError] = useState('');
-
-//   const changeHandler = (event) => {
-//       setEnteredData({
-//           ... enteredData,
-//           [event.target.name]: event.target.value,
-//       });
-//   };
 
 const titleChangeHandler = (event) => {
   setFormData((prevState) => {
@@ -80,7 +69,6 @@ const imgChangeHandler = (event) => {
     } catch (error) {
         console.error('Edit set failed:', error);
         alert('Edit Set failed: ' + error.response.data.msg);
-        //Handle Login Error
     }
 };
 
@@ -92,54 +80,8 @@ const deleteSetHandler = async (event) => {
   } catch (error) {
     console.error('Delete Set Failed:', error);
     alert('Delete Set Failed: ' + error.response.data.msg);
-    //Handle Login Error
   }
 }
-
-// try {
-//     if (!enteredData.title) {
-//         alert('Sets must have a title');
-//     } else {
-//         const response = await axios.post('http://localhost:8085/login', enteredData);
-//         router.push('/');
-//     }
-// } catch (error) {
-//     console.error('Login Failed:', error);
-//     //Handle Login Error
-// }
-
-
-
-
-
-//   const submitHandler = (event) => {
-//     event.preventDefault();
-
-//     const cards=[];
-
-//     const setData = {
-//       id: Math.random().toString(),
-//       title: enteredTitle,
-//       img: enteredImg,
-//       creator: enteredCreator,
-//       cards: cards
-//     }
-
-//     if (enteredTitle === '' || enteredCreator === '') {
-//     setEnteredImg(LOGO);
-//       alert('Title and Creator Required');
-//     } else {
-//     if (enteredImg === '') {
-//             setData.img = LOGO;
-//     }
-//       setEnteredTitle('');
-//       setEnteredImg('');
-//       setEnteredCreator('');
-// //      props.onAddSet(setData);
-//       console.log(setData);
-//       router.push('/logged-in');
-//     }
-//   };
 
   return (
     <div className='body'>
@@ -163,7 +105,7 @@ const deleteSetHandler = async (event) => {
             value={formData.image}
             //value={enteredData.img}
             onChange={imgChangeHandler}
-            //onChange={changeHandler}
+
           />
           <div className='toolbar'>
             <Button type="submit">Update Set</Button>
