@@ -67,7 +67,7 @@ const Login = (props) => {
 
         } catch (error) {
             console.error('Login Failed: ', error);
-            alert('Login failed: ' + error.message);
+            alert('Login failed: Ensure that Username and Password are Correct');
         }
     };
 
