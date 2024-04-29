@@ -14,9 +14,12 @@
   "dependencies": {
     "@fontsource/josefin-sans": "^5.0.20",
     "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.1",
     "next": "^14.2.3",

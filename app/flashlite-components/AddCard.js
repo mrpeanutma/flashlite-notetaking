@@ -20,7 +20,7 @@ export default function AddCard(props) { // props include set id and set creator
   useEffect(() => {
       if(!userData.token) {
         router.push(`/`); // Redirect if not logged in
-      } else if (userData.user != props.creator) {
+      } else if (userData.user !== props.creator) {
         router.push(`/`) // Redirect if not set creator
       }
   }, [userData.token, router]);

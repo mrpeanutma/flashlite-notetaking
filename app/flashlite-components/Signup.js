@@ -1,14 +1,10 @@
 'use client';
 
 import {useState, useContext, useEffect} from 'react';
-import axios from 'axios';
 import UserContext from '../context/UserContext';
 import { useRouter } from "next/navigation";
-
 import Button from "@/app/flashlite-components/Button";
-import Card from "@/app/flashlite-components/Card";
 import './css/Signup.css';
-import Link from 'next/link';
 
 const Signup = (props) => {
 
@@ -23,13 +19,6 @@ const Signup = (props) => {
 
     const [error, setError] = useState('');
 
-    // const changeHandler = (e) => {
-    //     setEnteredData({
-    //         ... enteredData,
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
-
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -37,59 +26,43 @@ const Signup = (props) => {
         password: ''
     })
 
-    const usernameChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, username: event.target.value};
-        });
-    };
-
-    const emailChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, email: event.target.value};
-        });
-    };
-    const passwordChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, password: event.target.value};
-        });
-    };
-
-    const birthdayChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, birthday: event.target.value};
-        });
-    };
+    const changeHandler = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    }
 
     const submitHandler = async (event) => {
         event.preventDefault();
         try {
-
-            // console.log("Packaging User Data");
-            // const userData = {
-            //     // id: Math.random().toString(),
-            //     username: enteredUsername,
-            //     // birthday: enteredBirthday,
-            //     email: enteredEmail,
-            //     password: enteredPassword
-            // }
-
             if (!formData.username || !formData.email || ! formData.password) {
                 alert('All fields required!');
             } else {
-                await axios.post('http://localhost:8085/api/users/signup', formData);
-                const loginResponse = await axios.post('http://localhost:8085/api/users/login', {
-                    username: formData.username,
-                    email: formData.email,
-                    password: formData.password
-                });
+                const signupRes = await fetch('http://localhost:8085/api/users/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                } )
+                const loginResponse = await fetch('http://localhost:8085/api/users/login',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: formData.username,
+                        email: formData.email,
+                        password: formData.password
+                    })
+                })
+                const loginData = await loginResponse.json()
 
-                setUserData({
-                    token: loginResponse.data.token,
-                    user: loginResponse.data.user,
-                });
 
-                localStorage.setItem("auth-token", loginResponse.data.token);
-                localStorage.setItem("username", loginResponse.data.user.username);
+                localStorage.setItem("auth-token", loginData.token);
+                localStorage.setItem("username", loginData.username);
                 router.push('/');
             }
 
@@ -98,23 +71,6 @@ const Signup = (props) => {
             alert('Signup failed: ' + error.response.data.msg)
         }
 
-        // const userData = {
-        //     id: Math.random().toString(),
-        //     username: enteredUsername,
-        //     birthday: enteredBirthday,
-        //     email: enteredEmail,
-        //     password: enteredPassword,
-        // }
-
-        // if (!enteredUsername || !enteredPassword || !enteredEmail || !enteredBirthday) {
-        //     alert('All fields required!');
-        // }
-        // props.onSignup(userData);
-        // setEnteredUsername('');
-        // setEnteredBirthday('');
-        // setEnteredEmail('');
-        // setEnteredPassword('');
-        // router.push('/logged-in');
     };
 
     return (
@@ -127,36 +83,33 @@ const Signup = (props) => {
                         <input
                             id="username"
                             type="text"
-                            //value={ enteredUsername }
+                            name="username"
                             value={formData.username}
-                            onChange={ usernameChangeHandler }
-                            // onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Birthday</label>
                         <input
                             id="birthday"
                             type="date"
+                            name="birthday"
                             value={formData.birthday}
-                            onChange={ birthdayChangeHandler }
-                            // onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Email</label>
                         <input
                             id="email"
                             type="email"
-                            //value={ enteredEmail }
+                            name="email"
                             value={formData.email}
-                            onChange={ emailChangeHandler }
-                            // onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Password</label>
                         <input
                             id="password"
                             type="password"
-                            // value={ enteredPassword }
+                            name="password"
                             value={formData.password}
-                            onChange={ passwordChangeHandler }
-                            // onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <Button type="submit" className="signup">Sign up</Button>
                     </form>

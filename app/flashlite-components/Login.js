@@ -27,87 +27,52 @@ const Login = (props) => {
          password: '',
     });
 
-    // const [error, setError] = useState('');
 
-    // const changeHandler = (e) => {
-    //     setEnteredData({
-    //         ...enteredData,
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
-
-    // const [enteredUsername, setEnteredUsername] = useState('');
-    // const [enteredEmail, setEnteredEmail] = useState('');
-    // const [enteredPassword, setEnteredPassword] = useState('');
-
-    const usernameChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, username: event.target.value};
-        })
+    const changeHandler = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value,
+        }));
     }
 
-    const emailChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, email: event.target.value};
-        })
-    }
-
-    const passwordChangeHandler = (event) => {
-        setFormData((prevState) => {
-            return {...prevState, password: event.target.value};
-        })
-    }
 
     const submitHandler = async (event) => {
         event.preventDefault();
 
         try {
-
             if ((!formData.username && !formData.email) || !formData.password) {
                 alert('Username/Email AND Password required!');
             } else {
-                const response = await axios.post('http://localhost:8085/api/users/login', formData);
-                setUserData({
-                    token: response.data.token,
-                    user: response.data.user,
+                const loginResponse = await fetch('http://localhost:8085/api/users/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: formData.username,
+                        password: formData.password
+                    })
                 });
-                localStorage.setItem("auth-token", response.data.token);
-                localStorage.setItem('username', response.data.user.username)
-                console.log(userData);
+
+                const responseJson = await loginResponse.json();
+                setUserData({
+                    token: responseJson.token,
+                    user: responseJson.user,
+                });
+                console.log('Response JSON:', responseJson);
+
+                localStorage.setItem("auth-token", responseJson.token);
+                localStorage.setItem('username', responseJson.user.username);
                 router.push('/');
             }
 
-            // const userData = {
-            //     id: Math.random().toString(),
-            //     username: enteredUsername,
-            //     email: enteredEmail,
-            //     password: enteredPassword,
-            // }
-
-            // if (!enteredUsername && !enteredEmail){
-            //     alert('Username or email required!')
-            //     setEnteredUsername('');
-            //     setEnteredEmail('');
-            //     setEnteredPassword('');
-            // }
-            // else if(!enteredPassword){
-            //     alert('Password required!')
-            //     setEnteredUsername('');
-            //     setEnteredEmail('');
-            //     setEnteredPassword('');
-            // }
-            // else{
-            //     props.onLogin(userData);
-            //     setEnteredUsername('');
-            //     setEnteredEmail('');
-            //     setEnteredPassword('');
-            //     router.push('/logged-in');
-            // }
         } catch (error) {
             console.error('Login Failed: ', error);
-            alert('Login failed: ' + error.response.data.msg);
+            alert('Login failed: ' + error.message);
         }
     };
+
 
     return (
         <div className="container">
@@ -119,29 +84,26 @@ const Login = (props) => {
                         <input
                             id="username"
                             type="text"
+                            name="username"
                             value={ formData.username }
-                            //value={enteredData.username}
-                            onChange={ usernameChangeHandler }
-                            //onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <p>OR</p>
                         <label>Email</label>
                         <input
                             id="email"
                             type="email"
+                            name="email"
                             value={ formData.email }
-                            //value={enteredData.email}
-                            onChange={ emailChangeHandler }
-                            //onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <label>Password</label>
                         <input
                             id="password"
                             type="password"
+                            name="password"
                             value={ formData.password }
-                            //value={enteredData.password}
-                            onChange={ passwordChangeHandler }
-                            //onChange={ changeHandler }
+                            onChange={ changeHandler }
                         />
                         <Button type="submit" className="login">Login</Button>
                     </form>

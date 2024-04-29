@@ -9,12 +9,13 @@ const sets = require('./routes/api/sets');
 const users = require('./routes/api/users');
 
 
+app.use(cors());
+app.use(express.json());
+
 app.use('/api/cards', cards)
 app.use('/api/sets', sets);
 app.use('/api/users', users);
 
-app.use(cors({origin: true, credentials:true}));
-app.use(express.json({ entered: false}));
 app.get('/', (req, res) => res.send('Hello world!'));
 app.get('/login', (req,res) => res.send("logging in"));
 app.get('/beans', (req,res) => res.send('Here are some beans'));
