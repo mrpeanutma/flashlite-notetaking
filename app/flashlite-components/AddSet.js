@@ -34,8 +34,6 @@ function AddSet(props) {
       }
   }, [userData.token, router]);
 
-  const [error, setError] = useState('');
-
   const titleChangeHandler = (event) => {
       setFormData((prevState) => {
           return {...prevState, title: event.target.value}
@@ -60,89 +58,37 @@ function AddSet(props) {
                 return {...prevState, image: DEFAULT_IMG}
               })
             }
-            // setFormData((prevState) => {
-            //   return {
-            //     ...prevState,
-            //     creator: userData.username
-            //   }
-            // })
             const response = await axios.post('http://localhost:8085/api/sets/', formData);
             router.push('/');
         }
     } catch (error) {
         console.error('Create Set Failed:', error);
         alert('Create Set failed: ' + error.response.data.msg);
-        //Handle Login Error
     }
   };
-
-//   const [enteredTitle, setEnteredTitle] = useState('');
-//   const [enteredImg, setEnteredImg] = useState('');
-//   const [enteredCreator, setEnteredCreator] = useState('');
-//   const titleChangeHandler = (event) => {
-//     setEnteredTitle(event.target.value);
-//   }
-//   const imgChangeHandler = (event) => {
-//     setEnteredImg(event.target.value);
-//   }
-//   const creatorChangeHandler = (event) => {
-//     setEnteredCreator(event.target.value);
-//   }
-//   const submitHandler = (event) => {
-//     event.preventDefault();
-//     const cards=[];
-
-//     const setData = {
-//       id: Math.random().toString(),
-//       title: enteredTitle,
-//       img: enteredImg,
-//       creator: enteredCreator,
-//       cards: cards
-//     }
-//     if (enteredTitle === '' || enteredCreator === '') {
-//     setEnteredImg(LOGO);
-//       alert('Title and Creator Required');
-//     } else {
-//     if (enteredImg === '') {
-//             setData.img = LOGO;
-//     }
-//       setEnteredTitle('');
-//       setEnteredImg('');
-//       setEnteredCreator('');
-// //      props.onAddSet(setData);
-//       console.log(setData);
-//       router.push('/logged-in');
-//     }
-//   };
 
   return (
     <div className='body'>
       <p className="message">Enter Your Flashcard Set Information</p>
-      {/* <Card className="input"> */}
       <div className='input'>
         <form onSubmit={submitHandler}>
           <label>Title</label>
           <input
             id="title"
             type="text"
-            // value={enteredTitle}
             value={formData.title}
             onChange={titleChangeHandler}
-            // onChange={changeHandler}
           />
           <label>Link to image</label>
           <input
             id="img"
             type="text"
-            // value={enteredImg}
             value={formData.image}
             placeholder={DEFAULT_IMG}
             onChange={imgChangeHandler}
-            // onChange={changeHandler}
           />
           <Button type="submit">Create Set</Button>
         </form>
-      {/* </Card> */}
       </div>
     </div>
   );

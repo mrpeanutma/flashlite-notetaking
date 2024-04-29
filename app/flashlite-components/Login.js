@@ -6,9 +6,7 @@ import UserContext from '../context/UserContext';
 import { useRouter } from "next/navigation";
 
 import Button from "@/app/flashlite-components/Button";
-import Card from "@/app/flashlite-components/Card";
 import './css/Login.css';
-import Link from 'next/link';
 
 const Login = (props) => {
 

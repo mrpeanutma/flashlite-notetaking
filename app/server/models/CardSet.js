@@ -16,12 +16,7 @@ const CardSetSchema = new mongoose.Schema({
     cards: {
       type: [{ type: Schema.Types.ObjectId, ref: 'Card'}],
       required: true
-    },
-    public: {
-      type: Boolean,
-      default: false
     }
-
 });
 
 module.exports = CardSet = mongoose.model('Set', CardSetSchema);

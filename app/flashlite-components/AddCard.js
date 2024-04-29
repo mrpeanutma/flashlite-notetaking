@@ -28,6 +28,7 @@ export default function AddCard(props) { // props include set id and set creator
   const [formData, setFormData] = useState ({
       term: '',
       definition: '',
+      inSet: ''
   });
 
   const [error, setError] = useState('');
@@ -44,13 +45,6 @@ export default function AddCard(props) { // props include set id and set creator
     });
   };
 
-  // const changeHandler = (event) => {
-  //     setEnteredData({
-  //         ... enteredData,
-  //         [e.target.name]: e.target.value,
-  //     });
-  // };
-
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
   const submitHandler = async (event) => {
@@ -60,13 +54,15 @@ export default function AddCard(props) { // props include set id and set creator
         if (!formData.term || !formData.definition) {
             alert('All fields must have an input.');
         } else {
+            setFormData((prevState) => {
+              return {...prevState, inSet: props.id}
+            })
             const response = await axios.post(`http://localhost:8085/api/sets/${props.id}/new-card`, formData);
             router.push(`/set/${props.id}`);
         }
     } catch (error) {
         console.error('Add Card Failed:', error);
         alert('Add Card failed: ' + error.response.data.msg);
-        //Handle Login Error
     }
   };
 
@@ -79,19 +75,15 @@ export default function AddCard(props) { // props include set id and set creator
             <input
               id="term-input"
               type="text"
-              // value={enteredTitle}
               value={formData.term}
               onChange={termChangeHandler}
-              // onChange={changeHandler}
             />
             <label>Definition:</label>
             <input
               id="definition-input"
               type="text"
-              // value={enteredImg}
               value={formData.definition}
               onChange={defChangeHandler}
-              // onChange={changeHandler}
             />
             <Button type="submit">Create Card</Button>
           </form>

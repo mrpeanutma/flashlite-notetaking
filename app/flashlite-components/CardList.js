@@ -25,7 +25,6 @@ export default function CardList(props) {
     useEffect(()=> {
         axios.get(`http://localhost:8085/api/sets/${props.id}`)
             .then((response) => {
-                console.log(response.data.cards);
                 setData(response.data);
             })
     }, [])
@@ -34,7 +33,6 @@ export default function CardList(props) {
 
     return (
         <div className="cards">
-            {/* <Card className="sets"> */}
             <ul>
                 {data.cards.map((cardId) => (
                     <Card id={cardId} creator={data.creator}/>
@@ -48,7 +46,6 @@ export default function CardList(props) {
                     </Link>
                 ) : (<></>)}
             </ul>
-            {/* </Card> */}
         </div>
     );
 }

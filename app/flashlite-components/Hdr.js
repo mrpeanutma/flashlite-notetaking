@@ -13,24 +13,15 @@ const Hdr = (props) => {
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png"
 
-  // const [signedIn, setSignedIn] = useState(props.signedIn);
-
   const router = useRouter();
   const {userData, setUserData} = useContext(UserContext);
 
   function logoutHandler(event) {
-    console.log(userData);
     setUserData({token: undefined, user: undefined});
     localStorage.removeItem('auth-token');
     localStorage.removeItem('username');
     router.push('/');
   }
-
-  // const [addingSet,setAddingSet] = useState(false);
-
-  // function addSetHandler(event) {
-  //   setAddingSet(!addingSet);
-  // }
 
   return(
       <div className="hdr">
