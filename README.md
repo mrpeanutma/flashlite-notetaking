@@ -2,11 +2,18 @@
 
 # FlashLITE Learning Platform
 
-This is our final project for the CSCI 4300 Web Programming Course, made by Joshua Young, Bailey Greer, Emily Cheng, and Connor Stephens.
+This is our final project for the CSCI 4300 Web Programming Course.
 
-FlashLITE is a website that allows users to create their own sets of flashcards and display them to other users. We are also working on implementing a way to study them. All flashcard sets and users are stored in a MongoDB server and users are verified with authentication and their passwords are hashed on the database.
+FlashLITE is a website that allows users to create their own sets of flashcards and display them to other users. All flashcard sets and users are stored in a MongoDB server and users are verified with authentication and their passwords are hashed on the database. Users have sets that they "own", so that only they can edit the set and its cards, but they can also view sets created by other users.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+### Team Members:
+
+1. **Team Leader:** Joshua Young
+2. **Communication Lead:** Emily Cheng
+3. **Miro Captain:** Bailey Greer
+4. **GitHub Captain:** Connor Stephens
 
 ## Getting Started
 
@@ -29,4 +36,3 @@ npm run develop
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-> Note: We have been getting issues with CORS where it will not connect to the server, we were able to find a workaround with the Firefox extension "CORS Everywhere".
