@@ -19,7 +19,8 @@ export default function EditCard(props) { // props include card id and set creat
 
   const [formData, setFormData] = useState({
     term: '',
-    definition: ''
+    definition: '',
+    inSet: ''
   });
 
   const termChangeHandler = (event) => {
@@ -42,7 +43,6 @@ export default function EditCard(props) { // props include card id and set creat
           })
   }, [])
 
-  const [error, setError] = useState('');
 
   const LOGO = "https://www.pngall.com/wp-content/uploads/4/Flashlight-PNG-Clipart.png";
 
@@ -55,8 +55,7 @@ export default function EditCard(props) { // props include card id and set creat
         } else {
             console.log(formData);
             const response = await axios.put(`http://localhost:8085/api/cards/${props.id}`, formData);
-            router.push(`/`);
-            // router.push(`/set/${props.id}`);
+            router.push(`/set/${formData.inSet}`);
         }
     } catch (error) {
         console.error('Edit Card Failed:', error);
@@ -68,8 +67,7 @@ export default function EditCard(props) { // props include card id and set creat
     event.preventDefault();
     try {
       await axios.delete(`http://localhost:8085/api/cards/${props.id}`);
-      router.push(`/`);
-      // router.push(`/set/${props.id}`);
+      router.push(`/set/${formData.inSet}`);
     } catch (error) {
       console.error('Delete Card Failed:', error);
       alert('Delete Card failed: ' + error.response.data.msg);
