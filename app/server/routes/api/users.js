@@ -61,6 +61,7 @@ userRouter.post('/login', bodyParser.json(), async (req,res) => {
         }
 
         // const user = await User.findOne({userID});
+        let user;
         if (username) {
             user = await User.findOne({username});
         } else {

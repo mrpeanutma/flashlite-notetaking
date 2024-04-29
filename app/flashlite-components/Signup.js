@@ -59,16 +59,19 @@ const Signup = (props) => {
                     })
                 })
                 const loginData = await loginResponse.json()
-
+                setUserData({
+                    token: loginData.token,
+                    user: loginData.user,
+                });
 
                 localStorage.setItem("auth-token", loginData.token);
-                localStorage.setItem("username", loginData.username);
+                localStorage.setItem("username", loginData.user.username);
                 router.push('/');
             }
 
         } catch (error) {
             console.error('Signup Failed:', error);
-            alert('Signup failed: ' + error.response.data.msg)
+            // alert('Signup failed: ' + error.response.data.msg)
         }
 
     };
