@@ -50,10 +50,12 @@ export default function CardList(props) {
 
         const previousHandler = () => {
             console.log("Previous Clicked!");
-            if (current >= 0) {
+            if (current > 0) {
                 setCurrent(current - 1);
                 setCurrentCard(studyCards[current]);
-                console.log('Previous: ', {currentCard});
+                const ID = currentCard.props.id;
+                console.log('Previous: ', {ID});
+                // console.log('Previous: ', {currentCard});
                 console.log("Current: ", current);
             }
         }
@@ -63,7 +65,9 @@ export default function CardList(props) {
             if (current < studyCards.length - 1) {
                 setCurrent(current + 1);
                 setCurrentCard(studyCards[current]);
-                console.log('Previous: ', {currentCard});
+                const ID = currentCard.props.id;
+                console.log('Previous: ', {ID});
+                // console.log('Previous: ', {currentCard});
                 console.log("Current: ", current);
             }
         }
@@ -80,7 +84,7 @@ export default function CardList(props) {
                     <Button type="button" className="inactive" onClick={() => {}}>Previous</Button>
                 ) : (<Button type="button" className="active" onClick={() => {previousHandler()}}>Previous</Button>)}
 
-                {current == studyCards.length ? (
+                {current >= studyCards.length - 1 ? (
                     <Button type="button" className="inactive" onClick={() => {}}>Next</Button>
                 ) : (<Button type="button" className="active" onClick={() => {nextHandler()}}>Next</Button>)}
                 </div>
