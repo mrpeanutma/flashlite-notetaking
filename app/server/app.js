@@ -1,7 +1,7 @@
 const express = require('express');
 const config = require('dotenv').config();
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8085;
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cards = require('./routes/api/cards')
